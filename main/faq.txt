@@ -1,0 +1,66 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+47
+22
+Categories
+753 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Please Refer To the Github Pages for FAQ #700
+Kevin Darlington
+3 days ago in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+151
+11
+55
+11
+Views
+
+FAQ 
+
+Please ask any questions you have in this thread. 
+
+Start by watching the project introduction:
+
+Project Introduction (Might not match the project requirements exactly)
+
+
+
+Extra Resources (these are also linked in the instructions):
+
+This simple LDAP server that will be used to run the exploit.
+
+This Log4JExploit Intro and How Log4Shell Works to familiarize yourself with the exploit and how it is accomplished.
+
+If you have no experience in Java, Log4j/logging, RESTful applications, JNDI, LDAP, we STRONGLY encourage you to do research into the topics. There are many great resources online like Google and YouTube.
+
+Log4J Documentation
+
+Hands on Intro (THIS IS NOT A TUTORIAL, do not copy commands verbatim here. This is simple an external resource that explains the general concepts and steps of the exploit well)
+
+Helpful Linux Networking Commands
+
+NCAT Command
+
+https://web.archive.org/web/20220118140106/https://securityblue.team/log4j-hunting-and-indicators/
+
+If you would like to learn more about this exploit and Java Object Deserialization Vulnerabilities this paper written by Moritz Bechler is an excellent research paper: Java Unmarshaller Security and so is this BlackHat presentation: A JOURNEY FROM JNDI/LDAP MANIPULATION TO REMOTE CODE EXECUTION DREAM LAND
+
+Comment
+

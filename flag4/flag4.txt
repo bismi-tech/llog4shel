@@ -1,0 +1,128 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+47
+22
+Categories
+753 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Project Log4Shell - Flag 4 Command and Concat #695
+Kevin Darlington
+3 days ago in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+96
+99
+66
+Views
+
+This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
+
+Anyone with questions about citations and plagiarism should consult the appropriate section of the course policy on misconduct.
+
+Note: Do not share code, outside tools you used or any hints beyond the writeup or office hours to other students. We will delete threads and warn you if you overshare.
+
+Comment
+
+Sort by Newest 
+Gen Sheng Zhang
+22m
+
+Resolved
+Is this also meant to use jdni or something different? I see some issues with a foo....
+
+
+Reply
+
+Gen Sheng Zhang
+18m
+Please ignore... i was in the wrong directory.
+
+
+Reply
+
+Gen Sheng Zhang
+15m
+Without giving away too many hints, I don't actually quite get what this has to do with the flag's name. Is there a way to leverage the mechanism explicitly or is this the same as any other log4j injection into a variable...? Just curious, because it seems to work by just updating one vulnerable variable.
+
+
+Reply
+
+Gen Sheng Zhang
+9m
+ Replying to Gen Sheng Zhang
+i just exploited the vulnerability in the "intended" way probably, by leveraging the name of the flag. But, it still seems to work without it... wondering if I am tripping
+
+
+Reply
+
+Yongmin Li
+3h
+
+Resolved
+I am getting this ERROR Ronnie.txt was created but contents != "AintNothinButAPeanut!". Contents were: null
+
+
+Reply
+
+Yongmin Li
+3h
+NVM, somehow managed to fix this.
+
+
+Reply
+
+Kevin Darlington
+3h
+Nice work!
+
+
+Reply
+
+Fatima Muhammad Barakzai
+12h
+
+Resolved
+I'm creating the file but it gets reset, how am I supposed to pass in the exploit? Is there another variable?
+
+
+Reply
+
+Ashutosh Agarwal
+12h
+The name of this flag is a huge hint as to what you need to do. Pay close attention to the logged messages and their format.
+
+
+1
+Reply
+
+Fatima Muhammad Barakzai
+12h
+Figured it out, thanks
+
+
+Reply
+
+Ashutosh Agarwal
+12h
+ Replying to Fatima Muhammad Barakzai
+Great job!
+
+
+Reply
+

@@ -1,0 +1,330 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+47
+22
+Categories
+753 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Project Log4Shell - Flag 6 Restful Data #697
+Kevin Darlington
+3 days ago in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+114
+11
+11
+44
+Views
+
+This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
+
+Anyone with questions about citations and plagiarism should consult the appropriate section of the course policy on misconduct.
+
+Note: Do not share code, outside tools you used or any hints beyond the writeup or office hours to other students. We will delete threads and warn you if you overshare.
+
+Comment
+
+Sort by Newest 
+Anonymous Penguin
+39m
+Unresolved
+I am saving the exploit on the database. I don't know if we are supposed to create the new property as the exploit from the data at rest or if we are supposed to make another exploit for the data at rest. I am asking because there are different ways to trigger log4shell on this flag. There is a out of place variable and there is data at rest. Are we supposed to use both? also it triggers the exploit when I create a product so that's another different way of exploit. I already receive the Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest when coming from data at rest. So please I would like to know what am I doing wrong :)
+
+thanks
+
+
+Reply
+
+Fatima Muhammad Barakzai
+11h
+
+Resolved
+I am confused about what we're supposed to be doing for this flag. I added the product.id entry into the properties file, but i'm seeing this in the logs:
+
+
+Flag not obtained due to failed attempt, 
+the customer.service.email property is not 
+in config.properties OR overwriting file instead of 
+updating it
+
+3
+Reply
+
+Fatima Muhammad Barakzai
+11h
+I can see the email tho, am I supposed to change it?
+
+
+1
+Reply
+
+Daniel James Poulin
+9h
+Did you get anywhere with this one? I am able to update the product email with a query. I found another endpoint with something similar to Flag5 so I can trigger a call back and overwrite or append whatever I want to the filesystem. I added the product.id and updated the customer.service.email. I am not sure what else we are supposed to be doing.
+
+
+1
+Reply
+
+Fatima Muhammad Barakzai
+9h
+ Replying to Daniel James Poulin
+nope, I feel like the requirements are super unclear on this one. I'm also able to manipulate the file system but aside from product.id i'm not sure what else i'm supposed to be doing with it
+
+were we supposed to update the product email? 
+
+
+1
+Reply
+
+Daniel James Poulin
+8h
+ Replying to Fatima Muhammad Barakzai
+I think the key part from the write up is:
+
+"When the application fetches the record upon calling the right GET endpoint, it will trigger the exploit"
+
+So the you have the LDAP query in place before hand and you have to trigger this one via the GET request using the email property, no other way.
+
+And the exploit being "You will write a new property product.id that should have the value set to the id of the malicious product record that you have created/updated."
+
+
+Reply
+
+Fatima Muhammad Barakzai
+8h
+ Replying to Daniel James Poulin
+I'm using a different way to trigger the LDAP query, but it does add the new product.id
+
+
+Reply
+
+Fatima Muhammad Barakzai
+9h
+ Replying to Daniel James Poulin
+I feel like I understand all the concepts, just don't don't know what they want us to do 
+
+
+1
+Reply
+
+Daniel James Poulin
+8h
+ Replying to Fatima Muhammad Barakzai
+I am using a similar method as Flag5. I think that is the issue, it's not the email property triggering it.
+
+
+Reply
+
+Abdelrahman Ibrahem
+8h
+ Replying to Daniel James Poulin
+I made a script that loops over everything I can set and monitored the log file for a leak.
+
+I quickly found the set and get endpoints.
+
+Another tip is to break it down into small steps. Make sure you’re hitting the correct endpoints by first trying to leak the Java version, then focusing on getting your exploit code running, and finally modifying what needs to be changed.
+
+
+2
+Reply
+
+Daniel James Poulin
+8h
+ Replying to Abdelrahman Ibrahem
+I think there is a specific way they want it triggered. I just got it to return my persisted email but I received this:
+
+WARN Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest
+
+
+4
+Reply
+
+Arianna Lanz
+8h
+ Replying to Daniel James Poulin
+I've found that after I make a POST with my exploit code when I call each of the GET endpoints: 
+- one returns WARN Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest
+- another returns Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it
+- and the third doesn't trigger the exploit at all
+
+I'm not super stuck yet, but I just thought I'd share in case others are seeing the same thing!
+
+🤷‍♀️ 
+
+
+4
+Reply
+
+Daniel James Poulin
+8h
+ Replying to Arianna Lanz
+I am at the same point. I think it's something to do with timing or order of operations. Just need to figure it out.
+
+
+Reply
+
+Arianna Lanz
+8h
+ Replying to Daniel James Poulin
+I also just noticed something in the logs that may be useful.
+
+
+Reply
+
+Fatima Muhammad Barakzai
+6h
+ Replying to Arianna Lanz
+any hints? Still stuck on this one
+
+
+Reply
+
+Abdelrahman Ibrahem
+7h
+ Replying to Daniel James Poulin
+This message was a bit confusing for me too, I don’t think how it’s being triggered is the issue as much as it’s what is being triggered.
+
+
+Reply
+
+Fatima Muhammad Barakzai
+8h
+ Replying to Abdelrahman Ibrahem
+Did you get the flag this way?
+
+
+Reply
+
+Abdelrahman Ibrahem
+7h
+ Replying to Fatima Muhammad Barakzai
+Yes, but the key is step by step and really monitor how your payload impacts the logs.
+
+
+1
+Reply
+
+Daniel James Poulin
+6h
+ Replying to Abdelrahman Ibrahem
+Still stuck. I was using a method similar to Flag3 and modifying the URL to reach out to the LDAP server but I assumed that wasn't going anywhere since it says it needs to be triggered by data at rest.
+
+I can do what the write up says and persist a record in the database and when I retrieve it using one of the GET methods, I see it query the LDAP server but I keep getting the "JNDI malicious trigger must come from data at rest" which.... it is. Not sure where to go from here.
+
+
+2
+Reply
+
+Abhishek Sathiabalan
+6h
+ Replying to Daniel James Poulin
+Have you verified your code isn't executing multiple times? Are you passing a JNDI in the parameters?
+
+
+1
+Reply
+
+Fatima Muhammad Barakzai
+6h
+ Replying to Abhishek Sathiabalan
+Do we pass it into the parameters or in the body?
+
+
+Reply
+
+William David Done
+5h
+ Replying to Daniel James Poulin
+I'm stuck on this same step... even though the JNDI statement is coming from the database, it has the "JNDI malicious trigger must come from data at rest" error.
+
+
+1
+Reply
+
+Daniel James Poulin
+5h
+ Replying to William David Done
+Finally got it. All I will say is I didn't spend enough time looking at the POST logs.
+
+
+2
+Reply
+
+William David Done
+4h
+ Replying to Daniel James Poulin
+Thank you for the hint - that did it for me!
+
+
+Reply
+
+Kshitij Gupta
+4h
+ Replying to Daniel James Poulin
+I understand the concept here, but I am still stuck at "Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it." I am a bit confused as to how to persist the email. I have looked at flag 3 and I am trying to follow the same line of thought for config.props
+
+
+Reply
+
+Anonymous Eland
+1h
+ Replying to Kshitij Gupta
+I would look at the output from your python HTTP server and confirm whether or not it's serving your exploit file. If it is, then that message is probably because you're overwriting that file improperly as the message suggests. If it's not, then obviously your code isn't triggering to begin with.
+
+
+1
+Reply
+
+Anonymous Eland
+1h
+ Replying to Kshitij Gupta
+As far as the payload goes, hopefully without giving away too much, look carefully at what's being written to the database and how it looks when it's read from it. See if there's anything you can take advantage of.
+
+
+1
+Reply
+
+Robert Smithers III
+1h
+ Replying to Daniel James Poulin
+I'm still stuck with the "JNDI malicious trigger must come from data at rest" warning, but I'm fairly confident that I crafted the payload correctly. I reviewed the post logs, but I assume that just clarifies how to build it. 
+
+I am not passing anything to directly cause the JNDI callback other than the payload stored in the database... am I missing something more?
+
+
+Reply
+
+Rodrigo Alvarado Chacon
+1h
+ Replying to Robert Smithers III
+I am in the same boat as you, I am definetly running the payload from the database calling the specific endpoint. I don't what else I should try
+
+
+1
+Reply
+
+Abhishek Sathiabalan
+6h
+ Replying to Abdelrahman Ibrahem
+Thanks, that made it click.
+
+
+Reply
+

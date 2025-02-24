@@ -1,0 +1,141 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+47
+22
+Categories
+753 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Project Log4Shell - Flag 5 PubSub Override #696
+Kevin Darlington
+3 days ago in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+98
+99
+88
+Views
+
+This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
+
+Anyone with questions about citations and plagiarism should consult the appropriate section of the course policy on misconduct.
+
+Note: Do not share code, outside tools you used or any hints beyond the writeup or office hours to other students. We will delete threads and warn you if you overshare.
+
+Comment
+
+Sort by Newest 
+Anonymous Porcupine
+4h
+
+Resolved
+I'm getting stuck with the (cleaned up) message:
+
+Unable to get flag. Please ensure you entered your GatechId as the accountNumber in the messageVO body as instructed in the write up.
+But I can see
+
+INFO   Received message {[SELF REDACTED],"accountNum":"<my GTID>"} for topic: <target topic>
+What am I missing?
+
+
+Reply
+
+Anonymous Porcupine
+4h
+\*facepalm\* I was passing the copy/pasted "" value for my GTID header. Updated it to my GTID and got the flag.
+
+
+Reply
+
+Kevin Darlington
+3h
+Nice work!
+
+
+Reply
+
+Anonymous Dove
+9h
+
+Resolved
+So I've been trying to look for the other topic that is supposed to be on the cs6035.log file but I am not sure if this is the way to go. Should I look for an already created topic or should I create a topic?
+
+thanks
+
+
+1
+Reply
+
+Kevin Darlington
+9h
+Correct, the other topic's name is in the logs. I recommend restarting the app and looking closely at the fresh logs.
+
+
+2
+Reply
+
+Anonymous Wallaby
+9h
+If only I had read this comment two hours ago, it would have saved me a few hours.
+
+
+1
+Reply
+
+Kevin Darlington
+9h
+ Replying to Anonymous Wallaby
+No worries you have plenty of time, you are really doing great if you are this far in the first day of project release! haha
+
+
+Reply
+
+Anonymous Hippopotamus
+8h
+ Replying to Anonymous Wallaby
+lol I thought the same thing
+
+
+1
+Reply
+
+Anonymous Wallaby
+8h
+ Replying to Anonymous Hippopotamus
+Classic that the comment gets released one minute after I solved it. LMAO
+
+
+1
+Reply
+
+Anonymous Dove
+8h
+Got it! thanks.
+
+
+1
+Reply
+
+Arianna Lanz
+8h
+I'd also say that if you don't see it right away, just try something and see what errors you get. I found the error logs to be pretty helpful!
+
+
+1
+Reply
+

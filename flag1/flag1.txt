@@ -1,0 +1,130 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+47
+22
+Categories
+753 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Project Log4Shell - Flag 1 Environment Echo Thread #692
+Kevin Darlington
+3 days ago in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+179
+11
+77
+99
+Views
+
+This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
+
+Anyone with questions about citations and plagiarism should consult the appropriate section of the course policy on misconduct.
+
+Note: Do not share code, outside tools you used or any hints beyond the writeup or office hours to other students. We will delete threads and warn you if you overshare.
+
+Comment
+
+Sort by Newest 
+Shuanghui Peng
+7h
+
+Resolved
+Hello, I got below errors when run ./StartContainer.sh and i didn't see any log file under folder /home/log4j/Desktop/log4shell/logs 
+
+Any ideas/suggestions on this error ?
+
+Error:
+
+docker: Error response from daemon: driver failed programming external connectivity on endpoint xenodochial_merkle (4a49486c583a51d5fc92dc9cffb0f290a1fc8fafc66a4130b0d12070e3a3bee5): failed to bind port 0.0.0.0:8080/tcp: Error starting userland proxy: listen tcp4 0.0.0.0:8080: bind: address already in use.
+
+Reply
+
+Kevin Darlington
+5h
+Hmm, I am not 100% sure. But my guess is maybe you have another project running in the VM? If not, I would restart the vm or maybe worst case redownload it and re-import :/
+
+
+Reply
+
+Anonymous Aardvark
+12h
+
+Resolved
+I thought this would be low hanging fruit but here I am. I can retrieve other variables but not ADMIN_PASSWORD.  Hmm....
+
+
+Reply
+
+Ashutosh Agarwal
+11h
+Try modifying your payload to target this specific variable.
+
+
+Reply
+
+Anonymous Aardvark
+10h
+That's what I've done or at least I think. I can call some other individual variables successfully while others don't seem to exist (null value) or are blocked (bad request). Calling ADMIN_PASSWORD in different ways brings back a null value each time which tells me it doesn't exist.
+
+Is restarting the container the surest way the environment is "reset?"
+
+
+Reply
+
+Ashutosh Agarwal
+9h
+ Replying to Anonymous Aardvark
+Yes, restarting the container should reset your environment. 
+
+
+Reply
+
+Omar Arin Solaiman
+21h
+
+Resolved
+Figured what to hit... but can't make it "act"...
+
+
+Reply
+
+Omar Arin Solaiman
+19h
+I have now made it act
+
+syntax is important. 
+
+
+Reply
+
+Ashutosh Agarwal
+15h
+Nice job!
+
+
+Reply
+
+Yongmin Li
+12h
+I tried many different syntaxes to make it work. If you're experiencing the same issue, I recommend checking out the Background article for this project.
+
+
+2
+Reply
+

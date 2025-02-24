@@ -1,0 +1,801 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+47
+22
+Categories
+753 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Project Log4Shell - Flag 3 Config Properties #694
+Kevin Darlington
+3 days ago in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+139
+11
+33
+99
+Views
+
+This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
+
+Anyone with questions about citations and plagiarism should consult the appropriate section of the course policy on misconduct.
+
+Note: Do not share code, outside tools you used or any hints beyond the writeup or office hours to other students. We will delete threads and warn you if you overshare.
+
+Comment
+
+Sort by Newest 
+John Michael McPhillips
+2h
+
+Resolved
+I don't understand this other "attack vector" people are mentioning. What is this?
+
+
+Reply
+
+Kevin Darlington
+49m
+I recommend restarting the application and calling it as instructed in the write up without exploiting. Then go line by line through the logs to find it. We cannot give this to you as it is part of the task. 
+
+
+Reply
+
+John Michael McPhillips
+35m
+I believe I'm on the right track now, but even with my  ID inserted into the rating I am not getting a flag. I've restarted everything 
+
+
+
+Reply
+
+Kevin Darlington
+30m
+ Replying to John Michael McPhillips
+I am assuming here you do not have the right attack vector. Timing matters. 
+
+
+Reply
+
+John Michael McPhillips
+25m
+ Replying to Kevin Darlington
+Can I make a private thread? I'm sure this is correct now.
+
+
+Reply
+
+Philipp Werner
+2h
+
+Resolved
+I`m completely stuck with this task. I has no idea how to update the file with this attack vector. Is there any source which help? I can execute my file but don't know how to use the variable I found. Is there any source which might help Here?
+
+
+Reply
+
+Philipp Werner
+51m
+So to be clear all things are adressed but I use the wrong variable and cannot access the right one :( Have no clue how to adress this
+
+
+Reply
+
+Kevin Darlington
+47m
+So, have you found the attack vector? That is the first step. If you have, you need to then research how query parameters and path parameters work and try to pass any plain string into it, until you find the right one. 
+
+
+If you have not found the attack vector, I recommend calling the application as instructed in the write up without exploiting and go line by line looking for something out of place. 
+
+
+Reply
+
+Robert Birk Hughes
+3h
+
+Resolved
+I found the correct attack vector but I am stuck on formatting and syntax and am not sure where to look.  I don't see how you can populate the variable with the exploit and get around the systems jndi lookup checks in curl without using nested braces, which curl keeps throwing an error at me.
+
+
+Reply
+
+Robert Birk Hughes
+3h
+Had to play around with curl and its options for a while, but I did find a solution that worked
+
+
+Reply
+
+Kevin Darlington
+3h
+I would look into different encoding techniques.
+
+
+Reply
+
+Christopher Troupe
+3h
+
+Resolved
+Has anyone been able to see their log statements from their java file? I have System.out.println all over my java file and I'm running a tail on console.log but I've never been able to see my statements. Both console.log and cs6035.log show the same thing pretty much.  I know my files are being triggered from getting flag 2 and seeing the server get requests. Any help would be appreciated as it makes debugging very difficult.
+
+
+Reply
+
+Kevin Darlington
+3h
+Can you confirm you java file is being triggered? IE - are your ldap and your python server's both firing? If not, then your not seeing the print statements due to the exploit not running. It seems like you are saying they are but if you are doing what you did for flag 2 - ie getting a reverse shell, then you are not going about this flag correctly. 
+
+
+Reply
+
+Jacqueline Chan
+3h
+I have the same issue! I will try what Kevin just messaged. I am not trying to reverse shell. 
+
+
+Reply
+
+Christopher Troupe
+3h
+I can confirm I know they're both firing. I ended up restarting the container and all terminals and it finally showed up for me. To be clear, it only shows up in the console.log
+
+
+1
+Reply
+
+Jacqueline Chan
+3h
+ Replying to Christopher Troupe
+Did you have to clear your console.log first or anything? 
+
+
+Reply
+
+Christopher Troupe
+3h
+ Replying to Jacqueline Chan
+Nope, I just had something like System.out.println("-----------------------IMPOSSIBLETOMISS-------------"); and after I reset everything, it showed up.
+
+Also, make sure you're running the http server in the right directory as well!
+
+
+2
+Reply
+
+Jacqueline Chan
+3h
+ Replying to Christopher Troupe
+Also, make sure you're running the http server in the right directory as well!
+Thank you so much! Still lost with this flag but less lost thanks to you!
+
+
+2
+Reply
+
+Kevin Darlington
+3h
+ Replying to Christopher Troupe
+Ah, could be that. It could be a weird state issue/the log was hung. You are correct, print statements ONLY log in console.log file. 
+
+
+Reply
+
+John Michael McPhillips
+4h
+
+Resolved
+So is modifying the config.properties file at all, the wrong path? Instead we need to use a variable from the logs? So we need the java exploit to modify the logged variable?
+
+
+Reply
+
+Kevin Darlington
+3h
+You need to use log4shell to trigger your java file to update the config.properties file, if that makes sense?
+
+
+Reply
+
+John Michael McPhillips
+3h
+For some reason it is triggered 18 times, and I am printing the output and I know the value is changed. However, I guess it is changed too early? I viewed the config file, there are only 3 key value pairs. I am only changing the rating.
+
+
+Reply
+
+Kevin Darlington
+3h
+ Replying to John Michael McPhillips
+It is triggering multiple times because of your obfuscation. Each ones resolves to it's own lookup. That is to be expected. 
+
+That is very possible. The application logs when it reads in the properties. You should exploit BEFORE that message. It could be you have the wrong attack vector and it already has the properties in state. 
+
+
+Reply
+
+John Michael McPhillips
+2h
+ Replying to Kevin Darlington
+Do the multiple triggers cause issues or can it be ignored?
+
+
+Reply
+
+Kevin Darlington
+45m
+ Replying to John Michael McPhillips
+They do not cause issues. You can ignore them
+
+
+Reply
+
+Patrick Jacobs
+6h
+
+Resolved
+Hello,
+
+I've found the out of place vector, bypassed the detection mechanism and I get RCE. I'm able to modify the config file and change the property that will set the rating while keeping all of the other fields the same. The endpoint then returns the non-R rated cartoon with all the same data except the rating is changed to my gatech ID. Why does this not trigger the flag? Obviously I've missed something. 
+
+I see that the endpoint reads the unmodified config file twice before my payload runs, then my payload modifies the config file. Lastly, I see the "Flag not obtained due to failed attempt, ... " message.
+
+Lastly lastly, one last clarification:
+
+My exploit reads the whole config file, and writes all of it back into the same file except it changes the rating field to my gatech ID. Is this "overwriting" and not "updating"? Is there a method to only update one line of a file in Java?
+
+
+Thank you!
+
+
+Reply
+
+Kevin Darlington
+5h
+Ah, based on what you have said here is I think you are exploiting AFTER the application reads in the properties. If so, you need to look for another attack vector earlier on in the program flow. 
+
+
+What you are doing with your exploit is correct. You can do it the way you are just make sure the other properties are untouched ie - the same strings.
+
+
+Reply
+
+Patrick Jacobs
+3h
+Thanks for the reply.
+
+I<REDACTED> I'm very certain that I have the correct exploit location. I'll create a private post with my payload and trigger script.
+
+
+1
+Reply
+
+Ruangsak Patomwong
+7h
+
+Resolved
+I got this on flag3
+
+JNDI LDAP/RMI lookup attempt detected. Aborting.
+
+Reply
+
+John Michael McPhillips
+7h
+Stuck here as well. Wondering if this is the right path or not.
+
+
+Reply
+
+Abhishek Sathiabalan
+6h
+The answer is in the background material, if you haven't read it.
+
+
+Reply
+
+John Michael McPhillips
+5h
+Which article? I don't see anything regarding this yet.
+
+
+1
+Reply
+
+Abhishek Sathiabalan
+5h
+Endorsed
+ Replying to John Michael McPhillips
+https://bishopfox.com/blog/identify-and-exploit-log4shell
+
+
+3
+Reply
+
+John Michael McPhillips
+5h
+ Replying to Abhishek Sathiabalan
+Ty
+
+
+1
+Reply
+
+Anjali Chablani
+5h
+ Replying to Abhishek Sathiabalan
+This hint is of great help. It resulted in finding the flag. TY.
+
+
+1
+Reply
+
+Robert Birk Hughes
+3h
+ Replying to Abhishek Sathiabalan
+I am struggling to implement this because curl does not allow double braces within a string.  Could anyone point me in the right direction here?
+
+
+Reply
+
+Kevin Darlington
+3h
+ Replying to Robert Birk Hughes
+I would look into encoding techniques
+
+
+Reply
+
+Kevin Darlington
+5h
+This is expected. You will need to learn how to obfuscate or encode your payload to bypass this filter. 
+
+
+Reply
+
+Yongmin Li
+7h
+
+Resolved
+ In real-world scenarios with Log4j, regardless of which attack vector is used, once the payload is executed, the result will be the same. For example, it doesn’t matter if the exploit is placed in header A or header B in the HTTP request; the outcome should be identical.  Is this the same case for the project, or do I need to focus on a specific attack vector?
+
+ I am currently using the same attack vector as flag2 to pass the exploit, and I can confirm through both the LDAP and web servers that the payload has been triggered. but i am still not able to update the file.
+
+
+1
+Reply
+
+Ashutosh Agarwal
+5h
+In this project, we aim to exploit different parts of the application, so the attack vectors vary for each flag. Although a Log4j payload produces the same effect once executed, different parts of the application log data in unique ways, creating different points of attack. 
+
+
+Reply
+
+Yongmin Li
+5h
+Thanks, i was going to the wrong direction.
+
+I am not English native, does below mean we can not modify the file directly? 
+
+One thing to keep in mind is that the application checks to see if this file has been tampered with. You will need to make sure you don’t overwrite the file and instead just update it. This means, all properties need to be as they were except the one you updated.
+
+
+Reply
+
+Yongmin Li
+4h
+ Replying to Yongmin Li
+NVM, answer to Patrick's question also kind of answers my question.
+
+
+1
+Reply
+
+Kevin Darlington
+3h
+ Replying to Yongmin Li
+Nice work!
+
+
+Reply
+
+John Michael McPhillips
+8h
+
+Resolved
+What java libraries/dependencies are available to use?
+
+
+Reply
+
+Ashutosh Agarwal
+7h
+Only Java standard library imports are needed for this project. If you find yourself wanting to use a 3rd party .jar, you are over complicating your solution
+
+
+Reply
+
+Abhishek Sathiabalan
+9h
+
+Resolved
+Paying particular emphasis to:
+
+One thing to keep in mind is that the application checks to see if this file has been tampered with. You will need to make sure you don’t overwrite the file and instead just update it. This means, all properties need to be as they were except the one you updated.
+made me figure out the trick to solving this.
+
+
+Reply
+
+Anonymous Buffalo
+6h
+I am still not sure if I'm going down the wrong path or not. Is that referring to "reset file" or is there another check that might not be seen yet? Because reset file I see happening even in the case of no change
+
+
+Reply
+
+Abhishek Sathiabalan
+6h
+Think of how a junior dev, might implement a tamper check.
+
+
+1
+Reply
+
+Anonymous Buffalo
+5h
+ Replying to Abhishek Sathiabalan
+I ended up figuring it out eventually. I was forcing shamefully over-engineered solutions from the wrong attack vector. Thanks for the advice.
+
+
+Reply
+
+Kevin Darlington
+5h
+The files are reset to prevent you from just getting a reverse shell and creating the files like flag 2. 
+
+
+Reply
+
+Anonymous Buffalo
+5h
+ Replying to Kevin Darlington
+Makes sense. I conflated "reset files" with "reset the file if any other field has been modified"
+
+
+1
+Reply
+
+Kshitij Gupta
+12h
+
+Resolved
+I am bit confused. I am trying to hit the exploit.java file which I was able to process for Flag 2 but for Flag3, 
+
+Do we need to find an appropriate header to get to run exploit file?
+
+Can we use the same endpoint and header that we used for flag2, making sure the http server is in correct folder?
+
+I see this image in the instructions, is there something in the red circle that is purposefully blacked out, want a TA to confirm this? Thanks!
+
+
+
+Reply
+
+Fatima Muhammad Barakzai
+11h
+Endorsed
+You will need to find an appropriate place to run the exploit (similar to flag 2), look through the logs to find one.
+
+
+The endpoint is in the instructions
+
+
+1
+Reply
+
+Ashutosh Agarwal
+11h
+Each flag has its specific endpoint(s) provided in the writeup that you need to exploit. 
+
+Yes, that is purposefully blacked out to hide the solution :)
+
+
+1
+Reply
+
+Joseph A Cannaday
+20h
+
+Resolved
+Is a JNDI lookup still required to complete this flag?
+
+
+Reply
+
+Ashutosh Agarwal
+14h
+Yes. You would need to specify a valid lookup protocol such as LDAP in the JNDI lookup and direct the Log4J lookup to your Exploit file.
+
+
+Reply
+
+Anonymous Porcupine
+22h
+
+Resolved
+[Log4jUtilities.java:32] INFO   Reset files.
+I am not understanding the concept of updating. It says that we are not suppose to overwrite the file only change the rating, I am doing that but then it reset the file so I don't get how are we suppose to do it if the file is being reset it. Already bypassed the filter for the vuln but can someone explain the meaning of updating the properties file :)
+
+thanks
+
+
+Reply
+
+This comment was deleted
+Anonymous Porcupine
+21h
+What do you mean by EXP?
+
+
+Reply
+
+Philipp Werner
+17h
+I am in the same boat. I have been trying for hours to understand the meaning of 'out of place' and to find the exploitable place.
+
+
+Reply
+
+Ashutosh Agarwal
+14h
+If the file is getting reset, then you're probably not attacking at the right place. Look closely at the logs and try to find an out of place variable, then see if you can use it to craft your attack. 
+
+
+Reply
+
+Philipp Werner
+14h
+Is there any resource in the reference materials that could help here? I looked through all of them and also did my own research. I find something which could be "out of place" but I could not immagine how I can exploit it.
+
+
+Reply
+
+Anonymous Porcupine
+11h
+I did find the out of place variable and send the payload through it but the file is still being reset after sending the payload through the variable. Is there something else I am missing?
+
+
+Reply
+
+Fatima Muhammad Barakzai
+14h
+Same issue, i found the properties file but keeps getting reset. I don't see any variables, where do i look for these variables?
+
+
+Reply
+
+Arianna Lanz
+13h
+I'm in a slightly different boat where I found the exploitable variable and have been able to pass it values, but it takes the values pretty literally. For example, if I pass it ${prefix:name} it will output $prefix:name and not any resolved values. 
+
+
+Reply
+
+Fatima Muhammad Barakzai
+13h
+ Replying to Arianna Lanz
+I actually just figured it out, I used the exploit java file
+
+
+Reply
+
+Arianna Lanz
+13h
+ Replying to Fatima Muhammad Barakzai
+I'm not quite sure what you mean by that. Did you set the variable in the file or pass the file to the variable? Either way, my variable passing is still pretty literal 🤷‍♀️ 
+
+
+Reply
+
+Fatima Muhammad Barakzai
+13h
+ Replying to Arianna Lanz
+Did you watch this video? https://www.youtube.com/watch?v=lJeAgQQaDEw
+
+
+I highly recommend watching it! 
+
+
+Reply
+
+Arianna Lanz
+13h
+ Replying to Fatima Muhammad Barakzai
+I did but only to get through Flag 2. I wasn't sure if the rest was relevant, but I'll give it a full watch!
+
+
+Reply
+
+Fatima Muhammad Barakzai
+13h
+ Replying to Arianna Lanz
+If you got flag two, then I think you got everything you need from the video. 
+
+I'm not sure what you mean by taking things literally, cuz passing in the exploit should be similar.
+
+
+Reply
+
+Arianna Lanz
+13h
+ Replying to Fatima Muhammad Barakzai
+I mean that if I pass ${java:runtime}, for example, when I assign the variable, it gets assigned as $java:runtime and not Java(TM) Se Runtime .... When I try escaping the braces as in the video, I get a 400 Bad Request error. 
+
+
+Reply
+
+Philipp Werner
+13h
+ Replying to Arianna Lanz
+as mentioned above you need the jndi lookup you cannot solve it without the jndi server. But I also do not have the flag...
+
+
+Reply
+
+Arianna Lanz
+12h
+ Replying to Philipp Werner
+Yeah, I figured it would be another protocol, but still just trying to get it to work.
+
+
+Reply
+
+Andrew Steven O'Kins
+11h
+ Replying to Arianna Lanz
+I recommend looking into how to work with special characters and URLs
+
+I ran into this, and was able to figure out how to get the java runtime as sanity check, from there was able to send my exploit
+
+
+Reply
+
+Arianna Lanz
+11h
+ Replying to Andrew Steven O'Kins
+Was just doing this as you posted! Got past the sanity check...now onto the flag!
+
+
+1
+Reply
+
+Philipp Werner
+11h
+ Replying to Arianna Lanz
+Congrats. I still struggling :/
+
+
+Reply
+
+Arianna Lanz
+11h
+ Replying to Philipp Werner
+Well, I thought from getting to that point I would be able to send the exploit, but I'm still struggling there. Trying the different lookup protocols as mentioned before, but no luck so far. 
+
+
+Reply
+
+Philipp Werner
+11h
+ Replying to Arianna Lanz
+Ah, okay. Yeah, I thought you got the flag. If I understood what they meant by 'out of place' and could research it, I might be able to find the right place for my exploit. But I'm still struggling.
+
+
+Reply
+
+Andrew Steven O'Kins
+11h
+ Replying to Philipp Werner
+Hard to figure out what would be a good hint without saying too much :/
+
+I was able to find it just in the log, something that seemed to be suggested as unsafe
+
+
+Reply
+
+Arianna Lanz
+10h
+ Replying to Andrew Steven O'Kins
+I'd also add that the variable is a running joke from one of the cartoons listed 😆 Perhaps the reason why R rated cartoons are unexploitable.
+
+
+Reply
+
+Philipp Werner
+10h
+ Replying to Arianna Lanz
+As a non native English speaker I just realized what a R and PG review is... 🤤 I think I have the variable but have no clue how to use it in my exploit. Need more time to think about it. Was a frustrating day... 
+
+
+Reply
+
+Andrew Steven O'Kins
+11h
+ Replying to Arianna Lanz
+If you are hitting an error where the server denies your exploit due to detecting malicious patterns, I suggest looking into the shared video as a place to start looking into what kind of solutions there are.
+
+I was able to use the same kind of protocol as in the prior flag.
+
+
+1
+Reply
+
+Arianna Lanz
+11h
+ Replying to Andrew Steven O'Kins
+Ah yes, I didn't make it that far in the video, but it's clever! Thanks so much.
+
+
+Reply
+
+Anonymous Porcupine
+11h
+ Replying to Andrew Steven O'Kins
+I already where able to bypass that and able to send exploits through the "out of place" variable but I am still not able to change the properties file. It's the only thing left
+
+
+Reply
+
+Andrew Steven O'Kins
+11h
+ Replying to Anonymous Porcupine
+I am not familiar with Java, so I had to look up ways we can interact with the properties file.
+
+
+1
+Reply
+
+Anonymous Porcupine
+10h
+ Replying to Andrew Steven O'Kins
+Got it! I tried that on the past but wasn't working. Then I look for a different way to do it and worked so appreciate it!
+
+
+Reply
+
+Philipp Werner
+13h
+ Replying to Arianna Lanz
+Where should be such a variable. I looked through the whole logs.
+
+
+Reply
+
+Arianna Lanz
+13h
+ Replying to Philipp Werner
+I haven't solved the flag yet, but there's a variable output in the logs and you can see based on its output that it hasn't been set yet. When setting it, I'd consider other ways that we've set variables in other assignments using HTTP requests. 
+
+
+1
+Reply
+
