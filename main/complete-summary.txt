@@ -1,0 +1,42 @@
+Log4Shell Project Explained Simply
+Hi there! I'll explain this Log4Shell project in a simple way that's easy to understand.
+What is This Project About?
+Imagine you have a diary where you write down everything that happens during your day. Log4j is like a diary for computer programs - it keeps track of what the program is doing.
+But there's a problem with this diary. If someone writes a special message in it, instead of just writing it down, the diary might actually try to do what the message says! This is called the "Log4Shell vulnerability."
+What You'll Be Doing
+In this project, you'll be like a detective, finding ways to make the diary do different things:
+
+First, you'll make it tell you a secret password
+Then, you'll make it let you control the computer
+You'll change settings files
+You'll make it create new files
+You'll trick it into sending messages to different places
+You'll store tricky information that activates later
+As an extra challenge, you can try to add a new user to the system
+
+How to Set Things Up
+You'll need to open different windows on the computer:
+
+One window to start the vulnerable program
+One window to watch what the program is doing
+One window to run a special server that helps with the tricks
+One window to run another server that sends the tricks
+One window to type commands to the program
+
+The Basic Trick
+The basic trick works like this:
+
+You send a message to the program
+The program writes your message in its diary
+If your message has a special code like ${jndi:ldap://...}, instead of just writing it down, the program will try to follow that address
+When it follows the address, it runs your trick!
+
+Getting Started
+For the first flag, you just need to make the program tell you a password that's stored in its memory. You'll do this by sending a special message in the right place.
+For the other flags, you'll need to create Java code files that do different things when the program runs them.
+Important Things to Remember
+
+This is a real security problem in the world, so you're only allowed to try this in the special computer they gave you
+You'll need to follow the instructions exactly for each flag
+When you find each "flag" (a special message that proves you did it right), you'll add it to a file
+You can try as many times as you want before the deadline

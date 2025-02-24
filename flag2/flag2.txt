@@ -7,10 +7,10 @@ Ed Discussion
 
 New Thread
 Courses
-47
-22
+48
+23
 Categories
-753 others online
+761 others online
 Use left and right arrow keys to adjust the split region size
 
 New Thread
@@ -18,7 +18,7 @@ Filter
 Use left and right arrow keys to adjust the split region size
 Project Log4Shell - Flag 2 Get a Shell Thread #693
 Kevin Darlington
-3 days ago in Projects – Log4Shell
+4 days ago in Projects – Log4Shell
 
 Pinned
 
@@ -26,10 +26,10 @@ Star
 
 Watch
 
-140
+169
 11
-44
-00
+66
+99
 Views
 
 This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
@@ -41,8 +41,26 @@ Note: Do not share code, outside tools you used or any hints beyond the writeup 
 Comment
 
 Sort by Newest 
-Robert Birk Hughes
+Xiaohua Cai
+10h
+
+Resolved
+Can someone give any hint please? why my lda server did not fetch and execute Exploit file on port 4242. I have updated and run the curl by injecting a malicious JNDI lookup payload into the HTTP request headers. 
+
+
+
+2
+Reply
+
+Kevin Darlington
 4h
+This is because your curl injection is incorrect. I recommend referring to the hackersploit video in the linked resources and understand how the pieces of this project work together. 
+
+
+Reply
+
+Robert Birk Hughes
+18h
 
 Resolved
 This is a dumb question, but how do I get my local ip address that nc uses without ifconfig command?
@@ -51,7 +69,7 @@ This is a dumb question, but how do I get my local ip address that nc uses witho
 Reply
 
 Kevin Darlington
-3h
+17h
 Not a dumb question at all. The VM IP is localhost (127.0.0.1) and the application is running on the docker network at 172.17.0.1. You will need to determine which one you need as part of this learning outcome. 
 
 
@@ -59,7 +77,7 @@ Not a dumb question at all. The VM IP is localhost (127.0.0.1) and the applicati
 Reply
 
 Robert Birk Hughes
-5h
+18h
 
 Resolved
 Why are all of my exploit requests getting sent twice to the ldap?  Is this intentional?
@@ -68,14 +86,14 @@ Why are all of my exploit requests getting sent twice to the ldap?  Is this inte
 Reply
 
 Ashutosh Agarwal
-4h
+17h
 Yes, it’s not unusual due to nested logging. The number of requests doesn’t interfere with getting the flags.
 
 
 Reply
 
 John Michael McPhillips
-10h
+23h
 
 Resolved
 Is there a trick to getting nc to open a connection? I can execute my Java test and see the correct output from my script (Just testing whoami and returning the string) in the console, but nothing in the nc window. I'm opening with 
@@ -87,28 +105,28 @@ Do we need to establish sockets in the exploit?
 Reply
 
 Ashutosh Agarwal
-9h
+22h
 Figuring out the exploit code is part of the challenge :)
 
 
 Reply
 
 John Michael McPhillips
-9h
+22h
 I got it, I had to troubleshoot my IPs/localhost connections. A bit confusing since all of this is running locally and only using 1 unique container IP.
 
 
 Reply
 
 Ashutosh Agarwal
-9h
+22h
 Nice work!
 
 
 Reply
 
 Maria Rachel Stewart
-11h
+1d
 
 Resolved
 When I add System.out.println statements to Exploit.java, compile it, and run the curl command with it, should I see the statements in the same console.log file? I'm not seeing anything there.
@@ -117,7 +135,7 @@ When I add System.out.println statements to Exploit.java, compile it, and run th
 Reply
 
 Ashutosh Agarwal
-11h
+24h
 The curl command should not directly call the LDAP server. 
 
 Your curl command should be sent to the vulnerable application (localhost:8080). The application should then make the LDAP call as part of the exploit. I'd suggest going through the linked resources to understand how the different components work.
@@ -126,7 +144,7 @@ Your curl command should be sent to the vulnerable application (localhost:8080).
 Reply
 
 Maria Rachel Stewart
-10h
+24h
 My curl command is directly calling localhost:8080, I am using the vulnerability to make the LDAP call. I have gone through all linked resources, except the last video on "Exploitation and Mitigation" which I am watching now.  Flag 2 mentions any System.out.println statements in our Java file should show up in console.log, without any further configuration.
 
 When running my curl command, I am seeing that it attempts to make the desired LDAP call but has a 400 error. To debug this, I am trying to see what happens when it is trying to execute the code in my Java file, but I see nothing in console.log, even when I reduce it to just 1 print statement each in the try catch.
@@ -135,7 +153,7 @@ When running my curl command, I am seeing that it attempts to make the desired L
 Reply
 
 Maria Rachel Stewart
-10h
+23h
  Replying to Maria Rachel Stewart
 Ok looks like that last video was what I needed. Heads-up for anyone else, read/watch literally every single linked resource.
 
@@ -144,7 +162,7 @@ Ok looks like that last video was what I needed. Heads-up for anyone else, read/
 Reply
 
 Andrew Steven O'Kins
-13h
+1d
 
 Resolved
 Currently hitting a roadblock and not finding anything to point in the direction of what the cause is.
@@ -155,7 +173,7 @@ I seem to be making the connections, but the python http server is printing out 
 Reply
 
 Andrew Steven O'Kins
-13h
+1d
 Of course I figured it out soon after making this post.
 
 I recommend the video they provide, that helped me see what I was missing!
@@ -165,21 +183,21 @@ I recommend the video they provide, that helped me see what I was missing!
 Reply
 
 Ashutosh Agarwal
-13h
+1d
 Great job! 
 
 
 Reply
 
 Robert Birk Hughes
-5h
+18h
 Could you point to what in the video helped you with this?  I am having the same issue and I can't tell if I am starting my LDAP server incorrectly or putting in a bad exploit in my curl command
 
 
 Reply
 
 Robert Birk Hughes
-5h
+18h
  Replying to Robert Birk Hughes
 I figured out this issue, but now my java doesn't seem to be running properly
 
@@ -187,7 +205,7 @@ I figured out this issue, but now my java doesn't seem to be running properly
 Reply
 
 Kevin Darlington
-5h
+18h
  Replying to Robert Birk Hughes
 It is the hacksploit video in the linked resources. It is almost 1:1 flag 2.
 
@@ -195,7 +213,7 @@ It is the hacksploit video in the linked resources. It is almost 1:1 flag 2.
 Reply
 
 Anonymous Quail
-22h
+1d
 
 Resolved
 I don't know why i couldn't reverse shell with 127.0.0.1, but finally changed IP address and got it solved! 
@@ -207,7 +225,7 @@ good luck.
 Reply
 
 Joseph A Cannaday
-23h
+2d
 
 Resolved
 I'm a bit confused on the role of the python http server command within the context of this flag. Should curl be used for the jndi lookup, and is the intention that this lookup would then reference the java file?
@@ -216,7 +234,7 @@ I'm a bit confused on the role of the python http server command within the cont
 Reply
 
 Fahim Sunka
-23h
+1d
 Endorsed
 To answer your question, yes. For a much better picture - on the homepage of the Log4Shell project GitHub, you find a diagram in the background section that can be very helpful visually. Here the python http server is the malicious server (see the setup section as well for more details). Finally, this resource (from the Important Reference Materials) is highly recommended for this flag - https://www.youtube.com/watch?v=lJeAgQQaDEw
 

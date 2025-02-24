@@ -7,10 +7,10 @@ Ed Discussion
 
 New Thread
 Courses
-47
-22
+48
+23
 Categories
-753 others online
+761 others online
 Use left and right arrow keys to adjust the split region size
 
 New Thread
@@ -18,7 +18,7 @@ Filter
 Use left and right arrow keys to adjust the split region size
 Project Log4Shell - Flag 4 Command and Concat #695
 Kevin Darlington
-3 days ago in Projects – Log4Shell
+4 days ago in Projects – Log4Shell
 
 Pinned
 
@@ -26,9 +26,10 @@ Star
 
 Watch
 
-96
-99
-66
+115
+11
+11
+55
 Views
 
 This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
@@ -40,8 +41,71 @@ Note: Do not share code, outside tools you used or any hints beyond the writeup 
 Comment
 
 Sort by Newest 
+Brandan Tan
+4h
+
+Resolved
+I managed to get the message that shows `Congratulations! Your flag4 is: ...`. But when i copy and submit that value to Gradescope, it shows up as incorrect. Could a TA please help me check if i indeed have the correct value?
+
+
+Reply
+
+Kevin Darlington
+4h
+Sure thing, please make a private post. 
+
+
+Reply
+
+Brandan Tan
+4h
+Okay, i just created one private post
+
+
+Reply
+
+Ruangsak Patomwong
+4h
+
+Resolved
+Don't forget to compile Exploit.java after you edit your code. I just waste hours for this.
+
+
+2
+Reply
+
+Omar Arin Solaiman
+9h
+
+Resolved
+Been able to create a file and proved it happened by creating it in the logs... can't seem to add to it though...
+Approaching similar to Flag1, and I have a way to make that file... but the usual way I'd "write/push" to it seems to not work?
+
+got it to write to the other location, but not the base one... 
+Is the vector different?
+
+
+Reply
+
+Omar Arin Solaiman
+8h
+Figured it out
+
+and it's a little funny being able to use it in that way. Will say that I thought I'd break the rest of it though... 
+
+
+1
+Reply
+
+Kevin Darlington
+4h
+Nice work!
+
+
+Reply
+
 Gen Sheng Zhang
-22m
+14h
 
 Resolved
 Is this also meant to use jdni or something different? I see some issues with a foo....
@@ -50,29 +114,31 @@ Is this also meant to use jdni or something different? I see some issues with a 
 Reply
 
 Gen Sheng Zhang
-18m
+14h
 Please ignore... i was in the wrong directory.
 
 
+1
 Reply
 
 Gen Sheng Zhang
-15m
+13h
 Without giving away too many hints, I don't actually quite get what this has to do with the flag's name. Is there a way to leverage the mechanism explicitly or is this the same as any other log4j injection into a variable...? Just curious, because it seems to work by just updating one vulnerable variable.
 
 
 Reply
 
 Gen Sheng Zhang
-9m
+13h
  Replying to Gen Sheng Zhang
 i just exploited the vulnerability in the "intended" way probably, by leveraging the name of the flag. But, it still seems to work without it... wondering if I am tripping
 
 
+1
 Reply
 
 Yongmin Li
-3h
+17h
 
 Resolved
 I am getting this ERROR Ronnie.txt was created but contents != "AintNothinButAPeanut!". Contents were: null
@@ -81,21 +147,21 @@ I am getting this ERROR Ronnie.txt was created but contents != "AintNothinButAPe
 Reply
 
 Yongmin Li
-3h
+16h
 NVM, somehow managed to fix this.
 
 
 Reply
 
 Kevin Darlington
-3h
+16h
 Nice work!
 
 
 Reply
 
 Fatima Muhammad Barakzai
-12h
+1d
 
 Resolved
 I'm creating the file but it gets reset, how am I supposed to pass in the exploit? Is there another variable?
@@ -104,7 +170,7 @@ I'm creating the file but it gets reset, how am I supposed to pass in the exploi
 Reply
 
 Ashutosh Agarwal
-12h
+1d
 The name of this flag is a huge hint as to what you need to do. Pay close attention to the logged messages and their format.
 
 
@@ -112,14 +178,14 @@ The name of this flag is a huge hint as to what you need to do. Pay close attent
 Reply
 
 Fatima Muhammad Barakzai
-12h
+1d
 Figured it out, thanks
 
 
 Reply
 
 Ashutosh Agarwal
-12h
+1d
  Replying to Fatima Muhammad Barakzai
 Great job!
 
