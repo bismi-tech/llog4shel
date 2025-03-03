@@ -1,0 +1,354 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+1
+
+New Thread
+Courses
+56
+28
+Categories
+281 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Project Log4Shell - Flag 7 SQL Attack (EXTRA CREDIT) #698
+Kevin Darlington
+Last week in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+318
+33
+11
+88
+Views
+
+This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
+
+Anyone with questions about citations and plagiarism should consult the appropriate section of the course policy on misconduct.
+
+Note: Do not share code, outside tools you used or any hints beyond the writeup or office hours to other students. We will delete threads and warn you if you overshare.
+
+Comment
+
+Sort by Newest 
+David Song Huang
+9h
+
+Resolved
+ These references feel a bit random but I'm here for it. I like the Ronnie Coleman reference lol.
+
+
+1
+Reply
+
+J. Kendall Miller
+21h
+
+Resolved
+got the flag after a few hours work.
+
+
+1
+Reply
+
+Ashutosh Agarwal
+12h
+Nice work!
+
+
+Reply
+
+Shuanghui Peng
+2d
+
+Resolved
+I have got the db details , but still not able get the flag, have few questions on this:
+
+1. Does the exploit need to be triggered by the delete endpoint providing by the instruction or any endpoint is fine ?
+
+2. is userName MWAD10 necessary for header X-NetworkUserId or this can be replaced by EDBOY?
+
+
+Reply
+
+Joel M Tucker
+2d
+Take a look at #9 
+These questions are a bit too specific. A student answering these will be violating academic honesty. I'll keep this up as an example though.
+
+Try to generalize these questions. 
+
+
+Reply
+
+Shuanghui Peng
+12h
+ok, never mind, got it figured out.
+
+
+Reply
+
+Joel M Tucker
+12h
+ Replying to Shuanghui Peng
+nice work
+
+
+Reply
+
+Anonymous Starling
+2d
+
+Resolved
+I see that flag 7 is extra 2pts. Will the assignment grade calculated as 102/100 if flag 7 is captured?
+
+
+Reply
+
+Kevin Darlington
+2d
+Yes, you will get 102/100
+
+
+Reply
+
+Anuj Goel
+4d
+
+Resolved
+I am getting 500 when I call the delete as per the instructions. I have the exploit code that is inserting the record in the DB using Flag2 and also handling the duplicate record situation. 
+
+But no matter how I call the DELETE API I am getting internal errors. 
+
+
+Looking into the log it is throwing a Java Null exception from the initial code of the REST API. Can you please help to see what is wrong with my approach?
+
+Am I supposed to call the delete API with id, userName, user_id; is any of these need to go into the head or body of the request instead of the URL as per the instructions? 
+
+I also noticed that my inserted record does not show as part of the return from the all users API, not sure if that is expected or indicates something wrong.
+
+
+Reply
+
+Kevin Darlington
+4d
+Hi Anuj!
+
+This is unimplemented (Not needed to get the flag) and figured it could effect the flag if we allowed you to delete all users. Nothing is wrong with your approach. I will make note to add better documentation around this :) 
+
+As for the inserted record, we reset the database each time the service is called to help safeguard around people inserting into the database another way and just calling the flag. 
+
+
+Reply
+
+Daniel Alexander Moreno
+4d
+
+Resolved
+I suspect that I'm going down the wrong path so I'm going to ask three questions to see.
+
+Do I have to use the database credentials?
+
+Is there a good way to obfuscate the one value being checked for since my normal methods aren't working?
+
+Is the jndi approach from previous flags necessary?
+
+
+1
+Reply
+
+Kevin Darlington
+4d
+1. Yes
+
+2. Not sure what you mean here, I did not need to obfuscate for this flag ;)
+
+3. Yes, you will need to leverage that for sure. 
+
+
+1
+Reply
+
+Daniel Alexander Moreno
+4d
+Okay then. I'm clearly headed down the very wrong path. Thanks for confirming.
+
+
+Reply
+
+Daniel Alexander Moreno
+3d
+ Replying to Daniel Alexander Moreno
+Ahhhh! When people said that this was a deceptively simple flag, they weren't kidding. It makes perfect sense in hindsight, but I spent hours working on it. This comment made a big difference.
+
+Also, keep in mind that each flag tells you all relevant endpoints. When the instructions say "The endpoint for this exploit can be called" and only list one endpoint as a curl command, they truly mean that this is the only endpoint you need. Don't get caught up on any other endpoints/options you may discover like I did.
+
+
+Reply
+
+Michael Joseph Hearn
+4d
+
+Resolved
+Endorsed
+Ahh I see someone of culture wrote this assignment "rsanchez" and "edboy". 
+
+
+
+9
+Reply
+
+Kevin Darlington
+4d
+HAHAHA! Life has many doors Rickboi! I am glad to see someone else of culture appreciate it :)
+
+
+6
+Reply
+
+Anonymous Chimpanzee
+4d
+
+Resolved
+For some reason when my payload is triggered it inserts two users into the database before auth. I did check my code to make sure it is only inserting one, and I don't think my payload is being triggered more than once. Has anyone else experienced this? Any tips? 
+
+
+Reply
+
+Robert Morgan Gryder
+4d
+It's likely being triggered more than once, mine was. Had to rethink my payload a bit. One thing that helped me a lot on this project in general is the concept of idempotency:
+
+https://en.wikipedia.org/wiki/Idempotence
+
+
+Reply
+
+Anonymous Chimpanzee
+4d
+I got my flag right before I saw this. I definitely had to rethink my payload. I wrote some logic to prevent the insert from happening twice. It very well could have been triggered twice, although I only saw my payload once in the logs.
+
+
+1
+Reply
+
+Kevin Darlington
+4d
+ Replying to Anonymous Chimpanzee
+Nice work!
+
+
+Reply
+
+Anuj Goel
+4d
+ Replying to Anonymous Chimpanzee
+I have added the logic to prevent duplicate records, but my Rest call to DELETE is always returning with Internal error 500, and when i check the log I see JavaNull pointer exceptions. Is there a particular way to execute the DELETE call? I have tried it with id, userName, and userID as part of the URL, but no luck.
+
+
+Reply
+
+Yunha Jang
+4d
+I had the same issue. A step to prevent the same data from being entered twice was helpful.
+
+
+Reply
+
+Kshitij Gupta
+5d
+
+Resolved
+Is there a name of the db that we need to connect to? Any hints if anyone tried it or TAs? Thanks!
+
+
+Reply
+
+Yongmin Li
+5d
+Endorsed
+I got the db uri username password using the technic from one of the flag before.
+got the table name from logs.
+but not get flag yet, i am even not sure run sql insert into DB directly is the right way to go. 
+
+
+4
+Reply
+
+Philipp Werner
+5d
+I got th flag just in the moment. If you have all the things and play around a little bit you should get it 
+
+
+1
+Reply
+
+Patrick Jacobs
+5d
+I solved the flag right after I read this comment.
+
+
+1
+Reply
+
+Kevin Darlington
+5d
+ Replying to Patrick Jacobs
+Nice work!
+
+
+1
+Reply
+
+Kshitij Gupta
+5d
+ Replying to Kevin Darlington
+Any more hints guys, seems like the flag makes sure to delete my injections before auth? 
+
+
+Reply
+
+Patrick Jacobs
+5d
+ Replying to Kshitij Gupta
+Just like other flags, we have to find a way to perform our exploit after the protections and checks are run.
+
+
+1
+Reply
+
+Kshitij Gupta
+4d
+ Replying to Patrick Jacobs
+Thanks, this helped me.
+
+
+Reply
+
+Anuj Goel
+4d
+ Replying to Patrick Jacobs
+This tip helped me, I was getting thrown off by Internal Error 500, which is part of the feature for this flag. Thank you.
+
+
+Reply
+
+Yunha Jang
+4d
+It might be helpful to think about how your Java web application gets its DB connection information to connect to the DB.
+
+
+1
+Reply
+

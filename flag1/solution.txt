@@ -1,0 +1,24 @@
+How the Log4Shell Vulnerability Works
+
+The Vulnerability: Log4j is a system that applications use to record what they're doing (like a diary). When Log4j writes something to its logs, it looks for special patterns like ${...} and replaces them with values.
+What We Did: We used the "location" HTTP header to inject the special pattern ${env:ADMIN_PASSWORD}. When the application logged our request, Log4j saw this pattern and replaced it with the actual value of the ADMIN_PASSWORD environment variable.
+Why It Worked: The application was vulnerable because:
+
+It was using a vulnerable version of Log4j (version 2.x before 2.15.0)
+It was directly logging user input (the HTTP headers)
+The environment variable ADMIN_PASSWORD contained our flag
+
+ 
+The Command Breakdown:
+Copycurl 'http://localhost:8080/rest/cartoons/isAlive' -H 'GATECH_ID:904074283' -H 'location:${env:ADMIN_PASSWORD}'
+
+We sent a request to the application
+We included our GATECH_ID (required by the application)
+We set the "location" header to ${env:ADMIN_PASSWORD}
+The application logged our request, including the headers
+Log4j processed the special pattern and revealed the flag
+
+
+
+This is a real-world vulnerability that affected millions of applications in December 2021. Companies had to scramble to patch their systems because attackers could not only read environment variables but also execute arbitrary code on vulnerable servers.
+Is there anything specific about the vulnerability or the exploit that you'd like me to explain in more detail?

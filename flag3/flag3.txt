@@ -4,13 +4,14 @@ CS 6035 O01, OCY
 –
 Ed Discussion
 
+1
 
 New Thread
 Courses
-48
-23
+56
+28
 Categories
-761 others online
+281 others online
 Use left and right arrow keys to adjust the split region size
 
 New Thread
@@ -18,7 +19,7 @@ Filter
 Use left and right arrow keys to adjust the split region size
 Project Log4Shell - Flag 3 Config Properties #694
 Kevin Darlington
-4 days ago in Projects – Log4Shell
+Last week in Projects – Log4Shell
 
 Pinned
 
@@ -26,10 +27,10 @@ Star
 
 Watch
 
-163
-11
-66
-33
+479
+44
+77
+99
 Views
 
 This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
@@ -41,8 +42,2112 @@ Note: Do not share code, outside tools you used or any hints beyond the writeup 
 Comment
 
 Sort by Newest 
-Tyler Ross
+Robert Cody Ackert
+45m
+Unresolved
+I am fairly close. I am past the teapot error and I am able to get an LDAP request with the redirect, however its never hitting the python web server that is serving my Exploit.class. I can browse to the Exploit.class file. I can click the link in the Terminal "Send LDAP reference result for redirecting to LINK" < I can click this. 
+
+
+Is there any reason why the web server won't redirect and pull down my exploit? 
+
+
+Reply
+
+John Wyatt Gamble
+41m
+Make sure you're running the Python http server in the right directory (Flag3 in this case)
+
+
+Reply
+
+Robert Cody Ackert
+30m
+Yes. 100 percent sure. I also can browse to the file which means the web server is up. 
+
+
+Reply
+
+Dylan Jake Hawryluk
+5h
+
+Resolved
+I am a bit confused as the hint "R rated cartoons are not exploitable." is throwing me off since I am not sure if the outlier I found is the correct one or not, and this is unrelated to any R rating on the cartoon list, but a cartoon with an outlier just happens to share this with it. So I am wondering if that means not to use that cartoon?
+
+
+Reply
+
+Kevin Darlington
+5h
+Sorry, the reason we specified is because the R rated cartoon is hard coded, so we didn't want to waste your time trying to exploit one that is not exploitable. 
+
+
+Reply
+
+Dylan Jake Hawryluk
+5h
+Ah okay, so just to confirm, the R rated cartoon has nothing to do with successfully getting the flag? I am wondering as many hints on the thread have all led to that cartoon, unless I am overlooking another one currently.
+
+
+Reply
+
+Kevin Darlington
+4h
+ Replying to Dylan Jake Hawryluk
+Correct, it simply is just there to keep students from spinning their wheels on a cartoon that is unexploitable. 
+
+
+1
+Reply
+
+Dylan Jake Hawryluk
+3h
+ Replying to Kevin Darlington
+Thank you! So are the hints referring to something much more niche? It is just hard for me to really use the hints that have been provided unless they are referring to something extremely obscure with some of the cartoons listed haha. Also, how much value should be placed on the last screenshot in the instructions page for this flag? Looking at it, it seems like it reveals quite a bit, but I am not sure if it is purely examples sake.
+
+
+Reply
+
+Kevin Darlington
+2h
+ Replying to Dylan Jake Hawryluk
+No, the first hint is to let you know if you get errors about exploiting, that you likely are in the right spot. The 2nd probably is better as disclosure not a hint. 
+
+It is purely just an example as to what you should see when you get your flag. Let me ask you this, do you have the attack vector yet?
+
+
+1
+Reply
+
+Dylan Jake Hawryluk
+2h
+ Replying to Kevin Darlington
+Ahh that clears it up thank you. 
+
+And I do not believe I have the vector, I am also not 100% sure what the vector should exactly be. I have an idea, but I am not sure exactly. If it isn't revealing too much, feel free to redact, but I feel the attack vector is the network aspect of the cartoons. Even if it is not the R rated cartoon, perhaps that cartoon was separate from the rest for an example of what the vector should be for the proper cartoon?
+
+
+Reply
+
+Matthew David Macioce
+11h
+Unresolved
+I finally passed the teapot error and can see connections being made to the servers - but am not able to get the rating to update, I found some references on stack overflow (copying if it will help others - java - Updating property value in properties file without deleting other values - Stack Overflow) and my code is almost identical but can't quite figure out where I'm going wrong? Short of looking at the code I know there isn't much to go off here - but was wondering if there were some common issues you have noticed in exploit files?
+
+
+Reply
+
+Kevin Darlington
+10h
+Are you making sure you are writing the other properties back to the file as well?
+
+
+Reply
+
+Matthew David Macioce
+9h
+Yep, not sure if my path is wrong? I see it's the root directory and have it there - so not sure what else I could be doing wrong
+
+
+Reply
+
+James E Kim
+7h
+ Replying to Matthew David Macioce
+I am stuck here as well. Do we have to control the time of injection? 
+
+
+1
+Reply
+
+Matthew David Macioce
+6h
+ Replying to James E Kim
+I would think if we are both calling the right variable that shouldn't be an issue, but tbh I have no clue lol, been at this one a few days - could be going crazy
+
+
+Reply
+
+Matthew David Macioce
+5h
+ Replying to Matthew David Macioce
+I am pretty lost at this point, I think it's probably a simple change, but cannot seem to figure it out
+
+
+Reply
+
+Kevin Darlington
+5h
+ Replying to Matthew David Macioce
+Okay, was making sure because you have to keep all properties intact to get this flag. Could you post what you have privately so I can better assist? I will answer you here in this thread. 
+
+
+1
+Reply
+
+Kevin Darlington
+4h
+ Replying to Matthew David Macioce
+So I think you need to make sure you are writing all of the properties back to the file. You can do that by printing out the contents in your java code. I also noticed that you are creating a path for the file and you shouldn't do that. The file path is just in the project root which is the top level directory of the application NOT /root if that makes sense?
+
+
+Reply
+
+Matthew David Macioce
+3h
+ Replying to Kevin Darlington
+As far as the path, I think so - i guess I am just getting caught up in writing all the properties back to the file I thought I was doing that w the second try
+
+
+Reply
+
+Kevin Darlington
+2h
+ Replying to Matthew David Macioce
+You can test out how you are writing properties a lot easier locally creating a quick and dirty java program and running it. That is going to be significantly easier to debug than in a distributed, exploited application. 
+
+
+Reply
+
+James E Kim
+11h
+
+Resolved
+I am at the point where I can inject the exploit script to the target with HTTP 200 responses, confirming the injecting. I tried multiple ways to update the config properties file, and it is currently being overwritten by the system. Perhaps, I need to look for other vectors, and any resource or tips to identifying the different method? 
+
+
+Reply
+
+Joel M Tucker
+11h
+1. HTTP 200 responses does not necessarily mean that you're actually injecting the trigger. Look for logs you've written in your java code or look at the terminals for the python and ldap servers to confirm that they are, in fact, retrieving and executing your Java.
+
+2. Use Java to write to the file. Don't get complicated with trying to execute shell instructions from the Java code
+
+
+Reply
+
+Hadder Hussein
+4h
+Hey James, im at this same spot. Any pointers?
+
+
+Reply
+
+James E Kim
+2h
+Finally, I got the flag.  Since my injection was updated by the system, I had to look for other injecting point. Read the logs carefully. 
+
+
+2
+Reply
+
+Joel M Tucker
 1h
+ Replying to James E Kim
+nice work!
+
+
+Reply
+
+Gantabya Kadel
+12h
+
+Resolved
+So I believe I have the attack vector now ... thing had been staring at my face for 2 days. I was able to set it to an arbitary value. 
+Are we then supposed to pass our exploit to this vector instead of how we were doing this for flag 2 via the header ?
+
+
+Reply
+
+Joel M Tucker
+11h
+You will be passing the jndi trigger through the http request through headers, params, request body, anything that will work. This will be different from Flag2 (all the flags will be a little different) 
+
+
+Reply
+
+Gantabya Kadel
+13h
+
+Resolved
+Been looking at this for 2 days now,
+Only thing I’m finding not set is the location redirect one which is flag 2 stuff that’s been said to not work. I wish there was a bit more clarity on the information provided 
+
+
+Reply
+
+Matthew David Macioce
+13h
+Have you tried the second curl provided? and added an id?
+
+
+Reply
+
+Gantabya Kadel
+13h
+Yup I have … even placed the R rated one just to see what it would be without setting the header … still looks the same
+
+
+Reply
+
+Gantabya Kadel
+13h
+I was able to get to teapot error and then past it …
+
+
+Reply
+
+Gantabya Kadel
+15h
+
+Resolved
+In the logs the only thing I see that is not set is the same place as what was not set for flag 1 and 2. I used my exploit there to print out hello world in the logs and that does happen. 
+Is this the attack vector or is there something else out there ? This is just not making sense. 
+
+
+Reply
+
+Manan Himanshu Trivedi
+23h
+
+Resolved
+I have been able to find the right vector and get the teapot error but not able to find the right technique to obfuscate it/encode it. I have tried over 30+ techniques but to no avail. Does anyone have any references or advice for encoding/obfuscation?
+
+
+1
+Reply
+
+Keymer Botero
+23h
+I had success using the link provided in this thread https://bishopfox.com/blog/identify-and-exploit-log4shell . You can do it small parts by encoding character by character and see how your lookup is interpreted each time. 
+
+
+1
+Reply
+
+Manan Himanshu Trivedi
+23h
+I tried using that link earlier and keep getting status 500 errors or teapot messages. Completely stuck here.
+
+
+Reply
+
+Keymer Botero
+23h
+ Replying to Manan Himanshu Trivedi
+Teapot messages imply that there was not enough encoding involved and that the server managed to detect your lookup in the end. Keep trying! 
+
+As for 500 errors.... Hard to tell to be honest. You could using that the server geniunely does not know but the syntax is correct client side. Keep going!
+
+
+1
+Reply
+
+Rakshaa Ravishankar
+24h
+
+Resolved
+I got to the point where I see the teapot message then tried obfuscating using encoding techniques and now just get the original output of the details of the cartoon given the cartoon id I am using in my curl. I tried a different way of obfuscation and I get the same original output about the cartoon I choose for the curl. Each time, I see the mystery attack vector set with the injection I attempted when I look at the logs. Does this mean my obfuscation is wrong or it's my java code?
+
+
+Reply
+
+Ashutosh Agarwal
+14h
+Do you see your LDAP and python server getting triggered? If yes, then it's an issue with the Java code. Otherwise it's an issue with your obfuscation/jndi syntax. 
+
+
+1
+Reply
+
+Benjamin Harris White
+1d
+
+Resolved
+Well, I've got the teapot. I've experimented with a great many methods of obfuscating the arguments with no luck. I can get all the individual parts but haven't yet been able to compose the full string. It seems that I can't nest braces - or at least I get a 400 when I try. Should I be able to do that?
+
+
+Reply
+
+Le Tao
+1d
+You might need to encode the braces.
+
+
+Reply
+
+Benjamin Harris White
+1d
+I've tried the usual urlencoding but that doesn't seem to work. Instead of interpreting the thing I'm passing in, once I nest even encoded braces, Nothing is interpreted.
+
+I wonder if this means I'm using the wrong vector.
+
+Or maybe I just need to be more inventive about encoding and obfuscating.
+
+
+Reply
+
+Le Tao
+24h
+ Replying to Benjamin Harris White
+Have you tried putting the original curl command directly in browser, or using encodeURIComponent, and use the encoded part for the value of your parameter? Also, ensure your exploit file and flow are correct.
+
+
+Reply
+
+Benjamin Harris White
+24h
+ Replying to Le Tao
+I haven't actually been able to trigger the exploit since I haven't been able to pass in the jndi-related string I want the server to interpret. I can compose strings which are interpreted, eg env commands or the java version.
+
+But when I try with the thing which I think should interpret to the jndi command I want - which takes nested braces - it stops interpreting the string and just shows it verbatim in the log. I get 400 errors when I try with actual curly braces and the non-interpretation when I use url-encoded (ie what I would get from encodeURIComponent()).
+
+I'll lay it down for a bit and then come back and attack it anew.
+
+
+Reply
+
+Le Tao
+24h
+ Replying to Benjamin Harris White
+This parameter is different, it shows up in the log. We learned from the previous flags how JNDI LDAP can be exploited, how it makes the exploit file effective, so we use that insight to build the new payload (parameter plus encoding, as well as the logic of exploit file). And I experienced that too. Take a break, maybe walk dog or else, and then check the flag again. You might notice something new in the log when coming back.
+
+TA already gives many hints including this one:
+
+https://edstem.org/us/courses/69023/discussion/6222709?comment=14560809
+
+
+Reply
+
+Meer Ushter
+1d
+
+Resolved
+Hello Everyone, 
+AFter struggling for this for quiet a while (tried moving forward but somehow the concepts seems connected ) 
+I am back at my question as to what do we mean by Attack Vector, 
+From Flag 1 and 2 the place where we place our jndi to trigger the java code and eventually condirm the injection using the ldap server was pretty straightforward .
+
+Coming onto flag 3 I see many references and hints but the only thing that seems out of place when calling for the entire cartoon list is set pretty obvious in one of the entries of the cartoons. 
+
+Im pretty sure i have to use the id of that particular entry to trigger something as was pointed out within the logs . 
+now how does attack vector comes into play to send in my jndi is beyond me right now. I tries using a query logic and what not and still coming into some dead end or another and the LDAP server not confirming if the inject was successful or not . 
+
+Ik the way we inject is going to be diff than the flag2
+
+Please any help i greatly appreciate it !
+
+
+Reply
+
+Le Tao
+23h
+Endorsed
+Maybe this is helpful, right below.
+
+https://edstem.org/us/courses/69023/discussion/6222709?comment=14560809
+
+
+Reply
+
+Gantabya Kadel
+1d
+
+Resolved
+I have not found the attack vector so I can't be sure about this. However, if it is indeed based on some general trivia that we're expected to notice then it'd be entirely unfair on those who wouldn't be as familiar with the topic.
+
+
+Reply
+
+Ashutosh Agarwal
+1d
+The attack vector is not based on any trivia that you are expected to know. Take a closer look at what gets logged when you call those endpoints and see if you can find an out of place variable in the logs that can be used as an attack vector. 
+
+
+Reply
+
+Gantabya Kadel
+1d
+
+Resolved
+Follow up question, to correctly identify the out of place attack vector, do I need to know the list of cartoons ? Because, it that's so then I'm already out of place here as I don't know much about these cartoons at all. 
+
+
+1
+Reply
+
+Keymer Botero
+1d
+I am definitely a cartoon buff and I think I see something but the comments are referring to a spy song and now I'm feeling set back.
+
+
+Reply
+
+Gantabya Kadel
+1d
+honeslty that doesn't help me much as I'm not into general triva like these so this is a bummer
+
+
+Reply
+
+Keymer Botero
+1d
+ Replying to Gantabya Kadel
+Hey Gantabya, just like before in the API sec project and google what you see is out-of-place and trust your gut. It clicked for me when I realized 'oh wait, spy stuff' and then I googled it and I was like 'OOOOOOOH, I think I see what's going on'. Although, I'd look in through this thread as we are modifying that out-of-place vector differently than in flag2. Hope this helps better!
+
+
+Reply
+
+Gantabya Kadel
+1d
+ Replying to Keymer Botero
+are we looking at the list of cartoon names or is it someplace else ? I've been starting at it for a good number of hours now and nothing seems out of place. 
+Thank you for answering though Keymer, I appreciate it.
+
+
+Reply
+
+Keymer Botero
+1d
+ Replying to Gantabya Kadel
+The list of cartoons tells us whether we have changed the rating as desired in the writeup. According to the writeup (and to show that I'm on the same page with TA-enforced policies), The log is where we are looking for our vulnerable out-of-place vector. 
+
+
+Reply
+
+Gantabya Kadel
+1d
+ Replying to Keymer Botero
+hmm so I'm able to print out Hello world etc onto the console log but still struggling to take note of a query param or attack vector. I don't think I've even found the "bad" one 😭 
+
+
+Reply
+
+Gantabya Kadel
+1d
+ Replying to Gantabya Kadel
+The Tas are funny sometimes, they can edit messages but can't provide hints lol.
+Thank you Keymer, I'll be skipping this flag. No point wasting more of my time on this. fingers crossed there's better luck in the other flags. 
+
+
+Reply
+
+Gantabya Kadel
+10h
+Honestly, I guess it makes sense that it's spy stuff ... but like if you google spy song some random band pop ups ... this threw me off so bad lol. The vector was legit just starting at me haha
+
+
+1
+Reply
+
+Dylan Jake Hawryluk
+6h
+ Replying to Gantabya Kadel
+I am so confused on this project, when you say the vector was staring at you, is this related to the logs output, or the cartoon list? 
+
+
+Reply
+
+Gantabya Kadel
+1d
+
+Resolved
+Hello, I've been at this for a while. Having a hard time finding the attack vector. On the threads, there's comment saying it's referencing a song ... but all I see are cartoons ? Something I'm not understanding ? 
+
+I tried to encode the exploit to just print out hello world and the encoding trick isn't working since it's being picked up by the server, what are ppl using ?
+
+
+Reply
+
+Gantabya Kadel
+1d
+I was able to GET a properties page via postmane. I'm guessing I found the two "ireelevant" endpoints since the first 2 were mentioned by the write up and thrid was on the screenshot. I'm not sure where to go from here. And, to top it off java is the one language I have 0% working experience with 😭 
+
+
+1
+Reply
+
+Ashutosh Agarwal
+1d
+The only endpoints that you'd need for this flag are the ones mentioned in the flag write up. The endpoint in the screenshot is the GET By ID one. 
+
+
+Reply
+
+Nicholas Angel Bear
+1d
+
+Resolved
+I only took 4 hours on this flag. The comments had me worried but there are some real nuggets in here. Some tips that helped me and have been shared here:
+
+Know your attack vector (and what that means). There's a couple comments in here that should point you in the right path.
+
+Some people use curl and some people use Postman... do what's comfortable.
+
+This is a very helpful article: https://bishopfox.com/blog/identify-and-exploit-log4shell some people recommend trying some obfuscation methods sparingly by testing it on each letter one-by-one... I ended up going all out on one method once I could verify it was interpreted properly in smaller tests. Helpful comment here: https://edstem.org/us/courses/69023/discussion/6222709?comment=14492417 
+
+A tool we used on at least two projects came in handy for the encoding part. I might as well bookmark it at this point!
+
+make sure to read the instructions :)
+
+Last but not least, whoever came up with this list of cartoons has great taste! These are all of my favorites to this day. Just need to add American Dad and The Grim Adventures of Billy and Mandy lol
+
+
+2
+Reply
+
+Kevin Darlington
+1d
+NIce work!
+
+
+Reply
+
+David Song Huang
+1d
+
+Resolved
+I found the out of place variable/attack vector, and it sets the rating to my GATECH_ID but for some reason it's still not giving me the flag. 
+
+
+Reply
+
+David Song Huang
+1d
+I got it nvm. Hopefully this isn't too much information but make sure you persist the change after updating it. 
+
+
+Reply
+
+Kevin Darlington
+1d
+Nice work!
+
+
+Reply
+
+Shane Ryan Rosse
+1d
+
+Resolved
+The song/movie suggestions are very helpful when the answer is staring right at you and you're still missing it like I did :) 
+
+
+1
+Reply
+
+Kevin Darlington
+1d
+Nice work! ITS A CARTOON hahaha jk
+
+
+1
+Reply
+
+Matthew David Macioce
+1d
+
+Resolved
+Been at this for a few days and I think I found some encoding that works, I see my jndi injection printed in the variable, but no connections were made to the servers - not sure 
+
+
+Reply
+
+Matthew David Macioce
+1d
+Nvm - sigh lol, it was missing the $ {} and now I am getting the teapot message again 
+
+
+Reply
+
+Anonymous Cattle
+2d
+
+Resolved
+I wasted several hours thinking the objective was to change the rating to R when it's supposed to be changed to your GTID. I thought the webapp would change the rating to your GTID when rating = R. 😫
+
+
+2
+Reply
+
+Joel M Tucker
+2d
+Glad you figured it out, this happened to me several times in different course projects throughout my time in the program. It pays to take a break sometimes and go back to the instructions with fresh eyes. 
+
+
+1
+Reply
+
+Denis Kasapovic
+2d
+
+Resolved
+So I am able to make the call through postman and get a response which set the rating to my GTID, but once I make the second call the rating is back and no flag is shown. 
+
+Is this due to the my java code and how the file is updated?
+
+**Attacker vector is a query param referencing a song, like others have hinted. 
+
+
+
+1
+Reply
+
+Kevin Darlington
+2d
+It is referencing a cartoon :( INSTANT FAIL! ha just kidding. 
+
+I am not sure why you are using 2 curl's but you only need 1 for every flag. My guess is that it could be the 2 curls messing with this? You have obfuscated your payload and bypass the filter in the CARTOON reference?
+
+
+Reply
+
+Denis Kasapovic
+2d
+I guess I am using the second curl call since it looked like in the write up the second call actually retrieved the flag, and checked if the value remained and wasn't being reset. Second call has nothing to do with the Exploit, just validation the value was retained.  
+
+Just to validate the cartoon is spy oriented? 
+
+Correct in the cartoon reference. Able to bypass and even see my GTID in the value for rating. Even when I establish the remote connection I can see that my rating is present in the properties file. But no flag. 
+
+Edit: Got it!! Make sure when modifying the file you are not removing other values when setting the rating. When I checked the file again noticed some items were missing. 
+
+
+Reply
+
+Kevin Darlington
+1d
+ Replying to Denis Kasapovic
+Nice work! AND YES ITS A CARTOON QUOTE hahahah
+
+
+Reply
+
+Robert Benjamin Jenkins
+2d
+
+Resolved
+I am able to update the the rating property and I can verify it is updated with some print statements. I follow the logs and it seems like the files get reset so the rating property returns to it original value. Is this because I am using the wrong attack vector?
+
+
+Reply
+
+Yunha Jang
+2d
+Correct. I believe that the application resets files after your attack. 
+So, you need to find another vector to be executed after files reset.
+
+
+Reply
+
+Kevin Darlington
+2d
+Yes, you need to look for another attack vector. You could be making the application crash with the one you are using and never seeing the correct one. I recommend running the app normally and hunting for it. 
+
+
+Reply
+
+Robert Benjamin Jenkins
+2d
+ok so I forsure have the correct attack vector this time all the hints came together
+
+(especially the ones about the song and the movie) and I had an ahhh moment. Now im stuck on the obfuscation. 
+
+
+2
+Reply
+
+Matthew David Macioce
+1d
+ Replying to Robert Benjamin Jenkins
+I am stuck here as well. I found some method that does print my jndi but nothing runs and I don't see any connections made on my port
+
+
+Reply
+
+Robert Benjamin Jenkins
+1d
+ Replying to Matthew David Macioce
+Finally got it!!! Im not sure why but I was having the same issue. I walked away for a few hours to run some errands. came back and hit the up arrow to some previous attempts and the flag popped out. the link everyone keeps referencing is what helped the most. Stay strong and fight on your def close.
+
+
+1
+Reply
+
+Matthew David Macioce
+1d
+ Replying to Robert Benjamin Jenkins
+Congrats! Hmm okay I keep looking at that article, would you say those obfuscation methods are useful?
+
+
+Reply
+
+Robert Benjamin Jenkins
+1d
+ Replying to Matthew David Macioce
+Yes! someone said it already but start by going character by character and see what is allowed and what isn't. See what you can get away with and what you cant. Also be creative in how you implement them.
+
+
+1
+Reply
+
+Kevin Darlington
+1d
+ Replying to Robert Benjamin Jenkins
+Nice work!
+
+
+Reply
+
+Keymer Botero
+2d
+
+Resolved
+Just to make sure I'm on the same page with everyone's vocabulary, attack vectors basically means 'points where we can attack' and in the context of this project, its places where we can reverse-shell connect to?
+
+
+Reply
+
+Keymer Botero
+2d
+Just got the teapot message. I am assuming this where everyone was referring to as far as 'encoding/obfuscating' my lookup method? 🤔
+
+
+Reply
+
+Kevin Darlington
+2d
+Correct, as long as it is NOT the same attack vector that you were using for flag2. 
+
+
+1
+Reply
+
+Keymer Botero
+1d
+ Replying to Kevin Darlington
+Alright so taking a look back, I'm just wondering what could be the 'out-of-place' looking attack vector. Looking at the list of cartoons, I believe I have a good idea as to what the attack vector is, but I am not sure if its that easy. As a cartoon nerd myself, will it be a 'if you know, you know' moment, in addition to what looks out of place? 
+
+EDIT: GOT PASSED THE TEAPOT! But it seems the problem isn't so short and stout as I thought (pun fully intended. lol )
+
+I assume this is where we start injecting our id for the rating according to the writeup? I'll reread just in case I missed something.
+
+
+Edit: Just checked out Denis's comment. Definetly not as easy as I thought, but I see some other fields in addition to the one we used back in flag1 and flag2.
+
+
+Reply
+
+Keymer Botero
+1d
+ Replying to Keymer Botero
+So it seems that the points of attack are still null so I will assume that they are not changeable. Trying to think what else I can.
+
+I remember that our approach has to be different how it was from flag 2. 
+
+Does this means we do not have to worry servers communicating with each other this time?
+
+EDIT: OKAY So I did research on the supposed out-of-place thing and it indeed does relate to a spy-thing. 
+
+In a way, it is out-of-place but its still remaining null for some reason.. Any other ways to address this?
+
+EDIT: Something tells me we shouldn't be performing a lookup with an ip but instead, with the config.properties. The writeup mentions that is our target but am I on the right track? But then we would have no way to fire our exploit.. If anyone has an idea, it would be very appreciated.
+
+EDIT: To further add on to my findings, just as Kevin mentioned, if your java system.out print statements are not coming through on your log, it means that your file is not being fired.. Question is though, how we can fire through that point of attack. I won't lie it keeps showing as null despite matching the name of it and I've obfuscated properly as I am not seeing the teapot message. Any ideas?
+
+EDIT: I got communication from my Python Server and marshalsec server again but nothing is firing. Goin check my java file.
+
+EDIT: I'm able to reverse-shell connect into our target, I can see what we need to change but just like what the hint and other comments say, the file changes back to normal. Gotta figure that out somehow..
+
+
+I GOT IT! I GOT IT IGOT IT!!!! AND I DID IT I'M SO HAPPY!
+
+
+Reply
+
+Kevin Darlington
+2d
+Yes you are correct, that is all that the attack vector means. A point of attack. 
+
+
+1
+Reply
+
+Abdul Goffar
+2d
+
+Resolved
+I am having trouble logging in the java file, even when i do system.out , i dont see the print statements
+
+
+Reply
+
+Ashutosh Agarwal
+2d
+You need to tail the console.log file to see System.out.println messages. If you still don't see it, then it's likely that your exploit is not running. 
+
+
+1
+Reply
+
+Sivaprasath Busa
+2d
+
+Resolved
+Hi,
+
+I'm able to do a Curl using an "out of place vector" variable, and I was able to encode the LDAP JNDI query in the url so that it bypasses the JNDI teapot message, the response is also coming back.
+
+My console log has the exploit in the attack vector I used using query params.
+
+I'm still not receiving any request on my LDAP server.
+
+Note that I did get past the JNDI teapot message using encoding and I'm using query params approach.
+
+Please let me know if I'm on the right direction.
+
+
+Reply
+
+Sivaprasath Busa
+2d
+Never mind, I fixed the encoding and tried again, I got past the problem.
+
+
+Reply
+
+Sivaprasath Busa
+2d
+Got the flag. Once we use the right encoding approach and get the exploit executed, it gets real easy as we brush up some Java basics. Thanks for all the comments here, lot of good information. 
+
+Especially, when I was stuck with encoding, this post helped me: https://edstem.org/us/courses/69023/discussion/6222709?comment=14527399
+
+
+1
+Reply
+
+Kevin Wang
+2d
+
+Resolved
+Finally got this flag completed after a few days of trying. I think a lot of the hints in this thread were helpful, but I was stuck mostly on getting the exploit itself to work. I was mostly trying bash commands injected with the format we used in step 2, but what worked was just researching ways native in Java to change file contents. Hope this helps someone!
+
+
+1
+Reply
+
+Kevin Darlington
+2d
+Nice work and thanks for the tips!
+
+
+Reply
+
+Junhong Yu
+2d
+
+Resolved
+Hi, I think I found the out of place variable, I tried passing in as query parameter, but I am not sure what value I should be setting to.
+
+
+Reply
+
+Kevin Darlington
+2d
+What do you mean? I would recommend trying it with a plain string that is unique and easy to find in the logs. Once you have it working then use your injection. 
+
+
+Reply
+
+Junhong Yu
+2d
+I set the variable to a boolean, and it reflects on the log. Right now, I am trying to use my injection, but I am stuck at teapot. Any pointers on which encoding technique work?
+
+
+
+Reply
+
+Kevin Darlington
+2d
+ Replying to Junhong Yu
+There are multiple approaches to obfuscation/encoding. I would recommend trying quite a few and go with which one makes the most sense to you. It's hard to say which one, as some will click differently for different students. You can copy/paste your string substitutions or encodings into online tools to help validate them .
+
+
+Reply
+
+Sunjie Lu
+2d
+
+Resolved
+Not sure if i am picking the wrong vector. When ever I tried to include "/", either directly or encoded, the server returned 404 response. I think I am not sending my .class to the log since I even don't see my print() logged. Completed flag 4&5 and come back for flag2 but still no progress on sending malicious payload.
+
+Found flag5 quite similar to this flag in terms of how to craft the malicious java code but definitely the true difficulty I found in this flag is how to send it to server.
+
+
+Reply
+
+Sunjie Lu
+2d
+Not sure if I have the right logic here:
+
+Logs indicate the order how the system processes and I need to inject my malicious script to the spot after where the system may potentially reset my work and before where value check takes place.
+
+
+Reply
+
+Joel M Tucker
+2d
+on the right track
+
+
+Reply
+
+Sean Kenneth Weber
+3d
+
+Resolved
+I got the redirect to work. Does anyone have any recommended resources/starting points for writing the proper Java code. I am lost on where to begin.
+
+
+Reply
+
+Ashutosh Agarwal
+3d
+I'd recommend looking into how Java Properties class work.
+
+
+1
+Reply
+
+Matthew David Macioce
+3d
+
+Resolved
+So just testing the variable I have, I think it is the right one (reminds me of a good action movie)? I am able to add in content just to see if I can pass it through, I can, when I try to put my jndi in there, I see the teapot message - realize there needs to be obfuscation and I just can't seem to find the right type. However, I see mentions of other headers? I guess I am just getting a bit caught, up is there a variable and header needed, or just the GATECH id header?
+
+
+Reply
+
+Zhao Rong Tan
+3d
+Suggest to give query params a read snd this article a read 
+
+https://bishopfox.com/blog/identify-and-exploit-log4shell
+
+
+1
+Reply
+
+Matthew David Macioce
+3d
+Thank you! I did read that article and tried both obfuscations and was still not able to get it to decode correctly 
+
+
+Reply
+
+Joel M Tucker
+3d
+The GATECH id header is always needed. Whether you need a query param, header, or request body is up to you to figure out by using the tools and logs though. Don't overthink. 
+
+Your goal is to get your malicious string through to getting logged
+
+
+1
+Reply
+
+Matthew David Macioce
+3d
+I see, my issue seems to just be getting it encoded/decoded correctly - just bouncing between the teapot message or it not correctly decoding 
+
+
+Reply
+
+Thomas Leopold Kroll
+3d
+I feel like we've been struggling alongside each other on this one, Matthew. Think about the format of the request you're making and that will tell you how to encode it. The article is only one part.
+
+It helped me to do 4 and 5 and come back to this one with some fresh eyes, but you're much closer than I was.
+
+
+1
+Reply
+
+Matthew David Macioce
+3d
+Gotcha, I think I have it encoded correctly now, it prints where I want it, but does not run or make any connections - so not sure where to go from there. Will give 4/5 a try
+
+
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Matthew David Macioce
+My advice would be to approach it in step by step. First you should ensure the obfuscation works before you start to any form of encoding/transformation. It is also good to use methods learnt from previous flags to test
+
+
+Reply
+
+Matthew David Macioce
+1d
+ Replying to Zhao Rong Tan
+I am still spinning wheels on obfuscating - do we have to both obfuscate and encode? I guess I am just all turned around on this one 
+
+
+Reply
+
+Thomas Leopold Kroll
+3d
+
+Resolved
+I am able to get my exploit to run by obfuscating the parameter at the place where I receive the teapot message. I know that my exploit is working correctly because I can see print statements I added to verify the operation in the console log. At the time of the exploit's operation, the config file has the correct contents.
+
+
+
+Now it returns a 404 and it still looks like the config file is reset after my exploit runs. It seems that this vector isn't the correct one based on the 404, the timing of the reset, and the redacted screenshot from the write-up.
+
+I have also tried all vectors similar to Flag 2 with no results.
+
+I see an out of place variable which is the same as a field in one of the records, but I do not understand its relevance or how it would even be accessed.
+
+Am I going in the right direction? Are all of my assumptions here correct? I feel like I have exhausted every option.
+
+Edit: For anyone else having similar issues, I was on the right track after all, but I was looking at the wrong variable. This was the correct endpoint, but the placement of the string was in the wrong part of the request.
+
+
+Reply
+
+Zhao Rong Tan
+3d
+My advice would be to read the logs generated by the endpoint carefully to first identify the put of place variable/vector
+
+Give this a read too 
+
+https://bishopfox.com/blog/identify-and-exploit-log4shell
+
+Followed by reading up on query param based on the identified vector
+
+
+Reply
+
+Thomas Leopold Kroll
+3d
+Is the out of place variable I mentioned not the one you're talking about?
+
+
+Reply
+
+Thomas Leopold Kroll
+3d
+Wow, I got it! Now I understand why you kept mentioning query parameters.
+
+I was looking at an entirely different variable. The hint about the action movie was a good one for me, personally (more specifically, a song).
+
+I found this was easiest to accomplish with Postman.
+
+
+3
+Reply
+
+Kevin Darlington
+3d
+ Replying to Thomas Leopold Kroll
+Nice work!
+
+
+1
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Thomas Leopold Kroll
+Glad that you got it!
+
+
+1
+Reply
+
+Rakshaa Ravishankar
+2d
+ Replying to Thomas Leopold Kroll
+would you say the best way to find the vector is just to read the logs carefully? I'm checking both logs and not seeing anything. We should be checking the logs right after running the two endpoints in the Flag 3 instructions right?
+
+
+1
+Reply
+
+Thomas Leopold Kroll
+2d
+ Replying to Rakshaa Ravishankar
+Yes, there's a variable in the logs for one of the endpoints that I did not see appear anywhere else.
+
+
+Reply
+
+Thomas Evans
+3d
+
+Resolved
+Lather. Rinse. Repeat...... restart container and voila, it works.... :-/
+
+
+Reply
+
+Joel M Tucker
+3d
+nice work
+
+
+Reply
+
+Denis Kasapovic
+3d
+
+Resolved
+Would I be able to test my exploit code through the header method in flag two? 
+
+I am able to connect and look into the contents of the files, but it seems my code isn't modifying the file. Or would that be wasteful since executing through the query param is the only way it executes correctly?
+
+
+Reply
+
+Zhao Rong Tan
+3d
+Yes you can test your exploit code just to see it works via methods learnt from flag 2!
+
+
+1
+Reply
+
+Denis Kasapovic
+3d
+Is the same initial call needed from Flag2 exploit code to make the connection and then the new code follows?
+
+It's seem like that may be something that carries on to other flags as well. 
+
+
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Denis Kasapovic
+Yes, do make sure to Javac the correct exploit file and run it at the correct directory for flag3
+
+
+Reply
+
+Robert Perry
+3d
+
+Resolved
+I got the teapot message then was able to obfuscate and get the exploit to run and I modified the file contents but the file gets reset so that doesnt work. I've looked at the entire thread multiple times but I'm still very lost on this "out of place;)" attack vector. Is the attack vector completely different from flag2 as in prior to java exploit executing or different as in the java exploit code? Any tips will help.
+
+
+Reply
+
+Zhao Rong Tan
+3d
+My tip would be to really look through the logs generated when the endpoint is called normally to reduce noise generated. Once you read through the logs generated throughly, you will be able to find that out of place variable/vector. 
+
+Most importantly, strongly recommend reading up on query params!
+
+
+1
+Reply
+
+Joel M Tucker
+3d
+Great tips
+
+
+Reply
+
+Denis Kasapovic
+3d
+
+Resolved
+I am using this link https://bishopfox.com/blog/identify-and-exploit-log4shell to attempt to obfuscate the call to the exploit, but every combo I get an error similar to curl: (3) nested brace in position. 
+
+Any tips would be helpful in understanding that link a bit better?
+
+
+I am able to connect to the server passing it into the header value, just not query param
+
+
+Reply
+
+Matthew David Macioce
+3d
+In the same boat, I either get the teapot message, or my curl prints out in the variable - in either case I don't see a connection to the servers - I see from an earlier comment it would probably mean it is not being decoded correctly, I guess just curious if I'm on the right track or just use a different method
+
+
+Reply
+
+Zhao Rong Tan
+3d
+Important to identify the correct vector first, this can be achieved by reading through the logs generated when you call the endpoint
+
+Hint: Someone might have tried to roll their own patch and tried to deny requests containing malicious string patterns. 
+
+It is important to apply and test what you have learnt thus far before you attempt to perform any transformation on your end. I found it helpful to test using methods I learnt in Flag 1 and 2 as well
+
+I would really recommend query params for your research and read up
+
+Do approach this step by step make sure the methods learnt in the article works first before you attempt any forms of transformation to avoid the issue you are having now 
+
+
+Reply
+
+Matthew David Macioce
+3d
+ Replying to Zhao Rong Tan
+I appreciate that! I am using a query params in my curl though, I guess it could be where everything is positioned? 
+
+
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Matthew David Macioce
+Once you ensure the obsufucate works, do see how query params works and what transformation is required to get it working. If the logs are just printing what you have injected without executing your exploit, you might want to check the syntax of the transformation as mentioned by the staff in one of the comments below that I recall chancing upon
+
+
+1
+Reply
+
+Denis Kasapovic
+3d
+ Replying to Zhao Rong Tan
+What is working for obfuscating the header, is not obfuscating the query parameter. I know you mentioned the patch rollout, but not sure how to utilize that. When I use any form of encoding, I get a 200 response, but exploit does not run. 
+
+
+1
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Denis Kasapovic
+Have you identified the correct out of place variable/vector? It is important to do so to trigger the exploit. I recommend reading the generated logs when you call the endpoint to identify it
+
+To also add on, as we are working with remote program that contains its own logic and flow it is important to understand the flow of the program of what it is doing and processing to identify the correct out of place variable/vector to trigger your exploit code by reading the logs it generates.
+
+Lastly, in case you missed this hint Hint: R rated cartoons are not exploitable.
+
+You have definitely made some progress here. You are almost there!
+
+
+Reply
+
+Denis Kasapovic
+2d
+ Replying to Zhao Rong Tan
+I believe I have, I identified it by looking at the log when making one of the calls refereed in the write up. This lead me to a query param, when attempting to use it I get a curl: (3) nested brace in position. trying to obfuscate. Using encoding does not help since it is a 200 call but no remote connection is made. I do make a remote connection using the headers though.
+
+
+Reply
+
+Corey Cunningham
+3d
+
+Resolved
+I don't understand what I am missing
+
+
+Pretty sure I have the attack vector, I am able to get my Exploit to run.
+
+
+In my exploit, I am running a command to update "config.properties" but nothing happens. Also, I am not printing anything when I do "System.out.println".
+
+
+I also don't have or have not seen any "teapot error"?
+
+
+Reply
+
+Corey Cunningham
+3d
+Okay, I can see I am logging, it prints out that the properties file exits, then prints my output
+
+
+Reply
+
+Zhao Rong Tan
+3d
+You should check the logs for an out of place vector/variable and confirm if the attack vector you are using now is correct. 
+
+You might want to confirm it as your exploit code is not running.
+
+Whether your exploit code runs or not depends on your curl command as well.
+
+My advice would be to do the following:
+1. Confirm you have the correct vector by analysing the logs
+2. You may actually used methods from the previous flags just to test and see if your exploit code is running as expected, just to cover that it is working before you start designing your curl to start the exploit
+3. After you have covered the above, you are almost there and you just need to draft your curl in a proper syntax to trigger your exploit code. Do read up in query params and how it is used.
+
+Hope the above helps! Good luck!
+
+
+Reply
+
+Corey Cunningham
+3d
+My attack vector is a [redacted], unless I am using the wrong query param? Are there multiple?
+
+My exploit is running, I realized I was looking at cs3065 logs and not console.
+
+I can change the file, and I then "cat config.properties" and see that rating is my GATECH ID but not getting the flag 
+
+
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Corey Cunningham
+If the exploit is running that’s one step down, you managed to verify your code is working as expected.
+
+However, we are dealing with a program with its own logic and flow, I would really suggest you to read through the logs and understand the flow of the program. By doing so you can verify the correct vector to use as well
+Don’t give up, you are getting there!
+
+
+Reply
+
+Corey Cunningham
+3d
+ Replying to Zhao Rong Tan
+lol got it, have been looking for the flag in the logs and not the response 
+
+
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Corey Cunningham
+Nice! Glad that you made it.
+
+
+Reply
+
+Matthew Taylor Banbury
+3d
+
+Resolved
+This one was crazy, and just like everyone has already said, and even though I read all the suggestions a thousand times, I still had to keep re-implementing things while wondering what I was missing.
+
+Definitely tail logs with tail -f console.log 
+
+Even after things finally clicked, I was so busy with logs that I completely missed I got the flag about 5 minutes earlier. I was so used to ignoring the cartoon data at that point.
+
+
+Reply
+
+Steven Anthony Vasquez
+3d
+
+Resolved
+Has anybody who has moved on from this flag found other flags easier to obtain? I'm considering skipping this one for now as I've been stuck here for too long with no progress and at this point, I'm desperate to receive more than 10/100 on this assignment from the first two flags.
+
+
+4
+Reply
+
+Ramoya Grandison
+3d
+lol I’m there with you. I’ll have to return to this one later
+
+
+1
+Reply
+
+Travis Scott Weil
+3d
+I'm hopeful that's the case because I've been on this flag for days and am thinking the same
+
+
+Reply
+
+Matthew Taylor Banbury
+3d
+I would say try the next one.
+
+
+Reply
+
+Matthew David Macioce
+4d
+
+Resolved
+I seem to have the attack vector as I get the teapot message referenced below, I guess I am just going down a bit of a rabit hole with my exploit, It got fairly long, assuming that's not the right path? I read it won't be the same as flag2 but think I may be getting a bit off base 
+
+
+Reply
+
+Zhao Rong Tan
+4d
+getting the teapot is actually a good sign. You are getting there you can do this!
+
+
+1
+Reply
+
+Joshua Tyndale
+4d
+Ive been stuck on the teapot for HOURS. trying different encoding methods, different escape characters, etc
+
+
+2
+Reply
+
+Thomas Leopold Kroll
+4d
+Stuck here as well. I'm also confused about the variable everyone is talking about. I see a variable that pops up in an odd place, but no idea how I would get to it
+
+
+Reply
+
+Joshua Tyndale
+4d
+Thomas, look at Zhao Rong Tan's post just below this. # 4
+
+
+3
+Reply
+
+Matthew David Macioce
+3d
+ Replying to Joshua Tyndale
+I think for me my biggest issue is the exploit file
+
+
+Reply
+
+Thomas Leopold Kroll
+3d
+ Replying to Matthew David Macioce
+For me that was the easy part... I printed the contents of the file to the log, so it was definitely doing the right thing - it just wasn't at the right time. I just can't figure out where it goes and don't see anything useful in the log
+
+
+1
+Reply
+
+Matthew David Macioce
+3d
+ Replying to Thomas Leopold Kroll
+I'm Probably just getting a bit turned around if I just run the curl with the query params and jndi I see the teapot message, but trying certain encoding I was able to just to print the encoded stuff into my variable - and in the window when running the curl it returned all the data from the ID I had saved in my curl
+
+
+Reply
+
+Kevin Darlington
+3d
+ Replying to Matthew David Macioce
+If you are encoding your payload and it is just logging, then it is likely it is not being resolved correctly when decoded. 
+
+
+Reply
+
+Ramoya Grandison
+4d
+
+Resolved
+I've been stuck on this for 3 days now. I am sure I found the variable because when I tested it, it added the value I included.  I tried injecting the methods I found from the recommended site along with the encode but noting is working for me. Any advice would be appreciated.
+
+
+Reply
+
+Ramoya Grandison
+4d
+For encoding, based on my research, there are 2 methods that are primarily used. Is there something I am missing to let me know which one to use? I tried both but it still doesn’t work. Unless it wasn’t paired with the right obfuscation.
+
+
+Reply
+
+Zhao Rong Tan
+4d
+Endorsed
+I would like to share the what helped to gradually led me to acquire this flag based on the article that has been flying around this forum and writeup of the task:
+1. This article was really helpful https://bishopfox.com/blog/identify-and-exploit-log4shell
+2. Hint: Someone might have tried to roll their own patch and tried to deny requests containing malicious string patterns. It is important to apply and test what you have learnt thus far before you attempt to perform any transformation on your end. I found it helpful to test using methods I learnt in Flag 1 and 2 as well
+3. See if you can find anything that gives you a hint about how to exploit it/what you need to do, to update the property. Look for an out of place attack vector/variable.
+4. I recommend reading up on query params and how it works
+5. In case, you missed this hint Hint: R rated cartoons are not exploitable.
+
+I hope it helps. Good luck, you can do this!
+
+
+2
+Reply
+
+Ramoya Grandison
+4d
+ Replying to Zhao Rong Tan
+Thank you so much. From your hint , i was able to see the additional cartoons and I started getting the teapot error. But it’s just not coming through for me. Just can’t figure out what I’m doing wrong. I am using the query params and I am using the :: - obfuscation. 
+
+
+2
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Ramoya Grandison
+Good to hear you are making progress! You are almost there, not sure if you still need help but I would really recommend you to research on query params and see how can it be used.
+
+Just to give a hint not to attempt to do two things at once. Do try to confirm that the methods you have learnt within the article works first before attempting any transformation on your end.
+
+Just need to make sure you approach this in a step by step plan and verify/test each step before you proceed.
+
+All the best!
+
+
+1
+Reply
+
+Seth Randall
+4d
+
+Resolved
+I seem to be getting stuck on the JNDI check. I've tried using the article mentioned in the comments and I'm getting nowhere. Are there any other resources mentioned in the project details that would help with this? 
+
+
+Reply
+
+Seth Randall
+4d
+Of course I figure it out right away. The suggested resource is plenty!
+
+
+1
+Reply
+
+Kevin Darlington
+4d
+Nice work!
+
+
+Reply
+
+Matthew David Macioce
+4d
+Hey Seth, are you talking about this article ? Identify and Exploit Log4shell (Log4j CVE-2021-44228) | Bishop Fox
+
+
+Reply
+
+Seth Randall
+3d
+ Replying to Matthew David Macioce
+Yes, I found that article to be very helpful.
+
+
+1
+Reply
+
+Steven Anthony Vasquez
+3d
+To be clear, we need to use this resource to figure out how to call the exploit endpoint without using headers like in flag 2? We need to call the exploit using query parameters  of the endpoint that accepts them and apply knowledge in this resource to pass it properly? 
+
+
+Just wanted to confirm since I haven't had any success with calling through query parameters but maybe I'm going down the wrong path and it really is as simple as using headers (since I have been able to execute the exploit this way) despite the many hints that we should go a different route from flag 2. 
+
+
+Reply
+
+Robert Maness
+4d
+
+Resolved
+Just got the flag. Maybe I'm just obtuse, but a lot of these comments misled me. I was second guessing the attack vector I thought was somewhat obvious after I discovered it because my interpretation of some of the hints made me think that since it was located after the "Reading properties file" code, it was invalid and wouldn't do what I wanted it to do. But sure enough...it worked. Maybe there are multiple vectors here that can accomplish the task? Not sure. 
+
+So to echo some other hints I found helpful, pay attention to anything in the logs that looks like a variable that isn't being properly assigned with a value. Once you find something that looks suspicious, what helped me was simply injecting a test string value to see if it would let me change it. Then use that variable as a way to carry out your exploit. 
+
+
+5
+Reply
+
+Kevin Darlington
+4d
+Nice work!
+
+
+Reply
+
+Zhao Rong Tan
+5d
+
+Resolved
+As someone who was stuck at this flag for so long, I would like to strongly emphasize to look through the logs carefully on what variables/vectors can be used when you are calling the endpoint. Suggest you to call the endpoint normally first to inspect the sequence of events as it is and understand the flow of the endpoint and what actions it is executing.
+
+https://bishopfox.com/blog/identify-and-exploit-log4shell
+
+The above article was extremely helpful as shared by our fellow mates.
+
+Lastly, when looking through the logs, do also look out on the sequence of events/updates which was something I really missed that took me way more time than was needed for me to get my flag. 
+
+Good luck and all the best
+
+
+3
+Reply
+
+Ashutosh Agarwal
+5d
+Thank you for sharing!
+
+
+2
+Reply
+
+Steven Elam Mettler
+5d
+
+Resolved
+i've seen it posted a few times but please look into what query params are if you don't know what a query param is
+
+
+Reply
+
+Sahil Hakimi
+5d
+
+Resolved
+i believe I have the right variable that I am manipulating but I am confused on if I am in the right track, I followed the bypass in the resources and  did some sort of encoding so it could send properly but the lookups are not being done, I am lost on if nested lookups is possible?
+
+
+Reply
+
+Fahim Sunka
+5d
+A lot of good discussion below. https://edstem.org/us/courses/69023/discussion/6222709?comment=14492417
+
+https://edstem.org/us/courses/69023/discussion/6222709?comment=14454487
+
+You may want to try some other techniques if nested isn't working out for you.
+
+
+Reply
+
+Sahil Hakimi
+5d
+By nesting i mean when i use either of the methods here https://bishopfox.com/blog/identify-and-exploit-log4shell no lookup is done. Is there a way I can send a message privately to avoid giving away too much
+
+
+Reply
+
+Sahil Hakimi
+5d
+ Replying to Sahil Hakimi
+nvm i realized my exploit was indeed being looked up I was missing logs to realize the true issue
+
+
+1
+Reply
+
+Minh Giang
+5d
+
+Resolved
+I spent about 3 days this one haha. But look biggest hints I can give. Look for the variable affected by query parameters. Then once you find that what I can say is certain characters need to be in a certain format in order for the injection to work properly, that was my biggest overlook. 
+
+
+5
+Reply
+
+J. Kendall Miller
+5d
+Hey Minh, Do you have to set up the exploit.java the same as flag2, or is it more about setting the property in that file only?
+
+
+Reply
+
+Kevin Darlington
+5d
+You will need to use the exploit.java file but your code will look a lot different. Look into the various java file reading and writing classes and play with those locally before you try this exploit. 
+
+
+Reply
+
+J. Kendall Miller
+5d
+ Replying to Kevin Darlington
+Thanks for the clarification, I was going down that path, just wanted to make sure I didn't break a link that was necessary.
+
+
+Reply
+
+Van Tran
+14h
+ Replying to J. Kendall Miller
+Hi, may I ask the order of steps? I'm still confused. So we need to pass the teapot message, i.e., it can reach the jndi:ldap server and then proceed to writing the code for exploit file right?
+
+
+Reply
+
+Michelle Mao
+5d
+Thanks for the hint! I'm not sure if I'm asking too much info, but If we see the teapot, does it mean we are choosing the correct attack variable? 
+
+
+1
+Reply
+
+Kevin Darlington
+5d
+That is a great indicator you are in the right spot. 
+
+
+Reply
+
+Michelle Mao
+5d
+ Replying to Kevin Darlington
+Thank you so much! I think I'll continue working on the encode methods then.
+
+
+1
+Reply
+
+Minh Giang
+5d
+ But people keep talking about the article right? You can definitely use it but you really don't have to change much about the injections for me personally. You just have to put it in the right place for one, once you find that right place, check and see how that place responds to special characters (one of the TAs mentioned it to you) you just have to find a way to get those special characters to display properly in the "right place". 
+
+
+1
+Reply
+
+Mark William Forbes
+5d
+
+Resolved
+https://bishopfox.com/blog/identify-and-exploit-log4shell
+
+this article gets linked a lot in this thread. I want to add here that none of the obfuscation methods mentioned in the article worked for me as they're presented. I used a combination of one of the obfuscation methods in this article and a different encoding method not mentioned in the article.
+
+
+4
+Reply
+
+Kevin Darlington
+5d
+Nice work and thank you for posting this!
+
+
+Reply
+
+J. Kendall Miller
+5d
+Hey Mark, should the ldap fire only if you have the vector correct in the request, or should ldap work as long as the obfuscation is correct?
+
+
+Reply
+
+Kevin Darlington
+5d
+The ldap will trigger if your injection gets logged and the app executes the request. That does not mean however that your attack vector is the one for this flag. 
+
+
+Reply
+
+J. Kendall Miller
+5d
+ Replying to Kevin Darlington
+I keep getting the wrong attack vector error, but I am seeing my injection getting logged. So that seems to go against what you said as far as the injection getting logged and the app executes, followed by ldap, which doesn't seem to be happening.
+
+
+Reply
+
+Kevin Darlington
+5d
+ Replying to J. Kendall Miller
+Hmm, could you post what you have privately so I can take a look? I will answer you here but want to get a better understanding.
+
+
+Reply
+
+J. Kendall Miller
+5d
+ Replying to Kevin Darlington
+Yah. I will send a private post. Thanks.
+
+
+Reply
+
+Kevin Darlington
+5d
+ Replying to J. Kendall Miller
+Okay, you need to only put your gatech id in the gatech id header. The attack vector you have found and are using it correctly, but you should not use your gatech id there. You need to exploit this and bypass the filter :)
+
+
+Reply
+
+J. Kendall Miller
+5d
+ Replying to Kevin Darlington
+Ya I put the gatechid there just as a test that I could inject it, but do you know why the app wouldn’t fire, since the logged injection should trigger the app to fire?, I think I may have answered my own question.
+
+
+Reply
+
+Anuj Goel
+5d
+
+Resolved
+Experts,  I can use some help. It seems we need a new attack vector here. Does that mean we need to use another header variable then Flag2 or use the same variable but modify the payload so it can bypass the JNDI attack check? Or something different, I read the article about another variable from the link https://bishopfox.com/blog/identify-and-exploit-log4shell that was endorsed but that variable does not seem to do anything to trigger a JNDI lookup. 
+
+Are we required to create a new domain for the JNDI server?
+
+
+Reply
+
+Kevin Darlington
+5d
+Does that mean we need to use another header variable then Flag2: Yes that is correct. You will need to call the application as listed in the write up and hunt for a new one. 
+
+I recommend researching query and path parameters, how they are used, and playing with those for this flag. 
+
+
+Reply
+
+Anuj Goel
+5d
+I think I have found the other variable and also how to by pass the JNDI check, but it is not triggering the JNDI lookup. How can I debug this?
+
+
+Reply
+
+Kevin Darlington
+5d
+ Replying to Anuj Goel
+I recommend changing your JNDI bypass one character at a time. Hopefully, it will trigger the exception each time until you bypass it and get the flag. 
+
+
+Reply
+
+Franklin Liu
+5d
+ Replying to Kevin Darlington
+I can see that the variable is being set to my jndi bypass but it seems like it is not being triggered still. I only changed one of my characters and it bypasses the exception but it does not trigger the Exploit file
+
+
+Reply
+
+Michelle Mao
+5d
+ Replying to Franklin Liu
+I'm having the same issue. I tried 4 or 5 different encoded methods, none of them with luck. 
+
+I can see the variable being replaced by what I inputted, but it is not triggering the file. 
+
+
+Reply
+
+Anuj Goel
+5d
+ Replying to Michelle Mao
+I had better luck using Postman before I moved it over to Curl to create my payload.
+
+
+2
+Reply
+
+Michelle Mao
+5d
+ Replying to Anuj Goel
+I've tried too many different combinations which I'm a bit lost right now.. 
+
+I tried to inject into two locations, either path variable or query parameters. Tried at least 4 encoded methods on each location. 
+
+Also tried your suggestion - using Postman, still no luck :(
+
+I'm not sure if I'm using incorrect encode method or injecting to wrong location.. 
+
+
+1
+Reply
+
+Minh Giang
+5d
+ Replying to Michelle Mao
+I was in your position literally a second ago, certain characters don't translate well in Query Parameter. 
+
+
+1
+Reply
+
+Michelle Mao
+5d
+ Replying to Minh Giang
+thanks a lot! I will focus on path variable then. 
+
+
+1
+Reply
+
+Anuj Goel
+5d
+ Replying to Michelle Mao
+If not already be sure to read the article that was shared https://bishopfox.com/blog/identify-and-exploit-log4shell
+
+
+1
+Reply
+
+Michelle Mao
+5d
+ Replying to Anuj Goel
+Thank you for commenting, and yes I've tried every method in the article, and also ones that aren't in the article. I've been stuck for hours, might need to rethink my direction... :(
+
+
+Reply
+
+Kevin Darlington
+5d
+ Replying to Franklin Liu
+I am wondering then if you braces aren't resolving and it doesn't see it as a lookup. 
+
+
+Reply
+
+Quinn Bianchi-Lawson
+3d
+ Replying to Kevin Darlington
+Can you expand on why this would happen? My payload is printing perfectly, where it should be, but it's not actually calling my java file (even though that payload calls the file and changes the properties when it's at the other attack point that won't work for this flag)
+
+
+Edit: I figured out my problem. If you have the same problem as me, try and see if there is a difference between what's printed at your attack vector/variable and what gets printed at the attack vector higher up. For some reason a piece was left off in the final version and I had to basically write it twice.
+
+
+Reply
+
+Mark William Forbes
+6d
+
+Resolved
+There are obfuscation methods I am using where I get a "bad substitution" error in my terminal where I'm entering the curl command and it's not changing the log at all. Has anyone seen and fixed this?
+
+
+Reply
+
+Kevin Darlington
+6d
+Yeah, your nested braces are likely not syntactically correct. I would recommend trying other encoding techniques.
+
+
+Reply
+
+Mark William Forbes
+6d
+
+Resolved
+Am I understanding this flag correctly that I am looking for some variable/attack vector, and once I find it, the Curl command is sanitized such that we need to encode/obfuscate the call to our exploit script, and that the encoding/obfucation mechanism that will work is shown as an example somewhere in the linked reference materials? 
+
+If that all sounds correct so far, can someone narrow it down as to which linked reference material would be useful for this flag, because I feel like I have tried every encoding/obfucation mechanism I can find in any of those articles/videos and haven't had any success yet.
+
+
+Reply
+
+Abhishek Sathiabalan
+6d
+https://edstem.org/us/courses/69023/discussion/6222709?comment=14451916
+
+
+Reply
+
+Robin J Hicks
+6d
+
+Resolved
+OK, I've been at this for the last 2 days and am at a loss. I'm confident I found the correct attack vector (as evidenced by some of the tips below), I'm reaching the server and can use a similar technique to get a reverse shell (just to prove redirection), and I believe I have the correct library because running something similar within the reverse shell environment manually will overwrite the rating as intended. Yet, running my java file under the same scenario always results in a failure. Any tips on what else I could possibly be missing?
+
+
+2
+Reply
+
+Kevin Darlington
+6d
+If you are going down the same route as flag 2 (Using exec) we have found over the past semesters this is significantly harder than it needs to be to get it to work. Even when it works locally in the bash terminal. 
+
+IF SO, then I recommend looking into the java standard library classes for reading and writing files. 
+
+IF NOT, and you are using the java stdlib way, it could be your attack vector is wrong, obfuscation is wrong etc. 
+
+
+Reply
+
+Robin J Hicks
+6d
+Thanks for the reply. I'm not using the same tactics as flag 2 and have tried what feels like a dozen different Java standard libraries for R/W, so I went back to the attack vector/obfuscation and feel I've disproven those as the issue because nothing else triggers the 200 message on my python server. Anything else obvious I could try, or should I just put this one down and come back to it?
+
+
+1
+Reply
+
+Kevin Darlington
+6d
+ Replying to Robin J Hicks
+Hmm, well if that is the case I would make sure that your read/writes work as you are expecting. You can do this via flag 2, since you already have that working. If you are able to create a file via flag 2, then your injection is likely wrong. Pay close attention to IP's/Ports
+
+
+Reply
+
+Xiaohua Cai
+6d
+
+Resolved
+
+I noticed that the update to config.properties happened before the reset files operation, which caused the update to the rating property to fail. Could this be due to using the same approach as in Flag2, where I injected a malicious JNDI lookup payload into the HTTP request header? Should I explore a different method to reach the LDAP server? 
+
+
+1
+Reply
+
+Kevin Darlington
+6d
+Nice analysis and yes you are correct! You are likely exploiting the same attack vector as flag2, which is not correct for this flag. 
+
+
+1
+Reply
+
+Steven Anthony Vasquez
+4d
+Okay, that's really helpful. And the hint to what attack vector (whatever that means?) we should be using is located somewhere in the log output of the curl command found in the instructions:
+
+curl 'http://localhost:8080/rest/cartoons/cartoonList' -H 'GATECH_ID:123456789'  
+
+
+There is also a mystery variable that is located somewhere that is integral to solving this problem by using it in an unspecified way.
+
+That's what I've gathered from other posts here. Is that correct? Does anyone have any advice because at this point I'm feeling aimless.
+
+
+1
+Reply
+
+Kevin Darlington
+4d
+ Replying to Steven Anthony Vasquez
+Yes this is correct. You should call both endpoints in the write up and look for an attack vector that seems out of place. 
+
+
+Reply
+
+Xiaohua Cai
+6d
+
+Resolved
+For this flag, update config.properties to set the rating to GT_id in Exploit.java file, do we need to find a way to get the path of config file location in order to update the config.properties? 
+
+
+Reply
+
+Ashutosh Agarwal
+6d
+The config.properties file is located in the root directory of the application, so you don't need to specify a full path to access it. You also don't need to do any directory traversal or complex file operations - just refer to "config.properties" directly. 
+
+
+2
+Reply
+
+Tyler Ross
+6d
 
 Resolved
 I have the attack vector, but am stuck trying to get around the JNDI LDAP lookup attempt detected. I've tried encoding and looking at curl options. Not sure what I'm missing here.
@@ -51,14 +2156,15 @@ I have the attack vector, but am stuck trying to get around the JNDI LDAP lookup
 Reply
 
 Kevin Darlington
-1h
+6d
 Keep trying different encoding and obfuscation techniques. There are some things to try in the linked resources. 
 
 
+1
 Reply
 
 Caleb Ryan Massengill
-3h
+7d
 
 Resolved
 I need some clarification on the instructions here, as I'm getting some conflicting guidance. In the Flag 3 instructions, it states the following:
@@ -75,14 +2181,15 @@ Can I get some clarity on this? Is it the rating property in config.properties o
 Reply
 
 Kevin Darlington
-2h
+7d
 It is in the config.properties file and you need to overwrite it with you exploit. This error message is just there to help you debug. It doesn't necessarily mean you didn't set the property, just something to look for. 
 
 
+1
 Reply
 
 John Michael McPhillips
-5h
+7d
 
 Resolved
 My failure was because of the java script. If you are executing the exploit on the found path param, as stated by the TA, but you are still not getting the flag even though your script works, then try another java library to modify the file. I wasted a lot of time because of this.
@@ -92,21 +2199,21 @@ My failure was because of the java script. If you are executing the exploit on t
 Reply
 
 Mark William Forbes
-3h
+7d
 When you say "java script". Do you mean you tried to use JavaScript? or you're referring to Java as a scripting language?
 
 
 Reply
 
 John Michael McPhillips
-3h
+7d
 Yeah, in my java exploit. There is no JS.
 
 
 Reply
 
 Omar Arin Solaiman
-12h
+7d
 
 Resolved
 I identified 2 possible vectors but both seem to fail when used despite being very different in approach...
@@ -117,15 +2224,31 @@ Is there a 3rd? And is it of those two types? It has to be in the logs, right?
 Reply
 
 Omar Arin Solaiman
-6h
+7d
 It's indeed one of them. I just didn't realize I had to also solve the 'safety'
 
 
 1
 Reply
 
+Anuj Goel
+5d
+what do you mean by safety? 
+
+
+Reply
+
+Omar Arin Solaiman
+5d
+ Replying to Anuj Goel
+The additional protection on the vector
+
+
+1
+Reply
+
 John Michael McPhillips
-15h
+1w
 
 Resolved
 I don't understand this other "attack vector" people are mentioning. What is this?
@@ -134,14 +2257,14 @@ I don't understand this other "attack vector" people are mentioning. What is thi
 Reply
 
 Kevin Darlington
-14h
+1w
 I recommend restarting the application and calling it as instructed in the write up without exploiting. Then go line by line through the logs to find it. We cannot give this to you as it is part of the task. 
 
 
 Reply
 
 John Michael McPhillips
-14h
+1w
 I believe I'm on the right track now, but even with my  ID inserted into the rating I am not getting a flag. I've restarted everything 
 
 
@@ -149,7 +2272,7 @@ I believe I'm on the right track now, but even with my  ID inserted into the rat
 Reply
 
 Kevin Darlington
-14h
+1w
  Replying to John Michael McPhillips
 I am assuming here you do not have the right attack vector. Timing matters. 
 
@@ -157,7 +2280,7 @@ I am assuming here you do not have the right attack vector. Timing matters.
 Reply
 
 John Michael McPhillips
-14h
+1w
  Replying to Kevin Darlington
 Can I make a private thread? I'm sure this is correct now.
 
@@ -165,7 +2288,7 @@ Can I make a private thread? I'm sure this is correct now.
 Reply
 
 Philipp Werner
-15h
+1w
 
 Resolved
 I`m completely stuck with this task. I has no idea how to update the file with this attack vector. Is there any source which help? I can execute my file but don't know how to use the variable I found. Is there any source which might help Here?
@@ -174,14 +2297,14 @@ I`m completely stuck with this task. I has no idea how to update the file with t
 Reply
 
 Philipp Werner
-14h
+1w
 So to be clear all things are adressed but I use the wrong variable and cannot access the right one :( Have no clue how to adress this
 
 
 Reply
 
 Kevin Darlington
-14h
+1w
 So, have you found the attack vector? That is the first step. If you have, you need to then research how query parameters and path parameters work and try to pass any plain string into it, until you find the right one. 
 
 
@@ -191,7 +2314,7 @@ If you have not found the attack vector, I recommend calling the application as 
 Reply
 
 Philipp Werner
-13h
+7d
  Replying to Kevin Darlington
 "Puh, this saved my day... Finally, I got the flag with all the tips! I spent the whole Sunday and Monday morning on the task, but now I am happy that I solved it. So I need to plan a lot of more time for the other tasks this and next week. Thanks for all the help! :)
 
@@ -200,7 +2323,7 @@ Philipp Werner
 Reply
 
 Kevin Darlington
-13h
+7d
  Replying to Philipp Werner
 Nice work and no problem!
 
@@ -209,7 +2332,7 @@ Nice work and no problem!
 Reply
 
 Jacqueline Chan
-13h
+7d
  Replying to Kevin Darlington
 How do we know if we have the right attack vector? 
 
@@ -217,7 +2340,7 @@ How do we know if we have the right attack vector?
 Reply
 
 Philipp Werner
-13h
+7d
  Replying to Jacqueline Chan
 Look at all the tips here, Jacqueline. Some posts are very helpful for finding the right attack vector.
 
@@ -225,7 +2348,7 @@ Look at all the tips here, Jacqueline. Some posts are very helpful for finding t
 Reply
 
 Jacqueline Chan
-13h
+7d
  Replying to Philipp Werner
 I think I know what it is but how do I know for sure it's the right one? without getting into the mess of the jndi, etc. just yet. I'm not even sure if I correctly understand the terminology 'attack vector'
 
@@ -235,7 +2358,7 @@ If it's a variable, I'm pretty sure I have that.
 Reply
 
 Philipp Werner
-12h
+7d
  Replying to Jacqueline Chan
 I think you will definitely know If you have the right one especially with all the tips here ;)
 
@@ -243,7 +2366,7 @@ I think you will definitely know If you have the right one especially with all t
 Reply
 
 Jacqueline Chan
-12h
+7d
  Replying to Philipp Werner
 If you have, you need to then research how query parameters and path parameters work and try to pass any plain string into it, until you find the right one.
 I think it's this that I don't get.  How are you supposed to know if it's the "right one" with just plain string. I see that if I pass plain string, the variable changes. Is that what I'm supposed to look for? 
@@ -252,7 +2375,7 @@ I think it's this that I don't get.  How are you supposed to know if it's the "r
 Reply
 
 Philipp Werner
-12h
+7d
  Replying to Jacqueline Chan
 Hm I don`t know what I can say and what not. Look at the log output in Task 2 before you exploited it and then look at the output for Task 3. There should be another attack vector/variable in the task3 logs. Maybe you can also run your code with the attack vector from task2 and print out all the steps. Then you should see what the problems is and where you code need to run. This was then the hardest step for me to find out how I can modify the attack vector.
 
@@ -260,7 +2383,7 @@ Hm I don`t know what I can say and what not. Look at the log output in Task 2 be
 Reply
 
 Robert Birk Hughes
-16h
+1w
 
 Resolved
 I found the correct attack vector but I am stuck on formatting and syntax and am not sure where to look.  I don't see how you can populate the variable with the exploit and get around the systems jndi lookup checks in curl without using nested braces, which curl keeps throwing an error at me.
@@ -269,21 +2392,37 @@ I found the correct attack vector but I am stuck on formatting and syntax and am
 Reply
 
 Robert Birk Hughes
-16h
+1w
 Had to play around with curl and its options for a while, but I did find a solution that worked
 
 
 Reply
 
 Kevin Darlington
-16h
+1w
 I would look into different encoding techniques.
 
 
 Reply
 
+Anthony John Bloch
+3d
+Endorsed
+I got to a similar point and found this link helpful for how to include braces in the url: https://meta.stackexchange.com/questions/79057/curly-brackets-in-urls
+
+
+4
+Reply
+
+Kevin Darlington
+3d
+Thank you for sharing!
+
+
+Reply
+
 Christopher Troupe
-17h
+1w
 
 Resolved
 Has anyone been able to see their log statements from their java file? I have System.out.println all over my java file and I'm running a tail on console.log but I've never been able to see my statements. Both console.log and cs6035.log show the same thing pretty much.  I know my files are being triggered from getting flag 2 and seeing the server get requests. Any help would be appreciated as it makes debugging very difficult.
@@ -292,21 +2431,21 @@ Has anyone been able to see their log statements from their java file? I have Sy
 Reply
 
 Kevin Darlington
-17h
+1w
 Can you confirm you java file is being triggered? IE - are your ldap and your python server's both firing? If not, then your not seeing the print statements due to the exploit not running. It seems like you are saying they are but if you are doing what you did for flag 2 - ie getting a reverse shell, then you are not going about this flag correctly. 
 
 
 Reply
 
 Jacqueline Chan
-17h
+1w
 I have the same issue! I will try what Kevin just messaged. I am not trying to reverse shell. 
 
 
 Reply
 
 Christopher Troupe
-16h
+1w
 I can confirm I know they're both firing. I ended up restarting the container and all terminals and it finally showed up for me. To be clear, it only shows up in the console.log
 
 
@@ -314,7 +2453,7 @@ I can confirm I know they're both firing. I ended up restarting the container an
 Reply
 
 Jacqueline Chan
-16h
+1w
  Replying to Christopher Troupe
 Did you have to clear your console.log first or anything? 
 
@@ -322,7 +2461,7 @@ Did you have to clear your console.log first or anything?
 Reply
 
 Christopher Troupe
-16h
+1w
  Replying to Jacqueline Chan
 Nope, I just had something like System.out.println("-----------------------IMPOSSIBLETOMISS-------------"); and after I reset everything, it showed up.
 
@@ -333,7 +2472,7 @@ Also, make sure you're running the http server in the right directory as well!
 Reply
 
 Jacqueline Chan
-16h
+1w
  Replying to Christopher Troupe
 Also, make sure you're running the http server in the right directory as well!
 Thank you so much! Still lost with this flag but less lost thanks to you!
@@ -343,15 +2482,30 @@ Thank you so much! Still lost with this flag but less lost thanks to you!
 Reply
 
 Kevin Darlington
-16h
+1w
  Replying to Christopher Troupe
 Ah, could be that. It could be a weird state issue/the log was hung. You are correct, print statements ONLY log in console.log file. 
 
 
 Reply
 
+Bari Belhadj
+6d
+I just wasted 3 hours trying to get my logs to print and they never did .. I restarted the server without changing anything else and they finally showed up .. go figure
+
+
+1
+Reply
+
+Robin J Hicks
+5d
+Sure wish I'd known this sooner. Thanks, Bari!
+
+
+Reply
+
 John Michael McPhillips
-17h
+1w
 
 Resolved
 So is modifying the config.properties file at all, the wrong path? Instead we need to use a variable from the logs? So we need the java exploit to modify the logged variable?
@@ -360,21 +2514,21 @@ So is modifying the config.properties file at all, the wrong path? Instead we ne
 Reply
 
 Kevin Darlington
-17h
+1w
 You need to use log4shell to trigger your java file to update the config.properties file, if that makes sense?
 
 
 Reply
 
 John Michael McPhillips
-16h
+1w
 For some reason it is triggered 18 times, and I am printing the output and I know the value is changed. However, I guess it is changed too early? I viewed the config file, there are only 3 key value pairs. I am only changing the rating.
 
 
 Reply
 
 Kevin Darlington
-16h
+1w
  Replying to John Michael McPhillips
 It is triggering multiple times because of your obfuscation. Each ones resolves to it's own lookup. That is to be expected. 
 
@@ -384,7 +2538,7 @@ That is very possible. The application logs when it reads in the properties. You
 Reply
 
 John Michael McPhillips
-15h
+1w
  Replying to Kevin Darlington
 Do the multiple triggers cause issues or can it be ignored?
 
@@ -392,7 +2546,7 @@ Do the multiple triggers cause issues or can it be ignored?
 Reply
 
 Kevin Darlington
-14h
+1w
  Replying to John Michael McPhillips
 They do not cause issues. You can ignore them
 
@@ -400,7 +2554,7 @@ They do not cause issues. You can ignore them
 Reply
 
 Patrick Jacobs
-19h
+1w
 
 Resolved
 Hello,
@@ -420,7 +2574,7 @@ Thank you!
 Reply
 
 Kevin Darlington
-18h
+1w
 Ah, based on what you have said here is I think you are exploiting AFTER the application reads in the properties. If so, you need to look for another attack vector earlier on in the program flow. 
 
 
@@ -430,7 +2584,7 @@ What you are doing with your exploit is correct. You can do it the way you are j
 Reply
 
 Patrick Jacobs
-17h
+1w
 Thanks for the reply.
 
 I<REDACTED> I'm very certain that I have the correct exploit location. I'll create a private post with my payload and trigger script.
@@ -440,7 +2594,7 @@ I<REDACTED> I'm very certain that I have the correct exploit location. I'll crea
 Reply
 
 Ruangsak Patomwong
-20h
+1w
 
 Resolved
 I got this on flag3
@@ -450,21 +2604,21 @@ JNDI LDAP/RMI lookup attempt detected. Aborting.
 Reply
 
 John Michael McPhillips
-20h
+1w
 Stuck here as well. Wondering if this is the right path or not.
 
 
 Reply
 
 Abhishek Sathiabalan
-19h
+1w
 The answer is in the background material, if you haven't read it.
 
 
 Reply
 
 John Michael McPhillips
-19h
+1w
 Which article? I don't see anything regarding this yet.
 
 
@@ -472,17 +2626,17 @@ Which article? I don't see anything regarding this yet.
 Reply
 
 Abhishek Sathiabalan
-19h
+1w
 Endorsed
  Replying to John Michael McPhillips
 https://bishopfox.com/blog/identify-and-exploit-log4shell
 
 
-3
+7
 Reply
 
 John Michael McPhillips
-18h
+1w
  Replying to Abhishek Sathiabalan
 Ty
 
@@ -491,16 +2645,16 @@ Ty
 Reply
 
 Anjali Chablani
-18h
+1w
  Replying to Abhishek Sathiabalan
 This hint is of great help. It resulted in finding the flag. TY.
 
 
-1
+2
 Reply
 
 Robert Birk Hughes
-16h
+1w
  Replying to Abhishek Sathiabalan
 I am struggling to implement this because curl does not allow double braces within a string.  Could anyone point me in the right direction here?
 
@@ -508,22 +2662,60 @@ I am struggling to implement this because curl does not allow double braces with
 Reply
 
 Kevin Darlington
-16h
+1w
  Replying to Robert Birk Hughes
 I would look into encoding techniques
 
 
 Reply
 
+Caleb Ryan Massengill
+6d
+ Replying to Abhishek Sathiabalan
+If you already have the correct endpoint and need to figure out how to properly obfuscate your command, absolutely go to this link. It was the final piece of the puzzle for me.
+
+
+2
+Reply
+
+Corey Cunningham
+5d
+I am encoding the double braces but it's just being logged exactly as is, like log4j is just printing of ${blah} instead of actually doing lookups
+
+
+Reply
+
 Kevin Darlington
-18h
+1w
 This is expected. You will need to learn how to obfuscate or encode your payload to bypass this filter. 
 
 
 Reply
 
+Abdul Goffar
+4d
+Im in the same boat here
+
+
+Reply
+
+Kevin Darlington
+4d
+That is a very good sign you have the right attack vector (Assuming you are not using the same one as flag 2). You will now need to research and implement obfuscation and encoding techniques to bypass it. 
+
+
+1
+Reply
+
+Abdul Goffar
+2d
+Finally got it , phew
+
+
+Reply
+
 Yongmin Li
-20h
+1w
 
 Resolved
  In real-world scenarios with Log4j, regardless of which attack vector is used, once the payload is executed, the result will be the same. For example, it doesn’t matter if the exploit is placed in header A or header B in the HTTP request; the outcome should be identical.  Is this the same case for the project, or do I need to focus on a specific attack vector?
@@ -535,14 +2727,14 @@ Resolved
 Reply
 
 Ashutosh Agarwal
-19h
+1w
 In this project, we aim to exploit different parts of the application, so the attack vectors vary for each flag. Although a Log4j payload produces the same effect once executed, different parts of the application log data in unique ways, creating different points of attack. 
 
 
 Reply
 
 Yongmin Li
-18h
+1w
 Thanks, i was going to the wrong direction.
 
 I am not English native, does below mean we can not modify the file directly? 
@@ -553,7 +2745,7 @@ One thing to keep in mind is that the application checks to see if this file has
 Reply
 
 Yongmin Li
-18h
+1w
  Replying to Yongmin Li
 NVM, answer to Patrick's question also kind of answers my question.
 
@@ -562,7 +2754,7 @@ NVM, answer to Patrick's question also kind of answers my question.
 Reply
 
 Kevin Darlington
-16h
+1w
  Replying to Yongmin Li
 Nice work!
 
@@ -570,7 +2762,7 @@ Nice work!
 Reply
 
 John Michael McPhillips
-21h
+1w
 
 Resolved
 What java libraries/dependencies are available to use?
@@ -579,14 +2771,14 @@ What java libraries/dependencies are available to use?
 Reply
 
 Ashutosh Agarwal
-21h
+1w
 Only Java standard library imports are needed for this project. If you find yourself wanting to use a 3rd party .jar, you are over complicating your solution
 
 
 Reply
 
 Abhishek Sathiabalan
-22h
+1w
 
 Resolved
 Paying particular emphasis to:
@@ -598,14 +2790,14 @@ made me figure out the trick to solving this.
 Reply
 
 Anonymous Buffalo
-20h
+1w
 I am still not sure if I'm going down the wrong path or not. Is that referring to "reset file" or is there another check that might not be seen yet? Because reset file I see happening even in the case of no change
 
 
 Reply
 
 Abhishek Sathiabalan
-19h
+1w
 Think of how a junior dev, might implement a tamper check.
 
 
@@ -613,22 +2805,23 @@ Think of how a junior dev, might implement a tamper check.
 Reply
 
 Anonymous Buffalo
-19h
+1w
  Replying to Abhishek Sathiabalan
 I ended up figuring it out eventually. I was forcing shamefully over-engineered solutions from the wrong attack vector. Thanks for the advice.
 
 
+1
 Reply
 
 Kevin Darlington
-18h
+1w
 The files are reset to prevent you from just getting a reverse shell and creating the files like flag 2. 
 
 
 Reply
 
 Anonymous Buffalo
-18h
+1w
  Replying to Kevin Darlington
 Makes sense. I conflated "reset files" with "reset the file if any other field has been modified"
 
@@ -637,7 +2830,7 @@ Makes sense. I conflated "reset files" with "reset the file if any other field h
 Reply
 
 Kshitij Gupta
-1d
+1w
 
 Resolved
 I am bit confused. I am trying to hit the exploit.java file which I was able to process for Flag 2 but for Flag3, 
@@ -653,7 +2846,7 @@ I see this image in the instructions, is there something in the red circle that 
 Reply
 
 Fatima Muhammad Barakzai
-1d
+1w
 Endorsed
 You will need to find an appropriate place to run the exploit (similar to flag 2), look through the logs to find one.
 
@@ -664,8 +2857,16 @@ The endpoint is in the instructions
 1
 Reply
 
+Steven Anthony Vasquez
+4d
+I don't understand what you mean by finding an appropriate place to run the exploit. Following the same steps as flag 2, I am able to execute my Java file. Have I overlooked something important?
+
+
+1
+Reply
+
 Ashutosh Agarwal
-1d
+1w
 Each flag has its specific endpoint(s) provided in the writeup that you need to exploit. 
 
 Yes, that is purposefully blacked out to hide the solution :)
@@ -675,7 +2876,7 @@ Yes, that is purposefully blacked out to hide the solution :)
 Reply
 
 Joseph A Cannaday
-1d
+1w
 
 Resolved
 Is a JNDI lookup still required to complete this flag?
@@ -684,14 +2885,14 @@ Is a JNDI lookup still required to complete this flag?
 Reply
 
 Ashutosh Agarwal
-1d
+1w
 Yes. You would need to specify a valid lookup protocol such as LDAP in the JNDI lookup and direct the Log4J lookup to your Exploit file.
 
 
 Reply
 
 Anonymous Porcupine
-1d
+1w
 
 Resolved
 [Log4jUtilities.java:32] INFO   Reset files.
@@ -704,56 +2905,56 @@ Reply
 
 This comment was deleted
 Anonymous Porcupine
-1d
+1w
 What do you mean by EXP?
 
 
 Reply
 
 Philipp Werner
-1d
+1w
 I am in the same boat. I have been trying for hours to understand the meaning of 'out of place' and to find the exploitable place.
 
 
 Reply
 
 Ashutosh Agarwal
-1d
+1w
 If the file is getting reset, then you're probably not attacking at the right place. Look closely at the logs and try to find an out of place variable, then see if you can use it to craft your attack. 
 
 
 Reply
 
 Philipp Werner
-1d
+1w
 Is there any resource in the reference materials that could help here? I looked through all of them and also did my own research. I find something which could be "out of place" but I could not immagine how I can exploit it.
 
 
 Reply
 
 Anonymous Porcupine
-24h
+1w
 I did find the out of place variable and send the payload through it but the file is still being reset after sending the payload through the variable. Is there something else I am missing?
 
 
 Reply
 
 Fatima Muhammad Barakzai
-1d
+1w
 Same issue, i found the properties file but keeps getting reset. I don't see any variables, where do i look for these variables?
 
 
 Reply
 
 Arianna Rachel Lanz
-1d
+1w
 I'm in a slightly different boat where I found the exploitable variable and have been able to pass it values, but it takes the values pretty literally. For example, if I pass it ${prefix:name} it will output $prefix:name and not any resolved values. 
 
 
 Reply
 
 Fatima Muhammad Barakzai
-1d
+1w
  Replying to Arianna Rachel Lanz
 I actually just figured it out, I used the exploit java file
 
@@ -761,7 +2962,7 @@ I actually just figured it out, I used the exploit java file
 Reply
 
 Arianna Rachel Lanz
-1d
+1w
  Replying to Fatima Muhammad Barakzai
 I'm not quite sure what you mean by that. Did you set the variable in the file or pass the file to the variable? Either way, my variable passing is still pretty literal 🤷‍♀️ 
 
@@ -769,7 +2970,7 @@ I'm not quite sure what you mean by that. Did you set the variable in the file o
 Reply
 
 Fatima Muhammad Barakzai
-1d
+1w
  Replying to Arianna Rachel Lanz
 Did you watch this video? https://www.youtube.com/watch?v=lJeAgQQaDEw
 
@@ -780,7 +2981,7 @@ I highly recommend watching it!
 Reply
 
 Arianna Rachel Lanz
-1d
+1w
  Replying to Fatima Muhammad Barakzai
 I did but only to get through Flag 2. I wasn't sure if the rest was relevant, but I'll give it a full watch!
 
@@ -788,7 +2989,7 @@ I did but only to get through Flag 2. I wasn't sure if the rest was relevant, bu
 Reply
 
 Fatima Muhammad Barakzai
-1d
+1w
  Replying to Arianna Rachel Lanz
 If you got flag two, then I think you got everything you need from the video. 
 
@@ -798,15 +2999,16 @@ I'm not sure what you mean by taking things literally, cuz passing in the exploi
 Reply
 
 Arianna Rachel Lanz
-1d
+1w
  Replying to Fatima Muhammad Barakzai
 I mean that if I pass ${java:runtime}, for example, when I assign the variable, it gets assigned as $java:runtime and not Java(TM) Se Runtime .... When I try escaping the braces as in the video, I get a 400 Bad Request error. 
 
 
+1
 Reply
 
 Philipp Werner
-1d
+1w
  Replying to Arianna Rachel Lanz
 as mentioned above you need the jndi lookup you cannot solve it without the jndi server. But I also do not have the flag...
 
@@ -814,7 +3016,7 @@ as mentioned above you need the jndi lookup you cannot solve it without the jndi
 Reply
 
 Arianna Rachel Lanz
-1d
+1w
  Replying to Philipp Werner
 Yeah, I figured it would be another protocol, but still just trying to get it to work.
 
@@ -822,17 +3024,18 @@ Yeah, I figured it would be another protocol, but still just trying to get it to
 Reply
 
 Andrew Steven O'Kins
-1d
+1w
  Replying to Arianna Rachel Lanz
 I recommend looking into how to work with special characters and URLs
 
 I ran into this, and was able to figure out how to get the java runtime as sanity check, from there was able to send my exploit
 
 
+2
 Reply
 
 Arianna Rachel Lanz
-1d
+1w
  Replying to Andrew Steven O'Kins
 Was just doing this as you posted! Got past the sanity check...now onto the flag!
 
@@ -841,7 +3044,7 @@ Was just doing this as you posted! Got past the sanity check...now onto the flag
 Reply
 
 Philipp Werner
-1d
+1w
  Replying to Arianna Rachel Lanz
 Congrats. I still struggling :/
 
@@ -849,7 +3052,7 @@ Congrats. I still struggling :/
 Reply
 
 Arianna Rachel Lanz
-1d
+1w
  Replying to Philipp Werner
 Well, I thought from getting to that point I would be able to send the exploit, but I'm still struggling there. Trying the different lookup protocols as mentioned before, but no luck so far. 
 
@@ -857,7 +3060,7 @@ Well, I thought from getting to that point I would be able to send the exploit, 
 Reply
 
 Philipp Werner
-1d
+1w
  Replying to Arianna Rachel Lanz
 Ah, okay. Yeah, I thought you got the flag. If I understood what they meant by 'out of place' and could research it, I might be able to find the right place for my exploit. But I'm still struggling.
 
@@ -865,7 +3068,7 @@ Ah, okay. Yeah, I thought you got the flag. If I understood what they meant by '
 Reply
 
 Andrew Steven O'Kins
-24h
+1w
  Replying to Philipp Werner
 Hard to figure out what would be a good hint without saying too much :/
 
@@ -875,23 +3078,33 @@ I was able to find it just in the log, something that seemed to be suggested as 
 Reply
 
 Arianna Rachel Lanz
-24h
+1w
  Replying to Andrew Steven O'Kins
 I'd also add that the variable is a running joke from one of the cartoons listed 😆 Perhaps the reason why R rated cartoons are unexploitable.
 
 
+2
 Reply
 
 Philipp Werner
-23h
+1w
  Replying to Arianna Rachel Lanz
 As a non native English speaker I just realized what a R and PG review is... 🤤 I think I have the variable but have no clue how to use it in my exploit. Need more time to think about it. Was a frustrating day... 
 
 
 Reply
 
+Julian David Delgado
+4d
+ Replying to Arianna Rachel Lanz
+lol I just saw the reference that's so funny
+
+
+1
+Reply
+
 Andrew Steven O'Kins
-1d
+1w
  Replying to Arianna Rachel Lanz
 If you are hitting an error where the server denies your exploit due to detecting malicious patterns, I suggest looking into the shared video as a place to start looking into what kind of solutions there are.
 
@@ -902,7 +3115,7 @@ I was able to use the same kind of protocol as in the prior flag.
 Reply
 
 Arianna Rachel Lanz
-24h
+1w
  Replying to Andrew Steven O'Kins
 Ah yes, I didn't make it that far in the video, but it's clever! Thanks so much.
 
@@ -910,7 +3123,7 @@ Ah yes, I didn't make it that far in the video, but it's clever! Thanks so much.
 Reply
 
 Anonymous Porcupine
-24h
+1w
  Replying to Andrew Steven O'Kins
 I already where able to bypass that and able to send exploits through the "out of place" variable but I am still not able to change the properties file. It's the only thing left
 
@@ -918,7 +3131,7 @@ I already where able to bypass that and able to send exploits through the "out o
 Reply
 
 Andrew Steven O'Kins
-24h
+1w
  Replying to Anonymous Porcupine
 I am not familiar with Java, so I had to look up ways we can interact with the properties file.
 
@@ -927,7 +3140,7 @@ I am not familiar with Java, so I had to look up ways we can interact with the p
 Reply
 
 Anonymous Porcupine
-24h
+1w
  Replying to Andrew Steven O'Kins
 Got it! I tried that on the past but wasn't working. Then I look for a different way to do it and worked so appreciate it!
 
@@ -935,7 +3148,7 @@ Got it! I tried that on the past but wasn't working. Then I look for a different
 Reply
 
 Philipp Werner
-1d
+1w
  Replying to Arianna Rachel Lanz
 Where should be such a variable. I looked through the whole logs.
 
@@ -943,7 +3156,7 @@ Where should be such a variable. I looked through the whole logs.
 Reply
 
 Arianna Rachel Lanz
-1d
+1w
  Replying to Philipp Werner
 I haven't solved the flag yet, but there's a variable output in the logs and you can see based on its output that it hasn't been set yet. When setting it, I'd consider other ways that we've set variables in other assignments using HTTP requests. 
 

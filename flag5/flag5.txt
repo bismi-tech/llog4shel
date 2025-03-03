@@ -1,0 +1,823 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+1
+
+New Thread
+Courses
+56
+28
+Categories
+281 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Project Log4Shell - Flag 5 PubSub Override #696
+Kevin Darlington
+Last week in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+381
+33
+88
+11
+Views
+
+1
+This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
+
+Anyone with questions about citations and plagiarism should consult the appropriate section of the course policy on misconduct.
+
+Note: Do not share code, outside tools you used or any hints beyond the writeup or office hours to other students. We will delete threads and warn you if you overshare.
+
+Comment
+
+Sort by Newest 
+David Robert Nygren
+2h
+Unresolved
+Are we using the same curl command as Flag 4? I used it to test, and it still connected to my LDAP successfully. I already know the other topics name and such based off hints given below.
+
+
+Reply
+
+Robert Perry
+8h
+
+Resolved
+Got the flag. I strongly recommend taking a look at the logs upon restart of app or at the setup page if you feel you are missing something.
+
+
+Reply
+
+Kevin Darlington
+5h
+Nice work!
+
+
+Reply
+
+Van Tran
+12h
+
+Resolved
+I would say pls refer to this comment, it's right here
+
+https://edstem.org/us/courses/69023/discussion/6222719?comment=14448075
+
+
+1
+Reply
+
+Cosdyn Akers
+12h
+
+Resolved
+I am not seeing the pattern everyone keeps referencing, or where the acc number originates.  I have restarted the container and skimmed through the start up logs, I see the initial messages for the topics, but I guess I am not sure what to do with them.  I have tried using the other topics parameters to send a curl and all i get is errors, and looking through the error logs I don't really see anything helpful.  
+
+Any direction anyone can provide?  I am kind of lost as to how to proceed here
+
+
+1
+Reply
+
+Ashutosh Agarwal
+12h
+I would experiment with the parameters of the request using some unique strings. Then, review the logs to see if you can identify a method to manipulate the account number field.
+
+
+Reply
+
+Denis Kasapovic
+6h
+Some may disagree, but I wasn't a big fan of the word pattern. Kind of confused me. I ending up took it as looking for similarities since I was not seeing a pattern
+
+
+Reply
+
+Anh Tuan Hoang
+20h
+
+Resolved
+
+I have managed to update the topic but for some reason my accountNum is also changed to the jndi lookup. Any help?
+
+
+1
+Reply
+
+Joel M Tucker
+11h
+Make sure it's the right topic with the right value
+
+
+Reply
+
+Aaron Brooker
+8h
+Having this problem  too. A bit unsure how the accountNum is being changed to my jndi exploit. I am passing in my ID to accountNum.
+
+
+Reply
+
+Anh Tuan Hoang
+3h
+Hey i got it, try messing up the curl command, i injected at the wrong place that's why the accounNum is changed too
+
+
+Reply
+
+Kevin Darlington
+2h
+ Replying to Anh Tuan Hoang
+Nice work!
+
+
+Reply
+
+Keymer Botero
+24h
+
+Resolved
+I'm so close to actually getting this flag and scoring 3 flags in a a single day. Just struggling with getting the value of the account number to be my GATECH_ID. Any suggestions with this everyone? I'm seeing in this thread that there's a pattern but I'm not sure what that is referring too.. 
+
+EDIT: NEVERMIND!! I SAW THE PATTERN THAT EVERYONE WAS REFERRING TO! I'M ON FIRE AFTER SO LONG!
+
+
+3
+Reply
+
+Manan Himanshu Trivedi
+1d
+
+Resolved
+Is the new topic already in the properties file or do we create a new one? Just a bit confused on that part. I keep getting NullPointerException when publishing, any suggestions/hints?
+
+
+Reply
+
+Ashutosh Agarwal
+1d
+You do not need to create a new topic. I'd suggest scanning the logs from the beginning after you restart the app. 
+
+
+2
+Reply
+
+Cosdyn Akers
+2d
+
+Resolved
+Found the new topic, have my attack vector, and figured out how to change the publishing user ID.  What I can't figure out is how to change the publishing topic.  I am using similar code from flag 4, but for some reason the topic is staying as user.info.  Is there a method to figure out what the topic parameter is named in the config.properties file?  I feel like I am missing something extremely simple, like I am not calling the topic name parameter properly in my java script to edit which topic is published.
+
+
+Is my thought process in the right place, or should I try heading in a different direction?
+
+
+Reply
+
+Cosdyn Akers
+2d
+confirmed the name of the topic being called, still having trouble getting it to change.
+
+
+Reply
+
+Pesi Taototo
+1d
+I think you are heading in the right direction. Sometimes, I forget to use javac . When you make a change to a file, see for yourself by reading the file if the change persisted.
+
+
+Reply
+
+Steven Anthony Vasquez
+2d
+
+Resolved
+Hi I get the feeling this was answered somewhere that I can't find but how do we restart the container without restarting the entire VM?
+
+
+1
+Reply
+
+Joel M Tucker
+2d
+home directory has StopContainer and StartContainer scripts
+
+
+Reply
+
+Steven Anthony Vasquez
+2d
+Ah, completely missed that, thanks!
+
+
+Reply
+
+Joel M Tucker
+2d
+ Replying to Steven Anthony Vasquez
+no worries! a lot of info thrown at you every project. It happens
+
+
+1
+Reply
+
+Sunjie Lu
+2d
+
+Resolved
+I put some prints in each of my Java to spot check if my scripts got run and when I run CURL for flag5, I surprised to find that my script for Flag4 was actually running according to my print. I have double checked my directory but still the same. What I am missing for set up?
+
+
+Reply
+
+Sunjie Lu
+2d
+Figured out here! Be sure to update the directory for your Malicious Server.
+
+2. Run the Malicious Server:
+Open a new terminal and make sure the active directory is the directory that contains your malicious .class file. For simplicity, we have created “Desktop/log4shell/{flag_no}” for you to work in. Do not leave this directory. Run the server in “Desktop/log4shell/{flag_no}” by the following command:
+
+1
+Reply
+
+Robert Maness
+3d
+
+Resolved
+Just got it. Just to recap some of what the below comments will point you toward:
+
+It is very helpful to tail the console.log file and then restart the container to get those fresh logs.
+
+You'll probably be well served to re-use some of your logic from Flag 4's Exploit.java file concerning config.properties
+
+ Look at the curl that the instructions give you, and look at the logs. See if there is a value being passed that you could change from within the curl you're given. 
+
+
+Reply
+
+Lucy Lee
+3d
+omg, I struggled with this for 3 days and it finally clicked for me. Thank you!
+
+
+1
+Reply
+
+Kevin Darlington
+3d
+Nice work!
+
+
+Reply
+
+Michelle Mao
+3d
+
+Resolved
+I tired to inject my jndi into variable to fire my Exploit. It result in Status 500 Internal Server Error.  But in the log I did see the Topic read from properties file changed to my GT_ID. and also publishing to topic: is also my GT_ID. I'm not getting the flag is because of the error. 
+
+I'm not sure how to update that accountNum.  I tried different CURL commands, try to find  the pattern or a way to trigger that other topic, but it just keep giving me 500 errors. :(
+
+
+Reply
+
+Kevin Darlington
+3d
+You need to set the topic name to the other topic. Your gatech id needs to be in the account number field. 
+
+
+Reply
+
+Michelle Mao
+3d
+Thank you so much! I got it now. 
+
+
+Reply
+
+Kevin Darlington
+3d
+ Replying to Michelle Mao
+No problem and glad you got it! Nice work!
+
+
+Reply
+
+Michelle Mao
+3d
+Hints for others who are having same issues:
+
+The error testing is important for you to understand the pattern of the new topic! 
+
+
+Reply
+
+J. Kendall Miller
+4d
+
+Resolved
+When it says trick the application to publish to a different topic, are you saying a vector variable needs to be found or a file?
+
+
+Reply
+
+Zhao Rong Tan
+4d
+One of the comments below by the staff mentioned to take a look at fresh logs
+
+
+Reply
+
+J. Kendall Miller
+4d
+Yah, I got the information from the fresh logs, I just can't seem to figure out how to trick it to publish to the other topic.
+
+
+Reply
+
+J. Kendall Miller
+4d
+ Replying to J. Kendall Miller
+Exploring a different curl protocol, but can't seem to get it to work. Am I overthinking it?
+
+
+Reply
+
+Zhao Rong Tan
+4d
+ Replying to J. Kendall Miller
+My suggestion is to try publishing to the topic just to see what logs will be generated and analyze it carefully. You will be able to find what you need to figure out the trick to publish. Compare it against the hint the staff provided to look at the fresh logs carefully
+
+
+Reply
+
+J. Kendall Miller
+4d
+ Replying to Zhao Rong Tan
+Do we need to change the curl protocol to publish? That seems to be what I am finding.
+
+
+Reply
+
+Zhao Rong Tan
+4d
+ Replying to J. Kendall Miller
+Based on the writeup, you are to identify another topic to publish the message to, I suggest you to first try publishing to that identified topic with the provided curl convention just to see what logs will be generated and analyze it carefully. You will be able to find what you need to figure out the trick to publish. Compare it against the hint the staff provided to look at the fresh logs carefully. There will be a pattern where you will start to see once you compare the logs. Read the logs carefully and analyze them, it will be worth it.
+
+You can do this! Will take note of this post as well if you require more clarifications.
+
+
+1
+Reply
+
+J. Kendall Miller
+4d
+ Replying to Zhao Rong Tan
+Can't seem to get past the 500 errors. I thought I saw a subtle difference but it gets thrown away in the PUT. Logs just seem to be pulling out what is required for the first topic and erroring out because it isn't finding everything for it.
+
+
+Reply
+
+J. Kendall Miller
+3d
+ Replying to J. Kendall Miller
+That was somewhat difficult, but once I saw the pattern it took a while but I got the flag. Thanks.
+
+
+1
+Reply
+
+Kevin Darlington
+3d
+ Replying to J. Kendall Miller
+Nice work!
+
+
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to J. Kendall Miller
+Good work! Happy that you managed to detect the pattern and got the flag!
+
+
+1
+Reply
+
+Michelle Mao
+3d
+ Replying to J. Kendall Miller
+I'm at this place right now. I tried to play around with the required variables and changing values for them, but I can't see anything changing with the pattern. 
+
+
+Reply
+
+Zhao Rong Tan
+3d
+ Replying to Michelle Mao
+I would advice you to compare the logs side by side if required. Once you see a pattern, you will be able to get the flag.
+
+You are almost there!
+
+
+1
+Reply
+
+Michelle Mao
+2d
+ Replying to Zhao Rong Tan
+Thanks I got it :)!
+
+
+1
+Reply
+
+Kevin Darlington
+2d
+ Replying to Michelle Mao
+Nice work!
+
+
+Reply
+
+Emily Ngoc-Chau Nguyen Astillero
+4d
+
+Resolved
+I was able to change the topic, but I still can't update the message being sent. 
+
+I researched where the account number originates from and the pattern involved, and I'm still unsure if I should be using Exploit.java or Curl. I even looked at the github flag5 picture for hints. Any advice would be appreciated because I think I'm overcomplicating this.
+
+
+Reply
+
+Kevin Darlington
+4d
+I think that you are overcomplicating this. I would recommend playing with the requests parameters and seeing how those flow through the application. 
+
+
+1
+Reply
+
+Emily Ngoc-Chau Nguyen Astillero
+4d
+That was scarily easy. Thank you so much!
+
+
+1
+Reply
+
+Kevin Darlington
+4d
+ Replying to Emily Ngoc-Chau Nguyen Astillero
+Nice work! :)
+
+
+1
+Reply
+
+Xiaohua Cai
+6d
+
+Resolved
+I have found the right different topic. But I am not sure where to update the accountNum value to be my GT_ID.  I know we will need to update the “config.properties” file in Exploit.java. Should I update  accountNum on the Exploit.java file or using the Curl command?
+
+
+Reply
+
+John Michael McPhillips
+6d
+Find a pattern of where the account number originates from, and you will find how to modify it.
+
+
+Reply
+
+Xiaohua Cai
+6d
+I have figured it out and get the flag. Thanks
+
+
+2
+Reply
+
+Anh Tuan Hoang
+20h
+ Replying to Xiaohua Cai
+i got the same problem as you, any clue as to where to update the accountNum?
+
+
+Reply
+
+Xiaohua Cai
+3h
+ Replying to Anh Tuan Hoang
+check the log message and find a pattern o where the account number originates from. 
+
+
+1
+Reply
+
+Ruangsak Patomwong
+6d
+
+Resolved
+This is so hard, I cannot find the right different topic.
+
+
+Reply
+
+Kevin Darlington
+6d
+I suggest restarting the app to get fresh logs and going from there. Having a lot of noise in this project can make it harder to look. 
+
+
+2
+Reply
+
+Ruangsak Patomwong
+6d
+I already restart and extract the logs from original instruction but no idea where could valid topics be. I search through cs6035.log and console.log but nothing interesting comes up. Could you provide me more hint please?
+
+
+Reply
+
+Ashutosh Agarwal
+6d
+ Replying to Ruangsak Patomwong
+Scan the logs from the beginning after you restart the app. 
+
+
+3
+Reply
+
+Ruangsak Patomwong
+6d
+ Replying to Ashutosh Agarwal
+thank you, I got someting that I think it should helps.
+
+
+1
+Reply
+
+Ruangsak Patomwong
+6d
+ Replying to Ashutosh Agarwal
+Finally get the flag. thank you very much.
+
+
+1
+Reply
+
+Ashutosh Agarwal
+6d
+ Replying to Ruangsak Patomwong
+Great job!
+
+
+1
+Reply
+
+Kevin Darlington
+6d
+ Replying to Ruangsak Patomwong
+Nice work!
+
+
+Reply
+
+Lewis Won
+5d
+Thanks for this tip!
+
+
+1
+Reply
+
+John Michael McPhillips
+7d
+
+Resolved
+This builds off of flag 4. Pay attention to where the account number comes from.
+
+
+4
+Reply
+
+Anonymous Porcupine
+1w
+
+Resolved
+I'm getting stuck with the (cleaned up) message:
+
+Unable to get flag. Please ensure you entered your GatechId as the accountNumber in the messageVO body as instructed in the write up.
+But I can see
+
+INFO   Received message {[SELF REDACTED],"accountNum":"<my GTID>"} for topic: <target topic>
+What am I missing?
+
+
+Reply
+
+Anonymous Porcupine
+1w
+\*facepalm\* I was passing the copy/pasted "" value for my GTID header. Updated it to my GTID and got the flag.
+
+
+Reply
+
+Kevin Darlington
+1w
+Nice work!
+
+
+Reply
+
+Matthew Claar
+3d
+ Replying to Kevin Darlington
+Also dealing with the same error--have verified my GTID header is correct and matches in my exploit file. Would appreciate insight as my exploit appears to be appropriate directing to the new topic but clearly not publishing the value correctly
+
+
+Reply
+
+Kevin Darlington
+3d
+ Replying to Matthew Claar
+Okay, so you have the exploit working, your gatech id is set in the header, you are overriding the topic, but your gatech is not being published in the account number field? Do I have this correct?
+
+
+Reply
+
+Matthew Claar
+2d
+ Replying to Kevin Darlington
+That is correct as far as I can tell
+
+
+Reply
+
+Kevin Darlington
+2d
+ Replying to Matthew Claar
+Okay got it. I would take a step back from exploiting and play with the parameters of the request with unique strings. Then map them through the logs and see if you can find a way to manipulate the account number field. 
+
+
+Reply
+
+Matthew Claar
+2d
+ Replying to Kevin Darlington
+Corrected my method of passing and setting my GTID accountNum, gtg now
+
+
+1
+Reply
+
+Kevin Darlington
+2d
+ Replying to Matthew Claar
+Nice work!
+
+
+Reply
+
+Anonymous Dove
+1w
+
+Resolved
+So I've been trying to look for the other topic that is supposed to be on the cs6035.log file but I am not sure if this is the way to go. Should I look for an already created topic or should I create a topic?
+
+thanks
+
+
+1
+Reply
+
+Kevin Darlington
+1w
+Correct, the other topic's name is in the logs. I recommend restarting the app and looking closely at the fresh logs.
+
+
+6
+Reply
+
+Anonymous Wallaby
+1w
+If only I had read this comment two hours ago, it would have saved me a few hours.
+
+
+1
+Reply
+
+Kevin Darlington
+1w
+ Replying to Anonymous Wallaby
+No worries you have plenty of time, you are really doing great if you are this far in the first day of project release! haha
+
+
+Reply
+
+Anonymous Hippopotamus
+1w
+ Replying to Anonymous Wallaby
+lol I thought the same thing
+
+
+1
+Reply
+
+Anonymous Wallaby
+1w
+ Replying to Anonymous Hippopotamus
+Classic that the comment gets released one minute after I solved it. LMAO
+
+
+1
+Reply
+
+Anonymous Dove
+1w
+Got it! thanks.
+
+
+1
+Reply
+
+Omar Arin Solaiman
+7d
+... 
+
+The hours I've spent not looking at fresh logs...
+
+
+1
+Reply
+
+Daniel Alexander Moreno
+6d
+Thank you, this was my issue too. While I restarted some things, restarting that didn't occur to me.
+
+
+1
+Reply
+
+Emily Ngoc-Chau Nguyen Astillero
+5d
+This is a dumb question. But by restarting the app, do you mean sending the endpoint to the server again and checking it's resulting logs? Or are we restarting the container? 
+
+
+Reply
+
+Kevin Darlington
+5d
+ Replying to Emily Ngoc-Chau Nguyen Astillero
+Not a dumb question! You by restarting the app it means ./Stop and ./Start container. When applications start they sometimes log checkpoints  and configurations ;)
+
+
+4
+Reply
+
+Emily Ngoc-Chau Nguyen Astillero
+4d
+ Replying to Kevin Darlington
+Thank you! I got it.
+
+
+Reply
+
+Kevin Darlington
+4d
+ Replying to Emily Ngoc-Chau Nguyen Astillero
+Nice work!
+
+
+Reply
+
+Geri Louise Shaeffer
+4d
+This hint right here, plus the follow up response above, is very eye opening. 
+
+
+1
+Reply
+
+Arianna Rachel Lanz
+1w
+I'd also say that if you don't see it right away, just try something and see what errors you get. I found the error logs to be pretty helpful!
+
+
+1
+Reply
+

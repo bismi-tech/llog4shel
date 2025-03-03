@@ -4,13 +4,14 @@ CS 6035 O01, OCY
 –
 Ed Discussion
 
+1
 
 New Thread
 Courses
-48
-23
+56
+28
 Categories
-761 others online
+281 others online
 Use left and right arrow keys to adjust the split region size
 
 New Thread
@@ -18,7 +19,7 @@ Filter
 Use left and right arrow keys to adjust the split region size
 Project Log4Shell - Flag 4 Command and Concat #695
 Kevin Darlington
-4 days ago in Projects – Log4Shell
+Last week in Projects – Log4Shell
 
 Pinned
 
@@ -26,10 +27,10 @@ Star
 
 Watch
 
-115
-11
-11
-55
+364
+33
+66
+44
 Views
 
 This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
@@ -41,8 +42,214 @@ Note: Do not share code, outside tools you used or any hints beyond the writeup 
 Comment
 
 Sort by Newest 
+John Wyatt Gamble
+1h
+Unresolved
+
+Who is the muscle head that put this one together? 😂
+
+
+Reply
+
+Jorge Emilio Dominguez Najera Sr.
+9h
+
+Resolved
+What's the proper way to send logs from the Java file for debugging purposes?
+I've been using  System.out.println but I never see logs with that, is it any log4j library that needs to be imported in order to send debugging logs propertly?
+
+
+1
+Reply
+
+Ashutosh Agarwal
+5h
+To see the System.out.println messages you need to tail the console.log file not the cs6035.log file. If you still don't see it, then it's likely that your exploit is not getting executed. 
+
+
+Reply
+
+Rakshaa Ravishankar
+23h
+
+Resolved
+which folder should the txt file be created to?
+
+
+Reply
+
+Kevin Darlington
+22h
+It should just be in the root directory of the project. 
+
+
+Reply
+
+Keymer Botero
+1d
+
+Resolved
+You guys were NOT kidding as far as sandwiching your stuff. Honestly, I'm glad I took a good look at this thread for ideas.
+
+EDIT: GOD, THE IMPLICATIONS THIS FLAG HAS IS CRAZY. I won't say what it is because that would give away how to solve this flag but like, oh my god. The possibilities are endless, provided you match the format given.
+
+
+1
+Reply
+
+Denis Kasapovic
+2d
+
+Resolved
+Do not overthink this one, look at the log and see what comes back once you submit the test/example call. Like the hint says "Pay close attention to the logged messages and their format."  What was occurring with the data sent, was the biggest clue for me. If you completed previous flags to get to this point then you know what the original format of the lookup should be.
+
+
+Reply
+
+Joel M Tucker
+2d
+good tip
+
+
+Reply
+
+David Robert Nygren
+2d
+
+Resolved
+Would you say, like the other flags, the best approach is to figure out the attack vector, successfully ping the LDAP, and THEN work on the Exploit.java script? The reason I ask is because I'm 95% sure I know the attack vector and given the hint regarding "Command and Concat" I cant figure out how to "sandwich" the jndi lookup in the output to call my ldap correctly.
+
+
+1
+Reply
+
+Joel M Tucker
+2d
+yeah that's a good approach. One step at a time
+
+
+Reply
+
+Matthew Claar
+3d
+
+Resolved
+For anyone bashing their head against the wall with log errors, restarting the VM got me my flag
+
+
+Reply
+
+Matthew David Macioce
+3d
+
+Resolved
+Would seeing the i'm a teapot message mean I need to change my vector or encode/obfuscate it somehow? running into this on flag 3 too - can't escape it lol
+
+
+Reply
+
+Kevin Darlington
+3d
+No, the teapot error means that there is a homegrown filter in place that you need to bypass using encoding/obfuscation. 
+
+
+Reply
+
+Kevin Darlington
+3d
+You can get this flag however WITHOUT obfuscation and the name of this flag is a hint as to how. 
+
+
+2
+Reply
+
+Alejandro Millan
+4d
+
+Resolved
+Are we supposed to find a way to bypass:  [Log4jUtilities.java:32] INFO Reset files? If I understand correctly this is being performed right before it looks for the .txt file, so I'm assuming any files being created will be deleted on that action?
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+Yes, you'd need to exploit at the right point to get the flag. I'd recommend going through the logs carefully to figure out the correct attack vector. 
+
+
+Reply
+
+Robert Maness
+4d
+
+Resolved
+YEAH BUDDY! Aint nothin to it but to do it!
+
+
+5
+Reply
+
+Kevin Darlington
+4d
+Everybody wanna be a hacker! But ain't nobody wanna exploit no silly dev mistakes! (Sounded better in my head, a lot corny-er in writing but anyways
+
+
+6
+Reply
+
+Sean Chen
+5d
+
+Resolved
+lightweight baby!
+
+
+4
+Reply
+
+Fahim Sunka
+5d
+Nice work!
+
+
+Reply
+
+Brandon Shreve
+5d
+
+Resolved
+Lightweight! :) 
+
+
+4
+Reply
+
+Kevin Darlington
+5d
+Yeah buddy!
+
+
+Reply
+
+Michael Joseph Hearn
+5d
+
+Resolved
+It's possible to execute code the way you did for 3 but it won't result in the flag in my experience.   If you look at the picture of the flag in the flag4 github you can see it was not gotten the same way as 3 or 2. Use the hint to figure out a new way keep an eye on any hints of what variables can be overwritten.  
+
+
+1
+Reply
+
+Kevin Darlington
+5d
+Nice work!
+
+
+Reply
+
 Brandan Tan
-4h
+7d
 
 Resolved
 I managed to get the message that shows `Congratulations! Your flag4 is: ...`. But when i copy and submit that value to Gradescope, it shows up as incorrect. Could a TA please help me check if i indeed have the correct value?
@@ -51,31 +258,39 @@ I managed to get the message that shows `Congratulations! Your flag4 is: ...`. B
 Reply
 
 Kevin Darlington
-4h
+7d
 Sure thing, please make a private post. 
 
 
 Reply
 
 Brandan Tan
-4h
+7d
 Okay, i just created one private post
 
 
 Reply
 
 Ruangsak Patomwong
-4h
+7d
 
 Resolved
 Don't forget to compile Exploit.java after you edit your code. I just waste hours for this.
 
 
-2
+6
+Reply
+
+Nicholas Charles Ryan
+5d
+Also dont forget to move your python server to the correct flag folder. I also wasted hours!
+
+
+3
 Reply
 
 Omar Arin Solaiman
-9h
+7d
 
 Resolved
 Been able to create a file and proved it happened by creating it in the logs... can't seem to add to it though...
@@ -88,7 +303,7 @@ Is the vector different?
 Reply
 
 Omar Arin Solaiman
-8h
+7d
 Figured it out
 
 and it's a little funny being able to use it in that way. Will say that I thought I'd break the rest of it though... 
@@ -98,14 +313,14 @@ and it's a little funny being able to use it in that way. Will say that I though
 Reply
 
 Kevin Darlington
-4h
+7d
 Nice work!
 
 
 Reply
 
 Gen Sheng Zhang
-14h
+1w
 
 Resolved
 Is this also meant to use jdni or something different? I see some issues with a foo....
@@ -114,7 +329,7 @@ Is this also meant to use jdni or something different? I see some issues with a 
 Reply
 
 Gen Sheng Zhang
-14h
+1w
 Please ignore... i was in the wrong directory.
 
 
@@ -122,14 +337,14 @@ Please ignore... i was in the wrong directory.
 Reply
 
 Gen Sheng Zhang
-13h
+7d
 Without giving away too many hints, I don't actually quite get what this has to do with the flag's name. Is there a way to leverage the mechanism explicitly or is this the same as any other log4j injection into a variable...? Just curious, because it seems to work by just updating one vulnerable variable.
 
 
 Reply
 
 Gen Sheng Zhang
-13h
+7d
  Replying to Gen Sheng Zhang
 i just exploited the vulnerability in the "intended" way probably, by leveraging the name of the flag. But, it still seems to work without it... wondering if I am tripping
 
@@ -138,7 +353,7 @@ i just exploited the vulnerability in the "intended" way probably, by leveraging
 Reply
 
 Yongmin Li
-17h
+1w
 
 Resolved
 I am getting this ERROR Ronnie.txt was created but contents != "AintNothinButAPeanut!". Contents were: null
@@ -147,21 +362,35 @@ I am getting this ERROR Ronnie.txt was created but contents != "AintNothinButAPe
 Reply
 
 Yongmin Li
-16h
+1w
 NVM, somehow managed to fix this.
 
 
 Reply
 
 Kevin Darlington
-16h
+1w
 Nice work!
 
 
 Reply
 
+Corey Cunningham
+2d
+same
+
+
+Reply
+
+Kevin Darlington
+2d
+There could be something wrong with your java code. Can you confirm your code is executing? If so, are you printing out the catch block to check if an exception has been thrown?
+
+
+Reply
+
 Fatima Muhammad Barakzai
-1d
+1w
 
 Resolved
 I'm creating the file but it gets reset, how am I supposed to pass in the exploit? Is there another variable?
@@ -170,7 +399,7 @@ I'm creating the file but it gets reset, how am I supposed to pass in the exploi
 Reply
 
 Ashutosh Agarwal
-1d
+1w
 The name of this flag is a huge hint as to what you need to do. Pay close attention to the logged messages and their format.
 
 
@@ -178,14 +407,14 @@ The name of this flag is a huge hint as to what you need to do. Pay close attent
 Reply
 
 Fatima Muhammad Barakzai
-1d
+1w
 Figured it out, thanks
 
 
 Reply
 
 Ashutosh Agarwal
-1d
+1w
  Replying to Fatima Muhammad Barakzai
 Great job!
 

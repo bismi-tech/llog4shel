@@ -1,0 +1,39 @@
+# Understanding the Log4Shell Project
+
+Let me explain this like you're just learning about computer security for the first time!
+
+## The Big Picture
+
+This is a college assignment about a famous computer security problem called "Log4Shell." It's like a door that hackers found in many computer systems in 2021. This door lets bad guys sneak into computers they shouldn't have access to.
+
+## What You Need to Do (Flag 2)
+
+For this assignment, you need to:
+
+1. Set up 4 different windows on your computer:
+   - A window to run a special server called "LDAP" 
+   - A window to run a simple web server with Python
+   - A window where you'll listen for connections with a tool called "netcat"
+   - A window to run your attack command
+
+2. Create a special file called "Exploit.java" that will:
+   - Create a connection back to your computer
+   - Give you control of the target server
+
+3. When everything works correctly:
+   - You'll type a special command that triggers the vulnerability
+   - Your code will run on the vulnerable server
+   - The server will connect back to your computer
+   - You'll get a "shell" (way to type commands) as the powerful "root" user
+   - You can then run a special jar file to get your flag
+
+## Why Students Are Struggling
+
+From the discussion posts, students are having trouble with:
+1. Getting the right IP addresses and port numbers
+2. Making sure their Java code is correct
+3. Understanding how all the pieces connect together
+
+The recommended approach is to watch a video tutorial called "HackerSploit" that shows almost exactly what to do, and to use the Docker host IP address (172.17.0.1) rather than localhost.
+
+Does any specific part of this challenge sound confusing, or would you like me to explain a particular step in more detail?

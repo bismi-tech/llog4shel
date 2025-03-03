@@ -1,0 +1,2257 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+1
+
+New Thread
+Courses
+56
+28
+Categories
+281 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Project Log4Shell - Flag 6 Restful Data #697
+Kevin Darlington
+Last week in Projects – Log4Shell
+
+Pinned
+
+Star
+
+Watch
+
+384
+33
+88
+44
+Views
+
+This is the post for discussing this flag. If there's any update on the task, we'll post it here. Please, do not open new threads covering this task.
+
+Anyone with questions about citations and plagiarism should consult the appropriate section of the course policy on misconduct.
+
+Note: Do not share code, outside tools you used or any hints beyond the writeup or office hours to other students. We will delete threads and warn you if you overshare.
+
+Comment
+
+Sort by Newest 
+Denis Kasapovic
+3h
+
+Resolved
+I just want to make sure I understand the order of things:
+
+       1.Post to retrieve id and create payload.
+
+       2.Then I compile the Java file? 
+
+            a. I am testing with it compiled and I am seeing my payload
+
+            b. I am testing not complied and getting a "foo" message.
+
+Seems the 1st route the code runs, but there is no flag. I guess this makes sense since how would I know the product ID.  
+
+2nd route I am unable to get to run since the code is not compiled until after I retrieve the product ID. I am leaning towards the 2nd route since the flag is supposed to be retrieved with a GET method. So, does that mean I can ignore the “foo message” and continue looking for the GET method?
+
+
+Reply
+
+Joel M Tucker
+1h
+I'm not completely getting the question here, but you'll need to trigger the flag with data at rest, meaning that data will need to be saved first. It will take a couple of curl calls (one POST and one GET) to get the flag
+
+
+Reply
+
+Nicholas Angel Bear
+5h
+
+Resolved
+Just got this flag, and it wasn't too bad! It builds on what we previously did for Flag 4 and Flag 5. I did not use obfuscation, but I did use encoding.
+
+As many have mentioned, doing a single POST request and studying the log output helps a lot. See if there's anything that reminds you of the previous flags for constructing your payload.
+
+Once that's done, finding the endpoint to grab your persisted data is relatively easy since we have a small set of APIs to use.
+
+
+1
+Reply
+
+Ashutosh Agarwal
+3h
+Nice work!
+
+
+Reply
+
+Shimin Zhang
+6h
+
+Resolved
+Finally solved it... If you’re stuck like I was, don’t make the same silly mistake: you need a GET request to retrieve the flag! Even if your POST triggers the exploit, the flag won’t appear until you fetch the data.
+
+
+1
+Reply
+
+Kevin Darlington
+5h
+Nice work!
+
+
+Reply
+
+Ruangsak Patomwong
+6h
+
+Resolved
+I can trigger the exploit from rest data but the flag is not generated.
+
+
+Reply
+
+Ruangsak Patomwong
+6h
+there is no flag generator for my expected GET endpoint but I think there is one endpoint that can trigger the data from REST
+
+
+Reply
+
+Ashutosh Agarwal
+5h
+You'd need to use the correct GET endpoint to generate the flag. 
+
+
+1
+Reply
+
+Kevin Darlington
+5h
+You cannot get this flag the same way as the other flags (Using REST). You need to craft your attack in a way that when your data is retrieved from the backend it triggers the exploit. 
+
+
+1
+Reply
+
+Ruangsak Patomwong
+5h
+Finally got the flag!!! If the script is execute when POST then don't worry, just figure how to. make it execute with the right GET endpoint.
+
+
+Reply
+
+Kevin Xia
+6h
+
+Resolved
+is there a way to programmatically set the malignant product id or are we supposed to hardcode it in our java class?
+
+
+Reply
+
+Rahul Suresh Nair
+6h
+hardcoding will get the job done
+
+
+2
+Reply
+
+Kevin Xia
+6h
+yup thanks, got the flag
+
+
+Reply
+
+Ramoya Grandison
+7h
+
+Resolved
+I got my GET to run and trigger the server listening but it still doesn’t give the flag so I am assuming the issue is where I am injecting for post. Just to clarify, the post when successful should also trigger a 200 on the server? And outside of the Id, am I expected to include that other field in my curl? 
+
+
+Reply
+
+Kevin Darlington
+5h
+Yes that would be my guess. I would strongly recommend playing with the POST data with plain old strings and see how they map to the other endpoints. 
+
+
+Reply
+
+David Song Huang
+10h
+
+Resolved
+I have an idea of which GET request to call to get the exploit to run, but am having trouble setting the field I need to query for this to happen. Is there any resource on how to accomplish this? The field I'm trying to set and query keeps getting reset to the default.
+
+
+Reply
+
+David Song Huang
+10h
+Nvm. I solved it. Hopefully this is vague enough but if you get to this step, understand how URL encoding works. 
+
+
+Reply
+
+Owen Duvall
+12h
+
+Resolved
+I'm running into an issue where a certain POST request and certain GET requests are taking forever to run. Restarting the container doesn't seem to fix it, and neither does restarting the VM. I ran the top command to look at the metrics of the currently running processes, and it doesn't seem like anything is taking significant CPU or memory resources. Does anyone have any insight as to what could be going wrong here? I feel like I'm close to getting the flag, but this is making it difficult to tell.
+
+
+Reply
+
+Robert Morgan Gryder
+12h
+Are these requests running exploits? Maybe your Java code is running indefinitely/stuck in a loop and blocking the request from completing?
+
+
+Reply
+
+Owen Duvall
+12h
+That's the idea, but I'm not seeing any requests coming through on the LDAP server either, so I don't think the code is being run.
+
+
+Reply
+
+Joel M Tucker
+11h
+You can post privately with the screenshots of what you're doing. This is the second time we've heard this, could be an edge case.
+
+The general advice, however, would be to restart the container. It could be that db connection pool is full and connection requests are timing out if you're hitting it too much
+
+
+1
+Reply
+
+Owen Duvall
+11h
+Sounds good, thanks. I'll make a private post. 
+
+I suspect that may not be what's happening here. Even if I restart the container, the requests I make still take a long time to execute.
+
+
+Reply
+
+Robert Perry
+7h
+I'm running into this issue as well.
+
+
+Reply
+
+Joel M Tucker
+7h
+ Replying to Robert Perry
+make sure your value for price in the form data is an integer. Avoid using decimals here
+
+
+1
+Reply
+
+Le Tao
+14h
+
+Resolved
+Both the POST endpoint and two of the GET endpoints (except for the sole one that throws the error: the customer.service.email property is not in config.properties or overwriting file instead of updating it) will reset config.properties file every time they are called, due to not inputing an exploit payload or doesn't match the keyword expected by the project . I verified that the file gets updated with the product.id and sets customer.service.email to example@example.com via the sole GET endpoint. I also checked in root mode with Flag2 to ensure the file isn’t reset. Then retrieved the result by email endpoint, but it only shows that the record was found.
+
+I thought I share the same points with this useful comment:
+
+https://edstem.org/us/courses/69023/discussion/6222726?comment=14468963
+
+But since I didn’t capture the flag, I think I might be wrong and on the wrong track...
+
+
+Reply
+
+Joel M Tucker
+11h
+So this is a gap with our service. Thank you for bringing it up to our attention. 
+
+Prior to this semester we used the /products endpoints for Flag3 but that has since moved to /cartoons endpoints. We missed removing this error logging flow. 
+
+The error "Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties or overwriting file instead of updating it" error isn't relevant for Flag 6. You can ignore this.
+
+
+
+3
+Reply
+
+Le Tao
+4h
+Thank you for clarification! The product.id triggers the flag. If the email isn’t modified in config.properties, it resets to the default email with each request except the post one. How the new added email be retrieved? (Its id is exactly the written product.id)
+
+I also saw your reply below this comment. Perhaps I missed something. I'll have a review.
+
+
+Reply
+
+Ashley Tanner
+3h
+I definitely feel like this comment should be pinned because this error threw me for a loop for 2 days.
+
+
+1
+Reply
+
+Joel M Tucker
+1h
+ Replying to Ashley Tanner
+I can't pin comments but feel free to link if you see anyone else asking about this
+
+
+Reply
+
+Ramoya Grandison
+19h
+
+Resolved
+I just have one clarifying question, for my exploit file, is the only thing being added the product.id or do we also need to add something for the email?
+
+
+Reply
+
+Ashutosh Agarwal
+12h
+only the product.id property needs to be added in the config.properties file.
+
+
+2
+Reply
+
+Swapnanil Ray
+20h
+
+Resolved
+Here's my two cents after spending a day on this:
+
+Make sure you do a post request just to test how is it working. Understand the logs very well. What is happening to the data, that you just posted? Is something happening to it? 
+
+Once you identify a pattern, beautifully design the payload! So much so, that this would probably be the craziest car to exist 🙏 
+
+
+
+Reply
+
+Van Tran
+10h
+Hi, I think I got that POST part and design the payload to insert my LDAP. However, after that when I trigger with GET endpoints, nothing happened. I observed there is a GET endpoint with suspicious variable but I still don't know how it's related to the data at rest. Can you give any hint about the GET endpoint to trigger? or both will work fine if my POST payload correct?
+
+
+Reply
+
+Van Tran
+10h
+I reached to the point when I curl the specific GET endpoint, it logged the LDAP server. However it seems not trigger it.  Any idea
+
+
+Reply
+
+Swapnanil Ray
+2h
+ Replying to Van Tran
+Your JNDI lookup worked, but the flag did not generate, is that what you mean? Are you sure, your exploit is doing what is expected from it?
+
+
+Reply
+
+Keymer Botero
+22h
+
+Resolved
+Okay, so not sure if I am missing anything but, aren't we addressing product.id? I'm receiving the following warning message:
+
+WARN Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it.
+
+Last I checked according to the writeup, we were updating the product.id into there as an addition property.
+Some comments are suggesting to another GET endpoint. Not sure which one yet but will report back if I find anything.
+Could someone clarify this? I feel so close! 
+It's really late, I'm going to hop off for now, but any intervention to clarify things would be much appreciated!
+
+
+Reply
+
+Thomas Leopold Kroll
+15h
+Endorsed
+I wouldn't read too much into that error, I got it on a lot of my failed attempts. The endpoints they give you are all you need. 
+Have you watched the office hours? It saved me from thinking too much into it
+
+
+2
+Reply
+
+Keymer Botero
+13h
+I see, thank you for actually coming back to this thread and letting me know Thomas. I’ll check out the office hours as soon as I can and update this post ASAP after that.
+
+
+Reply
+
+Joel M Tucker
+11h
+You can ignore this error for Flag 6. It doesn't mean anything
+
+
+Reply
+
+David J Munoz Jr.
+23h
+
+Resolved
+Just got the flag and wanted to summarize some hints that helped me to achieve this in case there are still others that are struggling.
+
+1. Check the logs for your post request, this can provide super valuable information on proceeding with the exploit: https://edstem.org/us/courses/69023/discussion/6222726?comment=14478856
+
+2. Construct the payload, (we've seen this in previous flags)
+
+3. You can refer to this post for the java code: https://edstem.org/us/courses/69023/discussion/6222726?comment=14534876
+
+4. There are many posts saying the same thing such as if you receive this email error, try the other GET endpoint. This post in particular helps when you do find the right endpoint: https://edstem.org/us/courses/69023/discussion/6222726?comment=14544550
+
+Hope that helps without sharing too much (this post does some very vague as with most other posts providing hints) but if you stick to these points, you will be able to get the flag.
+
+
+1
+Reply
+
+Anonymous Mouse
+23h
+Unresolved
+I read what other say about this property but I'm at a loss. "WARN Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it."
+
+
+Reply
+
+Corey Cunningham
+1d
+
+Resolved
+I am creating a product with an email, when I create that product the log value results in my exploit being run.
+
+The same exploit should be run when I get the product by email due to the way things are being logged.
+
+however when I call ?email=<the email I created> I just get an empty list, despite that the return value of when I create the product has the email I created.
+
+I am encoding the email param query and it is showing in the logs to be what I think it should be
+
+
+Reply
+
+Corey Cunningham
+1d
+lol I'm so dumb, was missing a character on my email query param
+
+
+Reply
+
+Matthew Claar
+1d
+
+Resolved
+Can someone add clarity as to why the LDAP call being made as soon as the initial record is created is not considered data at rest? Done with this flag, but not quite grasping why Create record --> record stored & processed --> LDAP call != restful, but record stored --> user makes query --> LDAP call IS restful. Thanks!
+
+
+Reply
+
+Jesse Lee Dotson
+1d
+This is just my impression from doing the assignment but I think it has to do with the fact that the exploit exists inside the system in an inactive state, ie it's "resting."
+
+ A significant implication is that its activation can be disconnected in time from its insertion, and in our case the activation is a normal act. So if an update was made that made it impossible to successfully inject an LDAP call when creating a record, it might not prevent that exploit from executing. Or it could be laid as a trap, and execute when some specific victim does an innocuous task.
+
+
+Reply
+
+Joel M Tucker
+1d
+Yeah this is right. “Data at rest” refers to data that has been persisted to some form of storage (in this case a database). This is opposed to “Data in Transit” which would cover data being sent as an http request for example.
+
+Triggering of the ldap call for most of the flags in this project would be “Data in Transit” because you are introducing a malicious payload and triggering an exploit with data in motion from an http request.
+
+This flag focuses on the scenario of what happens when your system is logging data, not from a request coming from the outside, but from a “trusted” database? We often tend to guard the controllers and entry point layers very carefully, validating xss and http headers and params. But there can also be risk from malicious data that has already been introduced and is just sitting in storage “at rest”.
+
+
+1
+Reply
+
+Thomas Leopold Kroll
+2d
+
+Resolved
+I'm curious what the clerk at DMV would say if I tried to register this car. 
+
+I agree with the other poster that the method for this one was interesting!
+
+I don't think I have anything to add for hints, but the office hours helped to keep me from going down a crazy path.
+
+
+1
+Reply
+
+Robin J Hicks
+2d
+
+Resolved
+Friendly reminder: if you're confident you have everything in the right place with the right values and you're still not getting the flag, restart your container. I spent hours debugging a working exploit just to learn it was something hosed up in the lab environment. 
+
+Also, remember the IDs do not persist a restart so you will need to re-insert your record before re-running the exploit.
+
+Other than that annoyance, very interesting take on the exploit!
+
+
+Reply
+
+Robert Birk Hughes
+2d
+
+Resolved
+I am having a similar issue as someone below.  I keep getting:Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest
+
+However, this is coming from one of my curl commands at one of the GET endpoints, not the post.  The jndi lookup is correctly happening from the data that is at rest when I use the GET endpoint, and the config file properties are properly being updated.  Am I missing something here?  I don't understand the error message in my context.
+
+
+Reply
+
+Robert Birk Hughes
+2d
+I am 99.9% sure that I am using the correct vector and storing the exploit properly in the database.  I am getting numerous calls to my exploit script when I curl the GET endpoint and the properties is being properly updated.  Yet I still get the "must come form data at rest" error even though my exploit is coming from the data that is at rest in the database and nothing I put into the curl command
+
+
+Reply
+
+Robert Birk Hughes
+2d
+Finally figured it out.  <redacted> The fact my exploit was called from a GET method and did what it was supposed to do, yet not give me the flag, seems contrary to the instructions on the flag and was a massive headache, and clearly not just for me.
+
+
+Reply
+
+Joel M Tucker
+2d
+ Replying to Robert Birk Hughes
+We'll take this feedback and see how we can make the logging more clear but still keep the spirit of the challenge. Part of the learning is understanding why obfuscation is what it is and when and how it is used.
+
+
+1
+Reply
+
+Brandon Shreve
+3d
+
+Resolved
+The derp approach saved the day :) Thanks for the office hours!  
+
+
+1
+Reply
+
+Kevin Darlington
+2d
+Nice work and no problem! :)
+
+
+Reply
+
+Harry Arther Staley
+1d
+DERP_x approach for the win.
+
+Also logging "TOTAL PWNAGE, I LOVE IT!!!" helps me. 
+
+
+Reply
+
+Robert Maness
+3d
+
+Resolved
+Just got this one. Personally, I think this is the coolest and most satisfying flag of the week. Thought I was insane when I noticed the attack vector, but HOLY SCHNIKES it worked. 
+
+My tips: 
+
+Don't worry if your email value keeps getting reset to the default - if you make the proper call searching for the one you originally set, it will still work. 
+
+If it feels like your POST attempts are getting blocked by endless teapots, I suggest reassessing your approach. You're probably headed in the wrong direction like I was. 
+
+Pay very close attention to the way that the logs handle your record's values as you play with each of the endpoints. There might just be a creative way you can sneak your exploit in there. 
+
+If your code looked anything like mine for the previous flags, you should be able to get away with basically copying over your Flag 5 script and changing as little as one line. 
+
+
+Reply
+
+Anjali Chablani
+3d
+Many thanks Robert. Your tips made a difference. I got the flag. 
+
+
+Reply
+
+Ashutosh Agarwal
+3d
+Nice work! Thanks for sharing!
+
+
+Reply
+
+Jake Leggore
+3d
+
+Resolved
+Hint: Find the least amount of obfuscation you can use to bypass the checkers. For some reason, too much obfuscation (even if it works) will prevent you from getting the flag.
+
+
+3
+Reply
+
+J. Kendall Miller
+3d
+
+Resolved
+I believe I am understanding data at rest. I have persisted the data and the trigger, and run the get request but still get. Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest
+
+
+Reply
+
+Anonymous Barracuda
+3d
+I have been stuck at the same point for like 4 days.
+
+
+Reply
+
+J. Kendall Miller
+3d
+Yah. Some people say it isn't important if the POST data insert also triggers the exploit, as long as the GET triggers it. Don't know if that is a key or not, to get the POST to not trigger and only the GET, but I don't think that is possible..
+
+
+Reply
+
+Joel M Tucker
+3d
+ Replying to J. Kendall Miller
+The POST should not be triggering the attack. The point is for the trigger to be coming from data that has been persisted
+
+
+Reply
+
+J. Kendall Miller
+3d
+ Replying to Joel M Tucker
+Turning off the listener will resolve that for the POST, so it doesn't trigger, and will be at rest, but issuing the GET doesn't get the flag. Same error as above.
+
+
+1
+Reply
+
+J. Kendall Miller
+3d
+ Replying to J. Kendall Miller
+I also see that some say that the exploit runs a bunch of times, but it shouldn't affect whether you get the flag, but others say that you need to keep it from running so many times. Confusing! My thought is that none of those things should be a factor in getting the flag.
+
+
+Reply
+
+J. Kendall Miller
+3d
+ Replying to J. Kendall Miller
+Does anyone have a different process to getting the flag? Seems like I have tried everything.
+
+
+Reply
+
+Robert Birk Hughes
+2d
+ Replying to Joel M Tucker
+My POST is not triggering the attack, only the GET, yet I am still getting the same error message as above
+
+
+Reply
+
+J. Kendall Miller
+2d
+ Replying to Robert Birk Hughes
+So I was able to finally get the flag. This morning I spotted a pattern of where to inject my exploit. Take your time and get it right. The way I did it, my final POST request was not obfuscated, I just needed it to fit the pattern. My GET request needed URL encoding to not get an error. I hope I'm not sharing too much, but enough to help you and those that are struggling. I still think the POST request triggered the exploit, but the GET request finally gave the flag after a couple tries.
+
+
+2
+Reply
+
+Linh-Dan Le
+2d
+ Replying to J. Kendall Miller
+Second this! I didn't use any obfuscation for my post and figuring out the correct pattern was the gist of this flag. 
+
+
+Reply
+
+Anjali Chablani
+3d
+I am really stuck for the last 4 days. Pretty much everything I have tried is also getting resolved in POST method. The JNDI command is getting resolved in POST. What am I missing here? Turning off the listener during POST makes it not trigger. However  executing GET command does not result in obtaining the flag. I am getting an message "Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest." Any pointers appreciated. 
+
+
+Reply
+
+Robert Maness
+3d
+I'd suggest going back through the endpoints and looking specifically at how the logs are handling/outputting the record values that you created. Is there something you notice? Maybe some way you could sneak your LDAP call in there?
+
+
+Reply
+
+Daniel Alexander Moreno
+3d
+
+Resolved
+Don't do what I did as I apparently had the right answer two days ago. Here's my two hints
+
+Just because a GET endpoint mentions the flag, doesn't mean that it is the right endpoint. Look through all of the logs for all of the endpoints the instructions mention.
+
+Before you edit config.properties, make sure you print it out and replicate the formatting properly because that was my issue for a very long time.
+
+
+Reply
+
+Joel M Tucker
+3d
+Great tips
+
+
+Reply
+
+Anonymous Kudu
+3d
+
+Resolved
+From the setup instructions I have ran this in the terminal:
+
+cd ~/Desktop/log4shell/target
+
+java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://172.17.0.1:4242/#Exploit"
+I see that its listening but I never seem to get any logs to come through? is this typically normal? I feel like I should be seeing logs come through here when commands get sent to the ldap server.. wondering if I'm on the wrong track with this one and will only see logs come through on tail -f cs6035.log
+
+
+Reply
+
+Kevin Darlington
+3d
+You will only see this server log when your jndi request fires. If your jndi request isn't correct, it won't log anything. 
+
+
+Reply
+
+Cooper Michael Simpson
+4d
+
+Resolved
+I feel like I know what to do but I keep getting
+
+`2025-02-27 07:47:16 [ProductService.java:41] WARN Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it.`
+
+And cannot update my config.properties. How can i overcome this? Spent sooo many hours on this now T__T
+
+
+Reply
+
+Anonymous Barracuda
+4d
+Try using the other get endpoint instead.
+
+
+Reply
+
+Cooper Michael Simpson
+4d
+YES, got it. idk why the other didn't work though..
+
+
+Reply
+
+Linh-Dan Le
+2d
+Interesting that only one endpoint works but not the other. 
+
+
+Reply
+
+Benjamin Burrell Weaver
+4d
+
+Resolved
+What issues can cause my LDAP server to be hit but not ping the http server on the same port?
+I can get the LDAP server to be hit both in POST and in GET but neither on triggers the exploit.
+
+
+Reply
+
+Kevin Darlington
+4d
+My guess would be your payload isn't correct. 
+
+
+1
+Reply
+
+Benjamin Burrell Weaver
+4d
+You would be correct, make sure to add /Exploit to the end of your payload ha
+
+
+1
+Reply
+
+Kevin Darlington
+4d
+ Replying to Benjamin Burrell Weaver
+Nice work! Yeah, that is very important as it is what you are requesting the ldap to get for you :)
+
+
+Reply
+
+Sean Chen
+4d
+
+Resolved
+interesting one
+
+
+2
+Reply
+
+Sean Chen
+4d
+
+Resolved
+did anyone face the issue where the POST call freezes? It doesn't seem like entering in the info any other way triggers the exploit.
+
+
+1
+Reply
+
+Sean Chen
+4d
+a slight update. Just waiting here thinking, the traces are slowly showing up. still odd that entering it this way spends so much more time than normal. my computer cpu and memory usage didn't spike
+
+
+Reply
+
+Anonymous Tapir
+4d
+The same thing happened to me. Some GET requests are just stalling with no responses as well.
+
+
+Reply
+
+Joel M Tucker
+4d
+There shouldn't be any intensive processes. It's a simple crud application. Try restarting the container
+
+
+Reply
+
+Matthew Ruiz
+3d
+Any updates on this? I'm running into the same issue
+
+
+Reply
+
+Anonymous Red panda
+3d
+I ran into this same issue as well. I'm not 100% sure this was the cause but I was playing around with how I was obfuscating things and one of my POSTs slowed down to a crawl and it never recovered after that. I ended up just rebooting the VM and restarting everything. 
+
+
+Reply
+
+Owen Duvall
+1d
+I'm running into the same issue. POST and certain GET requests are taking forever to run. Restarting the container didn't seem to fix it. From looking at the running processes, it doesn't seem like anything is taking significant CPU/memory resources. Did anyone have any luck with getting around this? 
+
+
+Reply
+
+Michael Joseph Hearn
+4d
+
+Resolved
+I spent all day on this flag...our hacks have looked like !((STUFF:STUFF2:STUFF3))  etc. If you don't have STUFF unmodified stored in the database it will fail. It's not possible to get this flag otherwise.  
+
+
+1
+Reply
+
+Bari Belhadj
+4d
+
+Resolved
+I got the flag but I honestly don't understand why the more obvious way doesn't work. It does the same exact thing that the intended method does, yet it won't work?
+
+I think the message "must come from data at rest" and the emphasis on "data at rest" is just confusing and is throwing everyone off. If a new product is created with the payload, isn't that basically "data at rest" ? if not, what is the definition of "data at rest" exactly? 
+
+To everyone stuck with this. I'd advice that you create a new product and watch the logs.  If you are updating a product instead, just make sure you change something in the body every time and watch the logs.
+
+
+Reply
+
+Bari Belhadj
+4d
+Of course after posting this I did some reading about "Data at rest" and, well, it makes sense now 🤣 .
+
+I will just leave this here: https://en.wikipedia.org/wiki/Data_at_rest
+
+
+1
+Reply
+
+Kevin Darlington
+4d
+Nice work and thanks for sharing!
+
+
+1
+Reply
+
+Nicolas Bautista
+4d
+I still think your post is valid though Bari. There is a way to store the string payload at rest through the POST request that successfully exploits through a secondary GET call. However, it can still fail and you don't get the flag because it wasn't exactly how the author intended, even though it does technically meet all of the requirements for the flag as specified in the github page.
+
+
+5
+Reply
+
+Alois Maier
+4d
+
+Resolved
+pretty sure i'm on the final part but i want to make sure i didn't go down a bad path.
+
+I can write a post that will trigger sending my payload. I was stuck for a while on how I can access my lookup via a GET because nothing in the GET's seemed to be able to call where my payload resides from the POST. That was until just recently I saw something in the logs that looks like it should be holding my payload so I just need to find how I can call it. But it looks like it's relating to something that we've had very little work on in this so far in this class so I'm not sure I should devote a lot of time to this method if it's incorrect.
+
+Ultimately my question would be, is flag 7 relevant to this flag at all?
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+No, flag 7 is not related to this flag.
+
+
+Reply
+
+Alois Maier
+4d
+so can i assume i'm on the wrong path of wanting to utilize sql in some way in this flag?
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+ Replying to Alois Maier
+yes, sql is not required for this flag.
+
+
+Reply
+
+Alois Maier
+4d
+ Replying to Ashutosh Agarwal
+and do we have to find any hidden endpoints or the flag just uses the 4 provided in the writeup?
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+Endorsed
+ Replying to Alois Maier
+No hidden endpoints, just the 4 mentioned in the write up are relevant for this flag. 
+
+
+2
+Reply
+
+Ruangsak Patomwong
+5d
+
+Resolved
+The email has been reset every time. Then I cannot GET the payload to execute script. is that normal?
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+Yes, you need to figure out the correct GET endpoint to retrieve the malicious data from the database and trigger the exploit.
+
+
+Reply
+
+Hailey Robinson
+5d
+
+Resolved
+Make sure you restart the container regularly if you make several products with the same email, it will avoid some unnecessary confusion :')
+
+
+1
+Reply
+
+Ruangsak Patomwong
+5d
+Does the email has been reset every time? Should I worry about email reset?
+
+
+Reply
+
+Hailey Robinson
+5d
+No, I just mean I created several products with the same email during the trial and error phase and then used GET by email and didn't realize I was receiving at one of my older products without the updated exploit
+
+
+1
+Reply
+
+Joel M Tucker
+5d
+that's a valid way to reset. The DB is in memory, good tip!
+
+
+1
+Reply
+
+Alois Maier
+5d
+
+Resolved
+anyone get "IP address pattern detected in request body" when making their POST?
+
+
+1
+Reply
+
+John Michael McPhillips
+5d
+There are a few ways around this
+
+
+1
+Reply
+
+Ruangsak Patomwong
+5d
+
+Resolved
+Does the default payload in POST request provide us enough key-value pairs to get this flag or we need to add more?
+
+
+Reply
+
+John Michael McPhillips
+5d
+I got the flag using the example key:value from the doc
+
+
+2
+Reply
+
+Ruangsak Patomwong
+5d
+Do you have to change the value or you can leave them as it is?
+
+
+Reply
+
+John Michael McPhillips
+5d
+ Replying to Ruangsak Patomwong
+This should be helpful. https://edstem.org/us/courses/69023/discussion/6222726?comment=14459922 
+
+The goal is to have your exploit triggered by the data at rest.
+
+
+Reply
+
+Ruangsak Patomwong
+5d
+ Replying to John Michael McPhillips
+I think I can picture the direction I should go. Next step is to ask question to myself what do I do.
+
+
+Reply
+
+Daniel Alexander Moreno
+5d
+ Replying to Ruangsak Patomwong
+Wish I could help, but I have no idea. I figured out the id thing, but I can't figure out how to save data that will be printed by both GETs since only one GET logs the contents of the retrieved records.
+
+
+1
+Reply
+
+Ruangsak Patomwong
+5d
+ Replying to Daniel Alexander Moreno
+From my observation, there is only one GET that contains log about flag. It might be something to be done with that.
+
+
+Reply
+
+Daniel Alexander Moreno
+5d
+ Replying to Ruangsak Patomwong
+Yeah, my only reason for thinking that it needs to work in both GETs are https://edstem.org/us/courses/69023/discussion/6222726?comment=14460225 and https://edstem.org/us/courses/69023/discussion/6222726?comment=14471965. There's also disagreement about whether it is a good thing if POST triggers the exploit (https://edstem.org/us/courses/69023/discussion/6222726?comment=14488466 and https://edstem.org/us/courses/69023/discussion/6222726?comment=14484570).
+
+
+Reply
+
+Ruangsak Patomwong
+5d
+ Replying to Daniel Alexander Moreno
+I hit a wall here and no idea what to do next.
+
+
+Reply
+
+Joel M Tucker
+5d
+ Replying to Daniel Alexander Moreno
+It doesnt need to work in both GETS. Pay attention to the logs. Pay attention to the logical steps of when the actual call is getting triggered. 
+
+
+Reply
+
+Daniel Alexander Moreno
+5d
+ Replying to Joel M Tucker
+Yeah, I know that the exploit needs to execute after the reset and before the read. I just can't find a log I control which is printed between those two operations.
+
+
+Reply
+
+Daniel Alexander Moreno
+5d
+
+Resolved
+Are there any hints on how to retrieve the id's value so that it can be inserted into the properties file per "You will write a new property product.id that should have the value set to the id of the malicious product record that you have created/updated"?
+
+
+Reply
+
+Ashutosh Agarwal
+5d
+Once you create a product using the POST endpoint, you will get the product id value in the api response. 
+
+
+Reply
+
+Daniel Alexander Moreno
+5d
+Well, I already knew that the GET requests would return the id so I suppose that means I need to focus on the update part of the instructions.
+
+
+Reply
+
+Xiaohua Cai
+5d
+
+Resolved
+I have use post method to save data in the database, and use get method to fetch the data. It can hit the LDAP server and run the Exploit.class file. But the problem is it shows Flag not obtained due to failed attempt. JNDI malicious must come from data at rest. 
+
+I inject the malicious payload on Post method, this will trigger hitting the LDAP server as well. I am not sure my error is related to this or not. The Get api I use also can hit the LDAP server but showing the flag error instead of showing me correct flag code. 
+
+
+Reply
+
+Ruangsak Patomwong
+5d
+I think I stuck at the same point.
+
+
+Reply
+
+Kevin Darlington
+5d
+This is a hint to let you know that you need to approach this flag differently. You need to think about data at rest and how you can leverage that. 
+
+
+Reply
+
+Xiaohua Cai
+5d
+But I already send a post and store the information in the database and then send a get method to fetch information from server. so this does not count as data at rest? 
+
+
+8
+Reply
+
+Ruangsak Patomwong
+5d
+
+Resolved
+How to craft the payload since GET endpoint do not process any value that we POST? and null value that we can modify we edit that from curl not from the rest data itself.
+
+
+Reply
+
+Ruangsak Patomwong
+5d
+Please give me some hint. I'm stuck on this for 3 days and go to nowhere.
+
+
+Reply
+
+Kevin Darlington
+5d
+Think about data at rest and how you can leverage that for this flag. This flag is very different than the rest for this reason. 
+
+
+Reply
+
+Ruangsak Patomwong
+5d
+
+Resolved
+I think I can trigger the script when POST new data but not when I GET the data.
+
+
+Reply
+
+Kshitij Gupta
+5d
+Are you using the right endpoint? Did you try everything?
+
+
+Reply
+
+Ruangsak Patomwong
+5d
+I know that GET has a special value that can be modified to trigger the script but it is not the intension of this flag. It must be normal call. How can GET execute script if it not read any value but directly log them to sql data?
+
+
+Reply
+
+Ashutosh Agarwal
+5d
+The exploit must be triggered via data stored in the database (data at rest). If your POST request is triggering the LDAP server, it indicates that the payload is being executed too early. Ensure the POST request only persists the payload without executing it. Then use the correct GET endpoint to retrieve the malicious data from the database and trigger the exploit.
+
+
+Reply
+
+Omar Arin Solaiman
+6d
+
+Resolved
+Running into issue where my exploit runs from... one part of the data as opposed to many?
+
+But when I check the log syntax, the executable part looks exactly the same?
+
+
+Reply
+
+Omar Arin Solaiman
+6d
+I figured it out
+
+Do not over-complicate your obfuscation. 
+
+
+1
+Reply
+
+Caleb Ryan Massengill
+5d
+This was helpful, but don't read this as "You don't need to do any obfuscation to make this work."  I had to do some obfuscation, but significantly less than in previous flags.
+
+Overall, I think this is the most satisfying/entertaining flag. Once you figure out the correct way of passing the data so that the exploit can execute from data at rest, it turns into a bit of a puzzle, which I loved. 
+
+Another note here, my exploit still executed when I posted the data, so don't let that throw you off if it does. In my case, it still worked when I called the correct endpoint, even though it triggered the exploit when I did my POST as well.
+
+
+1
+Reply
+
+Hailey Robinson
+5d
+ Replying to Caleb Ryan Massengill
+I second this!! I spent far too long worrying about triggering the exploit in only one place when it did not seem to matter
+
+
+Reply
+
+Mason Lunsford
+6d
+Just got this flag as well - ended up spending waaay too much time on it. For anyone still stuck on it, I'll echo what @Omar said and go further and say that even if the lookup is being executed properly and from the right location, the way you obfuscated it may still be hindering you from getting the flag.
+
+
+Reply
+
+Yan Ting Liu
+6d
+I highly recommend this thread for people like me who have been stuck for a long time. I tried various approaches and even discovered a hidden variable in the POST request that could trigger the Log4j vulnerability, but it turned out there wasnt for any hidden point. Make sure to "double check your payload like they mentioned"—it's not a good one, to be honest, even if your payload successfully hitting correctly from data at rest.
+
+
+1
+Reply
+
+Omar Arin Solaiman
+6d
+
+Resolved
+I am definitely seeing it run from resting data via the get/query I'm utilizing...
+
+But the flag isn't coming, even with the file being updated. Using the end result of Flag2, I am able to see that the config file has the relevant updated id after running. 
+
+
+Does the get used HAVE to be the ONE specific one? Because the other is definitely doing it.
+
+I will say I think my method has resulted in it running twice... I should fix that.
+
+
+Reply
+
+David Dexter
+6d
+
+Resolved
+How can we update a product? Running curl -X POST 'http://localhost:8080/rest/products/product/a06524fb-....' gives me a 415 error
+
+
+Reply
+
+Anonymous Ibex
+6d
+Id should be part of request body
+
+
+Reply
+
+Kshitij Gupta
+6d
+
+Resolved
+Is there any other endpoint we have to use other than the four we have been provided with? I assume no, but thought may check.
+
+
+Reply
+
+Ruangsak Patomwong
+6d
+
+Resolved
+I can understand how this flag should work but I cannot get past the teapot when POST new record.
+
+
+Reply
+
+Anjali Chablani
+6d
+same.
+
+
+Reply
+
+Ruangsak Patomwong
+6d
+Find a way to put the data in but I cannot trigger the script with GET.
+
+
+Reply
+
+Ruangsak Patomwong
+6d
+And my email in the created data is keep changing to default when I use one of the GET method. 
+
+
+Reply
+
+Anonymous Ibex
+6d
+
+Resolved
+Any guidance on "Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest"?
+
+I have inserted a malicious record with an LDAP call using POST and I am also able to add product.id to config.properties with the GET call. I have followed the same steps as other tasks in the assignment.
+
+
+Reply
+
+Anonymous Penguin
+6d
+Pretty much in the same spot. I don't know why I would get that specific error when it is actually executing from data at rest.
+
+
+Reply
+
+Anonymous Crocodile
+6d
+In the same boat.
+
+
+Reply
+
+Anonymous Crocodile
+6d
+Just figured it out. In my case, my payload that I was storing in the database was being triggered way too many times when I called the "GET" method. My suggestion is to look at the body of the "POST" method and see how you can use those parameters to form your payload. Viewing the output from the logs also hints at this.
+
+
+2
+Reply
+
+John Michael McPhillips
+6d
+ Replying to Anonymous Crocodile
+Thanks, this helped for me too.
+
+
+Reply
+
+Omar Arin Solaiman
+6d
+ Replying to John Michael McPhillips
+I figured out the location... but I can't get it to run it even when the string looks exactly the same. Fall into the same problem?
+
+
+Reply
+
+Nicolas Bautista
+5d
+ Replying to Anonymous Crocodile
+Yeah this helped a lot. Thank you.
+
+
+Reply
+
+Christopher Troupe
+4d
+ Replying to Anonymous Crocodile
+Can you or someone elaborate on this? I see that I trigger the exploit and it happens a lot, but I'm not sure why it triggers multiple times or how to trigger it once. 
+
+Edit: Triggering multiple times did affect me getting the flag at all, this was a time wasting red herring for me. 
+
+
+Reply
+
+Philipp Werner
+6d
+
+Resolved
+I think I am close, but I'm not sure... I believe I have the correct statements to insert my payload into the database. However, when I make the GET request, neither of my servers is triggered. Do I need a different approach to execute the payload? I'm struggling with this...
+
+
+1
+Reply
+
+Kshitij Gupta
+6d
+Same!
+
+
+Reply
+
+Philipp Werner
+6d
+I solved it. My fault was that I used the wrong endpoint...
+
+
+2
+Reply
+
+Ruangsak Patomwong
+6d
+ Replying to Philipp Werner
+How did you pass the teapot when you post new data?
+
+
+Reply
+
+Anonymous Eland
+6d
+ Replying to Ruangsak Patomwong
+Some of the learning resources circulated have good info on evasion tactics.
+
+
+Reply
+
+Kavish Desai
+6d
+ Replying to Ruangsak Patomwong
+I am not sure if I did it the way it was supposed to be meant but I didn't perform any evasion and it worked just fine
+
+
+Reply
+
+Kshitij Gupta
+6d
+ Replying to Kavish Desai
+This is the hint that help me get on the right track and solve the flag. 
+
+Definitely not an easy flag if you are on the wrong track. I followed all the hints of looking through the logs and tried several tactics but in the end the simplest way as mentioned above helped me get it. 
+
+
+1
+Reply
+
+Joel M Tucker
+6d
+ Replying to Kshitij Gupta
+nice job!
+
+
+1
+Reply
+
+Michael Derryberry
+6d
+ Replying to Kshitij Gupta
+Yes I am having a bad time with this one, It's been the hardest flag of the course so far for me. I feel that's because I am doing what you're describing: being on the wrong track. Unfortunately it's very hard to determine whether or not I'm on the wrong track. But are you saying removing evasion/obfuscation actually helped you here? As far as I can tell you need some form of obfuscation for the POST request.
+
+
+Reply
+
+Kavish Desai
+6d
+ Replying to Michael Derryberry
+Think of different ways of how you can send your payload and I would suggest carefully looking at the Log when you send your post request to see whats happening in the application and how your POST request is processed. 
+
+
+Reply
+
+Kshitij Gupta
+6d
+ Replying to Michael Derryberry
+There is a way. But keeping an eye on which tactic makes it hit the server helped me.
+
+
+Reply
+
+Lewis Won
+5d
+ Replying to Philipp Werner
+This tip is super important!
+
+
+1
+Reply
+
+Kshitij Gupta
+6d
+
+Resolved
+I am able to leak out the java version but when I try to leakout the payload the attribute containing the payload does not get logged and there is no error message as well, so I am a bit confused as to what may be the error. Everything else other than the payload gets logged or has a geniune error message. I am a bit lost here if this is expected or I need to just reboot my machine. Thanks!
+
+
+Reply
+
+John Michael McPhillips
+6d
+
+Resolved
+I don't understand the objective of this flag. We are creating a malicious product entry, which would trigger our exploit? In the example given that doesn't seem to be the case. The exploit would then inject the product.id of the product we already created, and the product we are calling? I've read this several times and none of makes sense to me. There is also a way to trigger the exploit that is identical to flag3, so why would we need to use malicious code within the product details to execute the exploit? Very confusing what is supposed to be done here.
+
+Are we trying to redirect any product GET to the product values of the new product we created?  What is the goal?
+
+
+Reply
+
+Patrick Jacobs
+6d
+We are creating a malicious product entry, which would trigger our exploit? 
+Yes, per:
+
+Use the product POST endpoint to persist a record to the database that, when retrieved later, will trigger the LDAP call.
+I agree that at first glance, the flag seems to get to the exploit in a roundabout way, but try to focus on one thing at a time:
+
+Use the product POST endpoint to persist a record to the database ...
+... update the “config.properties” file saved in the root directory of the application ...
+... upon calling the right GET endpoint, it will trigger the exploit and, if successful, will generate the Flag 6 message in the logs.
+These are three distinct steps.
+
+why would we need to use malicious code within the product details to execute the exploit?
+You won't be able to get the flag using any other mechanism than using a record in the DB:
+
+When the application fetches the record upon calling the right GET endpoint, it will trigger the exploit and, if successful, will generate the Flag 6 message in the logs.
+
+Note: You will have to trigger the LDAP call with the malicious record in order to generate the Flag.
+
+5
+Reply
+
+Joel M Tucker
+6d
+Endorsed
+nice, I really can't add anything else
+
+
+1
+Reply
+
+Patrick Jacobs
+5d
+Endorsed
+ Replying to Joel M Tucker
+
+
+8
+Reply
+
+Kevin Darlington
+4d
+ Replying to Patrick Jacobs
+LOL
+
+
+1
+Reply
+
+Omar Arin Solaiman
+7d
+
+Resolved
+Little confused between the errors and the flag description
+
+Errors say I should worry about the customer.service.email property 
+
+However the flag says "You will write a new property product.id that should have the value set to the id of the malicious product record that you have created/updated."
+
+I already know one vector, and I think I know the vector to uitilize the data at rest... But it's confusing what should be doing what?
+
+Is the goal for us to have data at rest that we call that then triggers the exploit update? And that exploit updates the product.id, not the customer.service.email?
+
+
+1
+Reply
+
+Ashutosh Agarwal
+6d
+Yes, the goal is to have data at rest (stored in the database) that, when retrieved via a GET request, triggers the exploit. The exploit should update the product.id property in the config.properties file with the malicious product's ID—not the customer.service.email.
+
+
+Reply
+
+Kshitij Gupta
+7d
+
+Resolved
+When I create a new product via POST /rest/products/product, I include an email in the request.
+ 
+When I retrieve the product using GET /rest/products/product?email=example@example.com, the email is correctly returned with the product attributes
+
+ However, when I retrieve the same product using GET /rest/products/product/<id>, the email does not persist and appears to be missing or reset to a default value.
+
+Before proceeding further with this flag, do I need to ensure the email persists correctly in GET by ID, or can I move forward despite this issue? A 
+
+
+Reply
+
+Abhishek Sathiabalan
+7d
+Move forward.
+
+
+4
+Reply
+
+Gen Sheng Zhang
+7d
+
+Resolved
+Great flag once it clicks. There should only be one GET that works, read the logs carefully about where you want the exploit to happen, which is the key thing for most of the flags tbh. 
+
+
+1
+Reply
+
+Arianna Rachel Lanz
+7d
+Any other hints here? I'm pretty sure I see where the exploit is supposed to happen based on the logs from the POST request and the logs from one of the GET requests. Still, when I call the GET request, I see the HTTP server and my exploit file being hit multiple times...
+
+
+1
+Reply
+
+Gen Sheng Zhang
+7d
+I think being hit multiple times is not a concern, as long as the exploit is called at a certain point in the log and subsequently does the properties change as required, you can still get the flag.
+
+
+1
+Reply
+
+Abhishek Sathiabalan
+7d
+It can be a concern, if you modify the file multiple times
+
+
+1
+Reply
+
+Yongmin Li
+6d
+ Replying to Abhishek Sathiabalan
+I think this is one of the key concerns
+
+
+Reply
+
+Anonymous Eland
+6d
+Are you sure? I was able to get my exploit to work on multiple GET endpoints.
+
+
+Reply
+
+Gen Sheng Zhang
+6d
+A true genius in that case, would love to learn how someday :)
+
+
+Reply
+
+Yongmin Li
+7d
+
+Resolved
+i keep the Reverse Shell open during this flag, after execute the request and payload, the config.properties was updated as below
+cat config.properties
+#Mon Feb 24 06:44:28 GMT 2025
+customer.service.email=example@example.com
+topic.name=user.info
+rating=PG
+product.id=5f84925f-32b5-4717-8017-2273ef550b77
+
+but i am still getting below error
+
+
+WARN Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it.
+
+
+Reply
+
+Abhishek Sathiabalan
+7d
+Are you hard coding the datetime?
+
+
+Reply
+
+Yongmin Li
+7d
+No.
+
+
+Reply
+
+Yongmin Li
+6d
+Finally get the flag, I think I was misleading by "the real world vulnerability" again. test is test, they are deliberately designed.
+
+My hint is pay CLOSE attention to all the output logs, then think , what might be some technic they want us to learn.
+
+The error messages are also kind of hint. think why those error message are in place?
+by error messages,  i don't mean below
+
+Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it
+
+WARN Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest
+
+1
+Reply
+
+Joel M Tucker
+6d
+Yes, while we try to make these projects as "real world" as possible, they are deliberately designed to work in certain ways that highlight different aspects of the vulnerabilities. And yes, error messages are also designed to be helpful 
+
+
+1
+Reply
+
+Cooper Michael Simpson
+4d
+How did you overcome WARN Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it. ??
+
+I feel like I know what to do for the flag but I keep getting this
+
+
+1
+Reply
+
+Michael Derryberry
+7d
+
+Resolved
+I seem to be dancing between multiple errors while attempting different endpoints. 
+It's either: WARN Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest
+
+OR:
+ the customer.service.email property is not in config.properties OR overwriting file instead of updating it
+
+I've spent most of my day on this flag so I must be missing something or we are
+not getting enough guidance on this task.
+
+
+3
+Reply
+
+Anonymous Penguin
+7d
+Same.
+
+
+Reply
+
+Abdelrahman Ibrahem
+7d
+You’re just missing some glaring issue that’s staring you right in the face. I don’t think there is any missing guidance; the error messages could be improved a bit, though. I believe this task is what cemented my understanding of Log4j vulnerabilities.
+
+
+1
+Reply
+
+Anonymous Penguin
+1w
+
+Resolved
+I am saving the exploit on the database. I don't know if we are supposed to create the new property as the exploit from the data at rest or if we are supposed to make another exploit for the data at rest. I am asking because there are different ways to trigger log4shell on this flag. There is a out of place variable and there is data at rest. Are we supposed to use both? also it triggers the exploit when I create a product so that's another different way of exploit. I already receive the Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest when coming from data at rest. So please I would like to know what am I doing wrong :)
+
+thanks
+
+
+Reply
+
+Ashutosh Agarwal
+6d
+Focus on the data-at-rest attack vector. The goal is to store a malicious payload in the database and retrieve it later to trigger the exploit. The "out-of-place variable" is not relevant for this flag.
+
+
+1
+Reply
+
+Anuj Goel
+4d
+Can you help in informing if we need to use just one variable or more than one?
+
+Also, I am seeing the code that generates the flag is only executed on one API that does not seem to process variables. What am I missing? 
+
+
+Reply
+
+Kevin Darlington
+4d
+ Replying to Anuj Goel
+There will only be 1 attack vector per se, but you really need to think about your payload, how the app stores data, how it retrieves data etc. This is a completely different thought process than all the other flags. 
+
+
+Reply
+
+Anuj Goel
+4d
+ Replying to Kevin Darlington
+I have the payload that is executing the exploit on both posts and get, but I still don't get the flagged. I am confused as to why. The instructions say we need to add a new product id to the config.properties file. However, the log message says's 
+
+WARN Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it.
+
+What is going on?
+
+In previous flags, the error message and instruction were aligned. How can I be sure that my exploit code it making the correct changes that Flag is expecting?
+
+
+Reply
+
+Fatima Muhammad Barakzai
+1w
+
+Resolved
+I am confused about what we're supposed to be doing for this flag. I added the product.id entry into the properties file, but i'm seeing this in the logs:
+
+
+Flag not obtained due to failed attempt, 
+the customer.service.email property is not 
+in config.properties OR overwriting file instead of 
+updating it
+
+4
+Reply
+
+Fatima Muhammad Barakzai
+1w
+I can see the email tho, am I supposed to change it?
+
+
+1
+Reply
+
+Daniel James Poulin
+1w
+Did you get anywhere with this one? I am able to update the product email with a query. I found another endpoint with something similar to Flag5 so I can trigger a call back and overwrite or append whatever I want to the filesystem. I added the product.id and updated the customer.service.email. I am not sure what else we are supposed to be doing.
+
+
+1
+Reply
+
+Fatima Muhammad Barakzai
+1w
+ Replying to Daniel James Poulin
+nope, I feel like the requirements are super unclear on this one. I'm also able to manipulate the file system but aside from product.id i'm not sure what else i'm supposed to be doing with it
+
+were we supposed to update the product email? 
+
+
+3
+Reply
+
+Daniel James Poulin
+1w
+ Replying to Fatima Muhammad Barakzai
+I think the key part from the write up is:
+
+"When the application fetches the record upon calling the right GET endpoint, it will trigger the exploit"
+
+So the you have the LDAP query in place before hand and you have to trigger this one via the GET request using the email property, no other way.
+
+And the exploit being "You will write a new property product.id that should have the value set to the id of the malicious product record that you have created/updated."
+
+
+Reply
+
+Fatima Muhammad Barakzai
+1w
+ Replying to Daniel James Poulin
+I'm using a different way to trigger the LDAP query, but it does add the new product.id
+
+
+Reply
+
+Fatima Muhammad Barakzai
+1w
+ Replying to Daniel James Poulin
+I feel like I understand all the concepts, just don't don't know what they want us to do 
+
+
+1
+Reply
+
+Daniel James Poulin
+1w
+ Replying to Fatima Muhammad Barakzai
+I am using a similar method as Flag5. I think that is the issue, it's not the email property triggering it.
+
+
+1
+Reply
+
+Abdelrahman Ibrahem
+1w
+ Replying to Daniel James Poulin
+I made a script that loops over everything I can set and monitored the log file for a leak.
+
+I quickly found the set and get endpoints.
+
+Another tip is to break it down into small steps. Make sure you’re hitting the correct endpoints by first trying to leak the Java version, then focusing on getting your exploit code running, and finally modifying what needs to be changed.
+
+
+2
+Reply
+
+Daniel James Poulin
+1w
+ Replying to Abdelrahman Ibrahem
+I think there is a specific way they want it triggered. I just got it to return my persisted email but I received this:
+
+WARN Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest
+
+
+5
+Reply
+
+Arianna Rachel Lanz
+1w
+ Replying to Daniel James Poulin
+I've found that after I make a POST with my exploit code when I call each of the GET endpoints: 
+- one returns WARN Flag not obtained due to failed attempt. JNDI malicious trigger must come from data at rest
+- another returns Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it
+- and the third doesn't trigger the exploit at all
+
+I'm not super stuck yet, but I just thought I'd share in case others are seeing the same thing!
+
+🤷‍♀️ 
+
+
+6
+Reply
+
+Daniel James Poulin
+1w
+ Replying to Arianna Rachel Lanz
+I am at the same point. I think it's something to do with timing or order of operations. Just need to figure it out.
+
+
+Reply
+
+Arianna Rachel Lanz
+1w
+ Replying to Daniel James Poulin
+I also just noticed something in the logs that may be useful.
+
+
+Reply
+
+Fatima Muhammad Barakzai
+1w
+ Replying to Arianna Rachel Lanz
+any hints? Still stuck on this one
+
+
+Reply
+
+Abdelrahman Ibrahem
+1w
+ Replying to Daniel James Poulin
+This message was a bit confusing for me too, I don’t think how it’s being triggered is the issue as much as it’s what is being triggered.
+
+
+Reply
+
+Fatima Muhammad Barakzai
+1w
+ Replying to Abdelrahman Ibrahem
+Did you get the flag this way?
+
+
+Reply
+
+Abdelrahman Ibrahem
+1w
+ Replying to Fatima Muhammad Barakzai
+Yes, but the key is step by step and really monitor how your payload impacts the logs.
+
+
+1
+Reply
+
+Daniel James Poulin
+1w
+ Replying to Abdelrahman Ibrahem
+Still stuck. I was using a method similar to Flag3 and modifying the URL to reach out to the LDAP server but I assumed that wasn't going anywhere since it says it needs to be triggered by data at rest.
+
+I can do what the write up says and persist a record in the database and when I retrieve it using one of the GET methods, I see it query the LDAP server but I keep getting the "JNDI malicious trigger must come from data at rest" which.... it is. Not sure where to go from here.
+
+
+2
+Reply
+
+Abhishek Sathiabalan
+1w
+ Replying to Daniel James Poulin
+Have you verified your code isn't executing multiple times? Are you passing a JNDI in the parameters?
+
+
+1
+Reply
+
+Fatima Muhammad Barakzai
+1w
+ Replying to Abhishek Sathiabalan
+Do we pass it into the parameters or in the body?
+
+
+Reply
+
+William David Done
+1w
+ Replying to Daniel James Poulin
+I'm stuck on this same step... even though the JNDI statement is coming from the database, it has the "JNDI malicious trigger must come from data at rest" error.
+
+
+1
+Reply
+
+Daniel James Poulin
+1w
+ Replying to William David Done
+Finally got it. All I will say is I didn't spend enough time looking at the POST logs.
+
+
+3
+Reply
+
+William David Done
+1w
+ Replying to Daniel James Poulin
+Thank you for the hint - that did it for me!
+
+
+Reply
+
+Kshitij Gupta
+1w
+ Replying to Daniel James Poulin
+I understand the concept here, but I am still stuck at "Flag not obtained due to failed attempt, the customer.service.email property is not in config.properties OR overwriting file instead of updating it." I am a bit confused as to how to persist the email. I have looked at flag 3 and I am trying to follow the same line of thought for config.props
+
+
+Reply
+
+Anonymous Eland
+1w
+ Replying to Kshitij Gupta
+I would look at the output from your python HTTP server and confirm whether or not it's serving your exploit file. If it is, then that message is probably because you're overwriting that file improperly as the message suggests. If it's not, then obviously your code isn't triggering to begin with.
+
+
+2
+Reply
+
+Anonymous Eland
+1w
+ Replying to Kshitij Gupta
+As far as the payload goes, hopefully without giving away too much, look carefully at what's being written to the database and how it looks when it's read from it. See if there's anything you can take advantage of.
+
+
+2
+Reply
+
+Robert Smithers III
+1w
+ Replying to Daniel James Poulin
+I'm still stuck with the "JNDI malicious trigger must come from data at rest" warning, but I'm fairly confident that I crafted the payload correctly. I reviewed the post logs, but I assume that just clarifies how to build it. 
+
+I am not passing anything to directly cause the JNDI callback other than the payload stored in the database... am I missing something more?
+
+
+1
+Reply
+
+Rodrigo Alvarado Chacon
+1w
+ Replying to Robert Smithers III
+I am in the same boat as you, I am definetly running the payload from the database calling the specific endpoint. I don't what else I should try
+
+
+1
+Reply
+
+Arianna Rachel Lanz
+7d
+ Replying to Daniel James Poulin
+I’m pretty sure I see how to construct the exploit in the POST payload from looking at the POST logs, and my exploit is definitely triggered this way when using one of the GETs that reads the key value, and yet I still see the above errors. :/ 
+
+
+Reply
+
+Anonymous Eland
+7d
+ Replying to Arianna Rachel Lanz
+The payload you craft should work for both of the GETs, if only one of them is triggering, you should take a look at how you're crafting it to see if you can get it to trigger for the other one.
+
+Another hint: look carefully at what's being written to and read from the database, especially as pertains to the logs (obviously, since this is log4j and all). See if there's anything you can leverage to help craft your payload.
+
+
+Reply
+
+This comment was deleted
+Arianna Rachel Lanz
+7d
+ Replying to (Deleted)
+I don't know  what exactly I did differently, but I got it! I think I was relying on some of the other evasion tactics we used earlier, but they weren't necessary/hindered this exploit. 
+
+
+4
+Reply
+
+Joseph A Cannaday
+6d
+ Replying to Arianna Rachel Lanz
+Thank God you said this. 11+ hours on one flag and it was something so trivial. I hate my life.
+
+
+1
+Reply
+
+Michael Derryberry
+6d
+ Replying to Joseph A Cannaday
+I've been at this flag for so long now and I'm just going in circles. Even after sleeping and coming back the next day I'm still against a wall. Do you have any tips or hints that might be able to help?
+
+
+Reply
+
+Joseph A Cannaday
+6d
+ Replying to Michael Derryberry
+Look at the logs to see how a lookup might be constructed and see Arianna's comment about evasion tactics. That's all I can say.
+
+
+2
+Reply
+
+Anonymous Penguin
+6d
+ Replying to Joseph A Cannaday
+Thanks a lot! I would say that it really doesn't make sense if  you are doing it right cause it's really making the exploit :( lost hours on this when it was working correctly just because I sent a different jndi payload
+
+
+Reply
+
+Robert Smithers III
+5d
+ Replying to Arianna Rachel Lanz
+This solved it for me too! Not sure why a valid payload fails with evasion... likely some grading regex. Cheers
+
+
+1
+Reply
+
+Michael Joseph Hearn
+4d
+ Replying to Robert Smithers III
+Ahh yes we love when the grader failing means hours of extra work. 
+
+
+3
+Reply
+
+Robert Birk Hughes
+2d
+ Replying to Robert Smithers III
+So you just had to change the method in which you evaded the lookup checks and it worked for you?
+
+
+Reply
+
+Christopher Troupe
+4d
+ Replying to Arianna Rachel Lanz
+I can't believe I wasted 5+ hours on this and this was the issue. Thank you! For anyone else, please save yourself your sanity and look at Arianna's comment. 
+
+
+Reply
+
+Abhishek Sathiabalan
+1w
+ Replying to Abdelrahman Ibrahem
+Thanks, that made it click.
+
+
+Reply
+
+Amr Khaled Hassan
+2d
+ Replying to Abhishek Sathiabalan
+Wow! This really was the issue after all
+
+
+Reply
+
