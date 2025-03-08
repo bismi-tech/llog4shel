@@ -8,10 +8,10 @@ Ed Discussion
 
 New Thread
 Courses
-56
+53
 28
 Categories
-281 others online
+279 others online
 Use left and right arrow keys to adjust the split region size
 
 New Thread
@@ -19,7 +19,7 @@ Filter
 Use left and right arrow keys to adjust the split region size
 Project Log4Shell - Flag 2 Get a Shell Thread #693
 Kevin Darlington
-Last week in Projects – Log4Shell
+2 weeks ago in Projects – Log4Shell
 
 Pinned
 
@@ -27,10 +27,10 @@ Star
 
 Watch
 
-444
+476
 44
-44
-44
+77
+66
 Views
 
 1
@@ -43,16 +43,93 @@ Note: Do not share code, outside tools you used or any hints beyond the writeup 
 Comment
 
 Sort by Newest 
+Samuel Connor Williams
+17h
+
+Resolved
+I'm having trouble figuring out where I'm going wrong on this one. I fully understand the exploit, and I believe I understand which servers need to communicate with which; however, I'm still not able to get the my curl command to interact with the LDAP server and all of that. I'm using a similar strategy to what I did in flag 1. 
+
+The documentation states this in the setup section:
+It is very important that this matches the port specified in the LDAP server. If your exploit is not working because it is not connecting to the malicious server, your ports likely do not match OR the vm’s IP is not correct
+
+I'm curious about situations where the VM's IP being incorrect could affect this setup? I don't see any explicit references to the VM IP address, so I'm wondering if maybe I'm missing a step regarding that?
+
+
+Reply
+
+Kevin Darlington
+14h
+It is just a disclaimer to encourage you not to deviate from the IP's/Port's specified in the write up. Also, have you checked out the hackersploit video?
+
+
+Reply
+
+Samuel Connor Williams
+14h
+Hi Kevin, I did just finish the hackersploit video and that helped clear some of my blockers. I'm still hitting a hangup but I think I've almost got it figured out. Thanks!
+
+
+1
+Reply
+
+Kevin Darlington
+13h
+ Replying to Samuel Connor Williams
+Nice work! Are your servers firing? 
+
+
+Reply
+
+Samuel Connor Williams
+13h
+ Replying to Kevin Darlington
+Yep, I just got the flag. I hadn't realized I needed to add a certain something to the end of my jndi request that was keeping it from getting through. Thanks for pointing me in the right direction!
+
+
+Reply
+
+Kevin Darlington
+12h
+ Replying to Samuel Connor Williams
+Nice work and no problem!
+
+
+Reply
+
+James O Booker
+17h
+
+Resolved
+So, I followed along with the recommended Hackersploit video, and I'm running into an error with my curl syntax. It says, "400: GATECH_ID header not sent or invalid." I've tried inputting it in multiple different ways, and I'm still running into the issue. Is there any advice?
+
+
+Reply
+
+Kevin Darlington
+17h
+I would use the gatech header exactly as it is used in the write up. 
+
+
+Reply
+
 Chalermpon Kesa
-39m
-Unresolved
+1d
+
+Resolved
 My whoami > log4j, not root. Do I need to set up anything? Appreciate any suggestions. Thanks!
 
 
 Reply
 
+Kevin Darlington
+1d
+If it is saying log4j is the user not root, then you likely are connecting to the nc terminal directly from the host NOT from the exploit. I assume you are calling it directly from your curl. If so, that is not correct. 
+
+
+Reply
+
 Mayank Kumar Jha
-11h
+2d
 
 Resolved
 I changed the IP and it worked like magic, but I am curious to know why it didn't work with loopback? 
@@ -62,7 +139,7 @@ I changed the IP and it worked like magic, but I am curious to know why it didn'
 Reply
 
 Pooja Rai
-2d
+3d
 
 Resolved
 Are we supposed to change the marshalsec.jndi code IP to our VM's IP? or keep it the same as mentioned in the set up?
@@ -71,17 +148,17 @@ Are we supposed to change the marshalsec.jndi code IP to our VM's IP? or keep it
 Reply
 
 Joel M Tucker
-2d
+3d
 You dont have to change the IP, just copy the command.
 
 The IP you will be using is below. This is NOT the localhost IP address but the docker host.
   172.17.0.1
 
-2
+3
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
 
 Resolved
 Not sure where I am going wrong, but I am following each of the steps in the hackersplot video as well as the walkthrough and I don't see the LDAP getting called correctly (no message like 'send LDAP reference result...' in the LDAP terminal). Where could I be going wrong? I have all the terminals set up as per the instructions with the right ports.
@@ -90,35 +167,35 @@ Not sure where I am going wrong, but I am following each of the steps in the hac
 Reply
 
 Keymer Botero
-2d
+4d
 Rakshaa, I'm with there. Though, make sure you know which IP the marshalsec server has and note the port it is using. It SHOULD be reflected in your curl command when you attempt connection. I still can't connect to the target but hope this helps!
 
 
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
 you're referring to the port in the command itself that we use to run LDAP right? That's the same port and url I am using in my curl command
 
 
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
 I originally thought that the port the marshalsec server is using or listening on is what I should use, but that makes no difference either so thats where I am stuck
 
 
 Reply
 
 Kevin Darlington
-2d
+4d
 If this is the case then your ldap request is wrong and you need to work on your curl.
 
 
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
 Thanks - I was missing a colon, everything else was set up correctly!! Got the flag.
 
 
@@ -126,7 +203,7 @@ Thanks - I was missing a colon, everything else was set up correctly!! Got the f
 Reply
 
 Kevin Darlington
-2d
+4d
  Replying to Rakshaa Ravishankar
 Nice work I am glad to hear! Yup, very minute details can derail you on this unfortunately. Excellent work debugging though!
 
@@ -134,7 +211,7 @@ Nice work I am glad to hear! Yup, very minute details can derail you on this unf
 Reply
 
 Bria Hargrove
-2d
+4d
 
 Resolved
 I believe I have found all of the connections, but having some issues retrieving the flag even with using the "cd ..". if there are any pointers, it would be very useful 
@@ -143,7 +220,7 @@ I believe I have found all of the connections, but having some issues retrieving
 Reply
 
 Anonymous Sparrow
-2d
+4d
 try putting a space in between cd and ../..
 
 Im stuck on even getting my curl command to hit the ldap. Is there any hints you can provide on syntax and ip addresses if you had to change any?
@@ -152,7 +229,7 @@ Im stuck on even getting my curl command to hit the ldap. Is there any hints you
 Reply
 
 Anonymous Oyster
-2d
+4d
 I brute forced my way through this 😅 only afterwards did I understand how the servers “talked” to each other. There’s not many combinations so writing down what works and what didn’t helped me. This only works if your exploit is accurate though. 
 
 
@@ -160,7 +237,7 @@ I brute forced my way through this 😅 only afterwards did I understand how the
 Reply
 
 Anonymous Sparrow
-2d
+4d
  Replying to Anonymous Oyster
 Is the Java exploit as similar as people say it is to the hacker sploit video. Or are things expected to be changed?
 
@@ -168,7 +245,7 @@ Is the Java exploit as similar as people say it is to the hacker sploit video. O
 Reply
 
 Kevin Darlington
-2d
+4d
  Replying to Anonymous Sparrow
 It is very similar. 
 
@@ -176,14 +253,14 @@ It is very similar.
 Reply
 
 Kevin Darlington
-2d
+4d
 Did you get the reverse shell as root?
 
 
 Reply
 
 Keymer Botero
-4d
+6d
 
 Resolved
 Figured I might as well ask right now and step back until tomorrow, but I am having trouble with this one part.
@@ -196,7 +273,7 @@ Definitely will also check out the hackersploit video and log4j walkthrough agai
 Reply
 
 Kevin Darlington
-4d
+5d
 Do EACH of the steps of the set up need to occur within the same flag folder or just the netcat command? 
 
 I am not entirely sure what you mean by this, but what I think you are asking the answer is no. The only thing that needs to be ran in a specific folder to your exploit is the python server. This is because it is what is serving that file back to the ldap. The ldap has to run in the target folder because that's where all of it's dependencies are. FYI the flag folders are only there to help you stay organized. If you wanted, you could run every single flag in the same one. 
@@ -210,7 +287,7 @@ Source: it is the video that made me understand the exploit and how it all works
 Reply
 
 Keymer Botero
-3d
+5d
 That definitely answered my questioned, Kevin! Although, I'm encountering an issue where despite using my IP address after using 'ip a'. I still am unable to reverse-connect into the target. I'm modeling my approach after the hackersploit video, but no address is working. 
 
 Is this possibly due to my malicious payload? Disregard, working on syntax
@@ -235,7 +312,7 @@ Just to verify, this flag is possible to complete this flag with the 127.0.0.1 a
 Reply
 
 Keymer Botero
-3d
+4d
  Replying to Keymer Botero
 Thanks Kevin for the Office Hours! Definitely going to step as I swear I've been feeling the hackersploit video and I understand what is going behind the scenes.
 
@@ -250,7 +327,7 @@ EDIT (typing on my phone so please excuse the bad grammar): Just had a thought. 
 Reply
 
 Kevin Darlington
-3d
+4d
  Replying to Keymer Botero
 No problem!
 
@@ -269,7 +346,7 @@ I recommend not changing any of the ports or IP addresses unless you really unde
 Reply
 
 Keymer Botero
-3d
+4d
  Replying to Kevin Darlington
 Got it, I’ll try again when I’m back from work regarding keeping everything the same. Just to clarify, from the write up of flag1, we are using the docker IP to conduct this attack, not our vm ip? 
 
@@ -282,7 +359,7 @@ EDIT: I think something is clicking, however, redact any of this content that I 
 Reply
 
 Kevin Darlington
-3d
+4d
  Replying to Keymer Botero
 No problem, this can be a lot to learn if it is the first time you are seeing this stuff. I think that would be a good thing to try. 
 
@@ -293,7 +370,7 @@ The curl will be as stated in the write up, with your payload injection in the a
 Reply
 
 Keymer Botero
-2d
+4d
  Replying to Kevin Darlington
 Okay so status update:
 
@@ -305,7 +382,7 @@ In previous attempts, I would change my Exploit to be this mysterious address bu
 Reply
 
 Kevin Darlington
-2d
+4d
  Replying to Keymer Botero
 Nice work! So it sounds like you are requesting the ldap through the curl, the ldap is calling the python server, and the server is serving your java file back to the vulnerable app? If this is the case, you should be seeing "Entering Exploit" in the logs. If that's the case, congrats you have the hard part figured out. 
 
@@ -316,7 +393,7 @@ If all of the above is correct, then your java code is not quite right and the c
 Reply
 
 Keymer Botero
-2d
+4d
  Replying to Kevin Darlington
 Interesting.. What if I do not see the message 'Entering Exploit' in the logs? Does this also mean that my java code needs to be tweaked again? Or does it still have something to do with my ldap call? I'm going review the hackersploit again because I saw I used the code and logic behind the code correctly. Will update upon something new happening.
 
@@ -324,7 +401,7 @@ Interesting.. What if I do not see the message 'Entering Exploit' in the logs? D
 Reply
 
 Kevin Darlington
-2d
+4d
  Replying to Keymer Botero
 Yeah that means your networking isn't quite right. I don't think your java code is ever executing. Could you post what you have privately and I will come back to answer you here? 
 
@@ -333,7 +410,7 @@ Yeah that means your networking isn't quite right. I don't think your java code 
 Reply
 
 Keymer Botero
-2d
+4d
  Replying to Kevin Darlington
 Yup! Will do! It took a bit, It should be there whenever you have a chance. Thank you again Kevin! I feel like there has to be some sort mismatch. Just to make sure I have this right:
 
@@ -351,7 +428,7 @@ How am I doing so far with this take on the matter?
 Reply
 
 Kevin Darlington
-2d
+4d
  Replying to Keymer Botero
 Okay, I have taken a look at everything and everything you have is working as expected. I see your servers are both logging happy and your java exploit is being returned (No logging because you don't have a print statement in there, it can be helpful for you if you add one). 
 
@@ -362,7 +439,7 @@ With that said, the issue lies in your java file itself. Look for alternatives t
 Reply
 
 Kevin Darlington
-2d
+4d
  Replying to Kevin Darlington
 BTW your understanding is spot on from what I can tell. Just look into alternatives to the command you are executing in the 1 liner and you should see happy things :)
 
@@ -371,7 +448,7 @@ BTW your understanding is spot on from what I can tell. Just look into alternati
 Reply
 
 Keymer Botero
-2d
+4d
  Replying to Kevin Darlington
 KEVIN I GOT IT, OH MY GOD I GOT IT! I could cry right now because oh my god, I've been stumped on this for a hot minute. I will hook up you with a bag of skittles because oh my god, I actually got it!
 
@@ -382,7 +459,7 @@ The funniest thing too... I had an extra / in my command to execute the bash ter
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
  Replying to Keymer Botero
 can you provide any guidance? I'm still stuck seeing nothing in the LDAP receiving any data - I'm using the port that the LDAP is listening to and the right ip specified in the instructions but I see nothing recognizing the call to LDAP
 
@@ -390,7 +467,7 @@ can you provide any guidance? I'm still stuck seeing nothing in the LDAP receivi
 Reply
 
 Keymer Botero
-2d
+4d
  Replying to Rakshaa Ravishankar
 Are you receiving communcation from your python server and listener?
 
@@ -398,7 +475,7 @@ Are you receiving communcation from your python server and listener?
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
  Replying to Keymer Botero
 No and that is where I am stumped
 
@@ -406,7 +483,7 @@ No and that is where I am stumped
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
  Replying to Rakshaa Ravishankar
 I set up the terminals to be listening but they dont receive anything when i run my curl command
 
@@ -414,7 +491,7 @@ I set up the terminals to be listening but they dont receive anything when i run
 Reply
 
 Keymer Botero
-2d
+4d
  Replying to Rakshaa Ravishankar
 I will say, If you aren't receiving any traffic, there's something going with the way you have your servers and listener configured. That's how I was stuck on it for a couple days.
 
@@ -424,7 +501,7 @@ I'd work from where you left off from flag1 as this is a simple jndi lookup. The
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
  Replying to Keymer Botero
 i do see the initial traffic that is expected according to the setup instructions. would you say the servers could still be set up wrong?
 
@@ -432,7 +509,7 @@ i do see the initial traffic that is expected according to the setup instruction
 Reply
 
 Keymer Botero
-2d
+4d
  Replying to Rakshaa Ravishankar
 If your listener terminates immediately like it did for me, it could be your java file is not setup correctly which is where things messed up for me. 
 
@@ -444,7 +521,7 @@ I hate to say 'trust me bro', but trust me when I say  that as long as your step
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
  Replying to Keymer Botero
 hmm my listeners dont terminate so I don't think this is related to my java code. how can i verify what this could be related to?
 
@@ -452,7 +529,7 @@ hmm my listeners dont terminate so I don't think this is related to my java code
 Reply
 
 Keymer Botero
-2d
+4d
  Replying to Rakshaa Ravishankar
 OOOH You might have it Rakshaa! Remember to verify using the 'whoami' command just like in the writeup! It looks blank but give it a whirl!
 
@@ -460,7 +537,7 @@ OOOH You might have it Rakshaa! Remember to verify using the 'whoami' command ju
 Reply
 
 Rakshaa Ravishankar
-2d
+4d
  Replying to Keymer Botero
 Omg. i was missing a ':' in my curl lol
 
@@ -468,7 +545,7 @@ Omg. i was missing a ':' in my curl lol
 Reply
 
 Kevin Darlington
-2d
+4d
  Replying to Keymer Botero
 Nice work and I am glad you got it! :)
 
@@ -476,7 +553,7 @@ Nice work and I am glad you got it! :)
 Reply
 
 Matthew David Macioce
-4d
+6d
 
 Resolved
 I think I am stuck in a similar spot to some others, but haven't had much luck. I have tried a few different ports, but I just seem to be logging the jndi request in the header rather than it actually running. Using the same syntax as the intro flag and flag1, so feel like it's probably safe to say it has to do with my ports or the exploit?
@@ -485,21 +562,21 @@ I think I am stuck in a similar spot to some others, but haven't had much luck. 
 Reply
 
 Kevin Darlington
-4d
+6d
 It is very likely due to your port if you jndi injection is correct. You need to pay close attention to the ports of each server, and think about which server you are wanting your jndi request to hit. 
 
 
 Reply
 
 Matthew David Macioce
-4d
+6d
 I should be using the IP referenced in the setup page correct? I followed along the video and haven't really strayed from that as far as figuring out the ports - assuming I don't need to add a port to the IP in my exploit, can't seem to figure out which one is the one I need (doing trial and error essentially)
 
 
 Reply
 
 Kevin Darlington
-4d
+6d
  Replying to Matthew David Macioce
 I think you need to take a step back and better understand the exploit. I strongly do not recommend you do this via trial and error. You need to understand which server you are trying to hit in your curl and why. Once you figure this out, the port should be easy to get. I cannot answer which port as this is part of the things you have to answer for this project. 
 
@@ -508,7 +585,7 @@ I think you need to take a step back and better understand the exploit. I strong
 Reply
 
 Matthew David Macioce
-4d
+6d
  Replying to Kevin Darlington
 Makes sense, thought I had it based on the background and video. Will take another look. Thanks!
 
@@ -516,7 +593,7 @@ Makes sense, thought I had it based on the background and video. Will take anoth
 Reply
 
 Matthew David Macioce
-4d
+6d
  Replying to Matthew David Macioce
 dumb question, but should the screenshot match exactly for the nc listener, or just the format? It says I have a connection but the ip is not the same as the screenshot
 
@@ -524,7 +601,7 @@ dumb question, but should the screenshot match exactly for the nc listener, or j
 Reply
 
 Kevin Darlington
-4d
+6d
  Replying to Matthew David Macioce
 Not a dumb question at all and sorry to be blunt about learning the why, but it will really make this project easier if you understand the networking vs get lucky on trial and error. 
 
@@ -536,7 +613,7 @@ As for the NC listener, no as long as it says connection received... ! and is ro
 Reply
 
 Matthew David Macioce
-4d
+6d
  Replying to Kevin Darlington
 Nope, totally understand. Hmm okay, I get the connection, whoami returns root but if I go back two directories it doesn't show me anything and running java -jar Flag2.jar doesn't return anything
 
@@ -544,7 +621,7 @@ Nope, totally understand. Hmm okay, I get the connection, whoami returns root bu
 Reply
 
 Kevin Darlington
-4d
+6d
  Replying to Matthew David Macioce
 Hmm, could you make a private post so I can see what you are doing? I will answer you here so others can benefit.
 
@@ -553,7 +630,7 @@ Hmm, could you make a private post so I can see what you are doing? I will answe
 Reply
 
 Kevin Darlington
-4d
+6d
  Replying to Kevin Darlington
 RE: Please make sure you have a space between cd and ../..
 
@@ -561,7 +638,7 @@ RE: Please make sure you have a space between cd and ../..
 Reply
 
 Alejandro Millan
-5d
+6d
 
 Resolved
 Hello, I've been able to make a connection with the LDAP server, get a ...redirecting... message, and able to make a connection with the python server which gives me a status code 200, but haven't been able to make a connection with the nc command. Would this be due to issues with my java code? 
@@ -570,14 +647,14 @@ Hello, I've been able to make a connection with the LDAP server, get a ...redire
 Reply
 
 Fahim Sunka
-5d
+6d
 It sounds like you are close and need to work on your Java exploit code. Some related discussion below - https://edstem.org/us/courses/69023/discussion/6222700?comment=14446687
 
 
 Reply
 
 Alejandro Millan
-5d
+6d
 Thanks, looks like it was an issue with my ports
 
 
@@ -585,7 +662,7 @@ Thanks, looks like it was an issue with my ports
 Reply
 
 Michael Reinker
-4d
+6d
 I'm in a very similar boat where I can get my exploit to run (verified by the log messages), but I'm not getting a connection back. Is there anyway to actually test commands from the server side to debug without having to constantly recompile the exploit?
 
 
@@ -593,7 +670,7 @@ I'm in a very similar boat where I can get my exploit to run (verified by the lo
 Reply
 
 Alejandro Millan
-4d
+5d
 Haven't found any way to test commands without having to modify and recompile the exploit file. I would put print statements on your try catch to make sure exploit is being run properly, if you see your prints then it's a matter of getting the correct line of code to make connection with the nc command. 
 
 
@@ -601,7 +678,7 @@ Haven't found any way to test commands without having to modify and recompile th
 Reply
 
 Michael Reinker
-4d
+5d
 Mine ended up being an IP issue. I still don't really understand why the IP I switched to work and the one I started with didn't
 
 
@@ -609,7 +686,7 @@ Mine ended up being an IP issue. I still don't really understand why the IP I sw
 Reply
 
 Robert Maness
-5d
+6d
 
 Resolved
 This took me way too long....I will just reiterate the earlier comment that it's important to remember what exactly Flag0 and Flag1 had you use to carry out your exploit in the curl. And if you're following along with the HackerSploit video, it's very close to what Flag2 is after but will require an extra step on your part. 
@@ -619,14 +696,14 @@ This took me way too long....I will just reiterate the earlier comment that it's
 Reply
 
 Hien Nhu Vo
-5d
+6d
 Hi Robert, thank you for the tip. I didn't have correct port number and hit my head many times to understand where my mistake was, until search the video that you recommended. Thanks a lot! you saved my slumber today! 
 
 
 Reply
 
 Abdul Goffar
-5d
+7d
 
 Resolved
 I am able to hit ldap and redirect but I am getting bad request . Could it be my curl command payload is wrong ?
@@ -635,14 +712,14 @@ I am able to hit ldap and redirect but I am getting bad request . Could it be my
 Reply
 
 Ashutosh Agarwal
-5d
+7d
 yes, bad request means malformed request syntax.
 
 
 Reply
 
 Dylan Jake Hawryluk
-5d
+7d
 
 Resolved
 Are the ports we run each terminals command on supposed to stay the same as the ones used in the example screenshots of this flag and the setup?
@@ -651,7 +728,7 @@ Are the ports we run each terminals command on supposed to stay the same as the 
 Reply
 
 Kevin Darlington
-5d
+7d
 Correct, you should keep all the ports and IP's the same. You can change them, but I would not recommend doing that unless you are just testing your knowledge. Losing track of ports can make for pain and suffering debugging. 
 
 
@@ -659,14 +736,14 @@ Correct, you should keep all the ports and IP's the same. You can change them, b
 Reply
 
 Dylan Jake Hawryluk
-5d
+7d
 Gotcha thank you! And just to confirm, after every iteration of code we try, must we alongside compiling the exploit, restart the 3 other terminals processes?
 
 
 Reply
 
 Kevin Darlington
-5d
+7d
  Replying to Dylan Jake Hawryluk
 No problem! No, you really only have to recompile the java class. Nothing else should need to be restarted. I usually clean mine every time because it makes it easier to see that they logged/didn't log something. 
 
@@ -675,7 +752,7 @@ No problem! No, you really only have to recompile the java class. Nothing else s
 Reply
 
 Dylan Jake Hawryluk
-5d
+7d
  Replying to Kevin Darlington
 Ahh okay that makes sense, yeah I restarted all of mine each time just to be 100% safe and organized. Thank you very much for the help and advice!
 
@@ -684,7 +761,7 @@ Ahh okay that makes sense, yeah I restarted all of mine each time just to be 100
 Reply
 
 Kevin Darlington
-5d
+6d
  Replying to Dylan Jake Hawryluk
 No problem and good luck on the rest of the project!
 
@@ -693,7 +770,7 @@ No problem and good luck on the rest of the project!
 Reply
 
 Joshua Tyndale
-5d
+7d
 
 Resolved
 I have all of my servers up and running, and I call a curl command with an exploit. My LDAP server gets hit, and says "Send ... redirecting to http...Exploit.class", just like in the walkthrough video. But my python server does not get any requests. Any advice would be appreciated.
@@ -712,14 +789,14 @@ Is the exploit I am sending through curl incorrect somehow? Im at a complete los
 Reply
 
 Kevin Darlington
-5d
+7d
 Hmm, it could be that your payload injection isn't quite right. If your python server is not logging anything, then that likely is the case. You can verify this by seeing if the logs have "Reference class: foo:" in them where your payload injection was. That means that the request to the ldap was unexpected aka incorrect. 
 
 
 Reply
 
 Aaron Wade Gonzales
-7h
+2d
 For anyone still stuck trying to hit the python server, I would highly suggest going through the setup on the project page again.  I was stuck on this for hours and realized I had not thoroughly followed all of the instructions.
 
 
@@ -727,14 +804,21 @@ For anyone still stuck trying to hit the python server, I would highly suggest g
 Reply
 
 Kevin Darlington
-5h
+2d
 Nice work and great advice. There are a few moving parts on this project and it is very easy to miss one small detail!
 
 
 Reply
 
+Joshua Tyndale
+18h
+The issue i was having was that my exploit wasnt formed correctly. The video said that the ldap server will automatically forward to an 'exploit.class' file but it didnt, I had to specify it manually
+
+
+Reply
+
 Landon T Fitts
-5d
+7d
 
 Resolved
 Is the Apache server running log4j hosted on the localhost:8080 or on the docker image 172.17.0.1:xxxx?
@@ -743,14 +827,14 @@ Is the Apache server running log4j hosted on the localhost:8080 or on the docker
 Reply
 
 Kevin Darlington
-5d
+7d
 It is hosted inside the container. 
 
 
 Reply
 
 Rachael Cofini
-5d
+7d
 
 Resolved
 I keep getting this error when running my curl command: {"statusDesc":"I'm a teapot","statusCd":418,"message":"JNDI LDAP/RMI lookup attempt detected. Aborting."} Am I close or way off base her I am super stuck. Is it my curl command that is the problem or my exploit? I also am not receiving any feed from any of the 3 running terminals.
@@ -759,21 +843,21 @@ I keep getting this error when running my curl command: {"statusDesc":"I'm a tea
 Reply
 
 Kevin Darlington
-5d
+7d
 That is an expected error, but only for later flags. I am thinking you either are using the wrong endpoint OR you are using the wrong attack vector. If you got flag 1, it is the same attack vector. 
 
 
 Reply
 
 Rachael Cofini
-5d
+7d
 I am using the same attack vector as flag 1 and the same endpoint still receiving that error any other possible tips or clarity as to what may be causing this or how to fix it?
 
 
 Reply
 
 Kevin Darlington
-5d
+7d
  Replying to Rachael Cofini
 Hmm, you are for sure calling: /rest/cartoons/isAlive?
 
@@ -781,7 +865,7 @@ Hmm, you are for sure calling: /rest/cartoons/isAlive?
 Reply
 
 Rachael Cofini
-5d
+7d
  Replying to Kevin Darlington
 Yes  I am calling that url. Could I be using the wrong port or my exploit is wrong and those things could cause that error? 
 
@@ -789,7 +873,7 @@ Yes  I am calling that url. Could I be using the wrong port or my exploit is wro
 Reply
 
 Kevin Darlington
-5d
+7d
  Replying to Rachael Cofini
 It shouldn't no. Could you post what you have privately and I will answer here what I see so everyone can benefit :)
 
@@ -797,7 +881,7 @@ It shouldn't no. Could you post what you have privately and I will answer here w
 Reply
 
 Rachael Cofini
-5d
+7d
  Replying to Kevin Darlington
 Just sent it over to you, thank you!
 
@@ -805,7 +889,7 @@ Just sent it over to you, thank you!
 Reply
 
 Kevin Darlington
-5d
+7d
  Replying to Rachael Cofini
 So, the one thing I notice is that your port doesn't appear correct. Please keep in mind what port each of these servers are running on, and which one you need to call first in your exploit. I recommend looking closer at the steps of execution of this exploit, and use the port of the first one called. I think you are on the dot other than the port. 
 
@@ -816,7 +900,7 @@ I am thinking you teapot error is coming from the /error resource, which is a bu
 Reply
 
 Rachael Cofini
-5d
+7d
  Replying to Kevin Darlington
 I think something wrong is going on here when i try to use a simple curl command of just the URL with the two needed headers I am getting all sorts of weird errors and when I just to run the same curl command I used that got me flag 1 its throwing all sorts of errors on that too all of sudden the error is Status 500 Internal Server Error any tips on how to troubleshoot/why this could be occuring?
 
@@ -824,7 +908,7 @@ I think something wrong is going on here when i try to use a simple curl command
 Reply
 
 Kevin Darlington
-5d
+7d
  Replying to Rachael Cofini
 Hmm, is it logging anything? Can you confirm the app is running? You might need to Stop/Start container.
 
@@ -832,7 +916,7 @@ Hmm, is it logging anything? Can you confirm the app is running? You might need 
 Reply
 
 Rachael Cofini
-5d
+7d
  Replying to Kevin Darlington
 It is logging a ton of errors specifically saying table "USERS" not found (this database is empty)
 
@@ -840,7 +924,7 @@ It is logging a ton of errors specifically saying table "USERS" not found (this 
 Reply
 
 Rachael Cofini
-5d
+7d
  Replying to Rachael Cofini
 When trying to restart the container this is what I get "
 
@@ -858,7 +942,7 @@ Container started, Tue Feb 25 04:16:21 PM EST 2025"
 Reply
 
 Kevin Darlington
-5d
+7d
  Replying to Rachael Cofini
 Hmm, okay. You might need to restart the VM. If the issue still persists something might have been corrupted and need a re-import :/
 
@@ -866,7 +950,7 @@ Hmm, okay. You might need to restart the VM. If the issue still persists somethi
 Reply
 
 Aaron Brooker
-5d
+7d
  Replying to Kevin Darlington
 Having this issue too, will try restarting the VM.
 
@@ -877,7 +961,7 @@ Restarting VM fixed the issue, thanks!
 Reply
 
 Kevin Darlington
-5d
+7d
  Replying to Aaron Brooker
 Nice! Glad it worked!
 
@@ -885,7 +969,7 @@ Nice! Glad it worked!
 Reply
 
 Thomas Leopold Kroll
-6d
+7d
 
 Resolved
 I feel like I'm doing everything correctly and I see my request in the log, but afterwards it looks like it doesn't make it to the LDAP server. I haven't changed anything and I've restarted and done this step by step several times. I understand the flow and the purpose of each of these, but I don't understand why the request is not being forwarded to the LDAP server.
@@ -894,28 +978,28 @@ I feel like I'm doing everything correctly and I see my request in the log, but 
 Reply
 
 Kevin Darlington
-6d
+7d
 If you are not hitting the ldap server, then your injection is not correct. It could be IP, port etc. I would recommend checking out the hacksploit video again and following along very closely. 
 
 
 Reply
 
 Thomas Leopold Kroll
-5d
+6d
 I followed everything right down to the escape characters he used and tried every IP address and hostname I know about in this context along with the LDAP port. I see my input on the main server but it never sends any requests to the LDAP server. I know that my payload is correct because I can make requests directly to the python server, but I know that's not where they're supposed to go. 
 
 
 Reply
 
 Thomas Leopold Kroll
-5d
+6d
 OK, it just started working with one IP address that I've tried multiple times. This is very buggy.
 
 
 Reply
 
 Anuj Goel
-6d
+1w
 
 Resolved
 hello there, I have the exploit working but no flag.
@@ -925,14 +1009,14 @@ hello there, I have the exploit working but no flag.
 Reply
 
 Kevin Darlington
-6d
+1w
 You need to run flag2.jar :)
 
 
 Reply
 
 Anuj Goel
-5d
+7d
 Thank you. 
 
 
@@ -940,7 +1024,7 @@ Thank you.
 Reply
 
 Corey Cunningham
-6d
+1w
 
 Resolved
 Why am I just logging the "jndi" command as a string and not attempting to hit the endpoint????
@@ -949,21 +1033,21 @@ Why am I just logging the "jndi" command as a string and not attempting to hit t
 Reply
 
 Corey Cunningham
-6d
+1w
 Changed Ip and now it is hitting ldap and redirecting.
 
 
 Reply
 
 Kevin Darlington
-6d
+1w
 Nice work!
 
 
 Reply
 
 Corey Cunningham
-5d
+7d
  Replying to Kevin Darlington
 But for some reason my redirect isn't hitting my server 
 
@@ -971,7 +1055,7 @@ But for some reason my redirect isn't hitting my server
 Reply
 
 Corey Cunningham
-5d
+7d
  Replying to Corey Cunningham
 Okay now I am redirected and hitting my local server, I can see that I am entering my exploit in the logs, but I get no connection in netcat
 
@@ -980,7 +1064,7 @@ Okay now I am redirected and hitting my local server, I can see that I am enteri
 Reply
 
 Corey Cunningham
-5d
+7d
  Replying to Corey Cunningham
 Wait maybe I am supposed to be hitting the nectat endpoint in my exploit 
 
@@ -988,7 +1072,7 @@ Wait maybe I am supposed to be hitting the nectat endpoint in my exploit
 Reply
 
 Kevin Darlington
-5d
+7d
  Replying to Corey Cunningham
 Hmm let me clarify. The process flow is: curl -> vulnerable webapp -> ldap -> python -> exploit. So the payload injection in your curl should be requesting the ldap server. 
 
@@ -996,7 +1080,7 @@ Hmm let me clarify. The process flow is: curl -> vulnerable webapp -> ldap -> py
 Reply
 
 Aarjab Goudel
-6d
+1w
 
 Resolved
 I'm able to open a reverse shell after I call the isAlive endpoint with my GATECH_ID as a  header in the curl request. When I execute the jar file, I get:
@@ -1009,21 +1093,21 @@ Not sure why I am receiving this error since I'm passing my Georgia Tech id as t
 Reply
 
 Joel M Tucker
-6d
+1w
 try restarting the docker container. If problems persist, you can post privately with your steps
 
 
 Reply
 
 Aarjab Goudel
-5d
+7d
 Restarting the container fixed the issue. Thanks!
 
 
 Reply
 
 Alois Maier
-6d
+1w
 
 Resolved
 Anyone else getting an HTTP status 400 - Bad Request when following the syntax format of the video? If I remove all occurrences of a specific character that they used (that is uncommon in url's) in the curl syntax to get it to run but nothing shows up in the listener/LDAP and I only get the "greetings" output
@@ -1032,7 +1116,7 @@ Anyone else getting an HTTP status 400 - Bad Request when following the syntax f
 Reply
 
 Robert Maness
-6d
+1w
 Yes I am also running into this. Not sure where I am going wrong
 
 
@@ -1040,7 +1124,7 @@ Yes I am also running into this. Not sure where I am going wrong
 Reply
 
 Alois Maier
-6d
+1w
 Got the flag!
 
 Don't be an idiot like me and forget about what we did during flags 0 and 1. It's relevant
@@ -1049,14 +1133,14 @@ Don't be an idiot like me and forget about what we did during flags 0 and 1. It'
 Reply
 
 Kevin Darlington
-6d
+1w
 Nice work!
 
 
 Reply
 
 Anuj Goel
-6d
+1w
 
 Resolved
 I have the curl -> webserver and payload redirecting to jndi to the python web server and it is opening a session with the netcat server (confirmed with the ps -ef also). However, I don't get an interactive shell similar to the screenshot on the instruction or the flag. 
@@ -1069,21 +1153,21 @@ Looks like nc -e is not longer works. What is an alternative way to open the rem
 Reply
 
 Alois Maier
-6d
+1w
 you ever figure this one out?
 
 
 Reply
 
 Anuj Goel
-6d
+1w
 For some of it, I have got the point why Webserver is now going to the netcat server, but the message I see says connection received from an IP address of the docker container instead of my localhost. Expected is the shell which is not happening. 
 
 
 Reply
 
 Alois Maier
-6d
+1w
  Replying to Anuj Goel
 any advice on the step before, for getting the curl to show up on the python console/ldap console?
 
@@ -1092,7 +1176,7 @@ any advice on the step before, for getting the curl to show up on the python con
 Reply
 
 Anuj Goel
-6d
+1w
  Replying to Alois Maier
 Follow the video completely as he walks through the steps. Pay close attention to the payload and java code. But I am not the best person to help as I still don't have my flag. 
 
@@ -1100,7 +1184,7 @@ Follow the video completely as he walks through the steps. Pay close attention t
 Reply
 
 Kevin Darlington
-6d
+1w
  Replying to Anuj Goel
 I recommend checking your ports and IP's closely
 
@@ -1108,7 +1192,7 @@ I recommend checking your ports and IP's closely
 Reply
 
 J. Kendall Miller
-6d
+1w
 
 Resolved
 After compiling the exploit, if your setup is correct should it run, or do you need to manually run the exploit file?
@@ -1117,21 +1201,21 @@ After compiling the exploit, if your setup is correct should it run, or do you n
 Reply
 
 Kevin Darlington
-6d
+1w
 This should all happen under the hood by executing your malicious curl. I do recommend the hackersploit video in the linked resources for this flag. It is almost exactly what you need for this flag and really lays out the concepts of how this exploit happens. 
 
 
 Reply
 
 J. Kendall Miller
-6d
+1w
 I watched it, but the actual running you hid from us. Printing out messages isn't working either from the try or catch?
 
 
 Reply
 
 J. Kendall Miller
-6d
+1w
  Replying to J. Kendall Miller
 I don't know what the hackersploit video is, just the log4shell walkthrough by yourself. Where is the hackersploit video?
 
@@ -1139,7 +1223,7 @@ I don't know what the hackersploit video is, just the log4shell walkthrough by y
 Reply
 
 Kevin Darlington
-6d
+1w
  Replying to J. Kendall Miller
 It is also in the homepage of the log4shell project. It is the hands on video :)
 
@@ -1147,7 +1231,7 @@ It is also in the homepage of the log4shell project. It is the hands on video :)
 Reply
 
 David Dexter
-6d
+1w
 
 Resolved
 For IP use, I found that the external IP (the one you use to SSH in) is more reliable than localhost
@@ -1157,18 +1241,18 @@ For IP use, I found that the external IP (the one you use to SSH in) is more rel
 Reply
 
 Xiaohua Cai
-7d
+1w
 
 Resolved
 Can someone give any hint please? why my lda server did not fetch and execute Exploit file on port 4242. I have updated and run the curl by injecting a malicious JNDI lookup payload into the HTTP request headers. 
 
 
 
-2
+3
 Reply
 
 Kevin Darlington
-7d
+1w
 This is because your curl injection is incorrect. I recommend referring to the hackersploit video in the linked resources and understand how the pieces of this project work together. 
 
 
@@ -1193,7 +1277,7 @@ Not a dumb question at all. The VM IP is localhost (127.0.0.1) and the applicati
 Reply
 
 Anonymous Falcon
-6d
+1w
 Endorsed
 Not that it matters here, but you could run "ip a" to get that info
 
@@ -1216,6 +1300,7 @@ Ashutosh Agarwal
 Yes, it’s not unusual due to nested logging. The number of requests doesn’t interfere with getting the flags.
 
 
+1
 Reply
 
 John Michael McPhillips
@@ -1253,7 +1338,7 @@ Nice work!
 Reply
 
 Anuj Goel
-6d
+1w
 Any hint how to get past the nc not support -e option?
 
 
@@ -1349,7 +1434,7 @@ It is the hacksploit video in the linked resources. It is almost 1:1 flag 2.
 Reply
 
 Abdul Goffar
-5d
+7d
 Im in the same boat for this Http bad request
 
 

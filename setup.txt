@@ -1,0 +1,1555 @@
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+52
+28
+Categories
+374 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+
+Filter
+Use left and right arrow keys to adjust the split region size
+VM Early Release Today #194
+James J Lohse
+2 months ago in Logistics
+
+Pinned
+
+Star
+
+Watch
+
+659
+66
+55
+99
+Views
+
+6
+This didn't email properly the first time sorry if you get two emails.
+
+If you have questions about installation, ask them here.
+If you have questions about running or using the VM, please use the #10  VM Troubleshooting thread to keep things in one place, thanks.
+---
+
+#10 -- Before you ask a question, have you looked at our VM Troubleshooting page on the course website?
+
+https://github.gatech.edu/pages/cs6035-tools/cs6035-tools.github.io/RequiredReading/VMTrouble.html
+
+---
+
+We are releasing the course VM ahead of the Machine Learning project to ensure that everyone has a chance to download it and test that they can boot the VM prior to the release of the first VM based project.
+
+To be SURE, you don't need the VM for the Machine Learning (ML) project, it's optional. 
+The ML project has you install a conda environment on your host machine, if that's OK with you then we recommend you do the project on your host. If you don't want to install the conda python environment on your host, you can use the VM. Please look for the VM-specific setup instructions if you plan to use the VM.
+
+You will need the VM for Binary Exploitation and all the rest of our projects except Cryptography, which can be done on your host machine.
+
+---
+
+VM Download link: https://cs6035.s3.us-east-1.amazonaws.com/CS6035-Spring-2025-RC-03.ova
+
+The VM requires VirtualBox 7.1.4 or higher and we always recommend that you use the latest version. VirtualBox downloads are here.
+
+Please note, on Windows during installation of VirtualBox, you'll get a message about installing a Python library, you can skip that.
+
+You are welcome to attempt to use VMWare products, Parallels, or any other hypervisor of your choice but we cannot provide help in troubleshooting for anything other than VirtualBox.
+
+---
+
+(James' note: If you have issues with VirtualBox on an Intel-based Mac, don't waste time troubleshooting, just use VMWare. We can't provide support for VMWare but IN MY OPINION it runs better on Intel-based Macs. Fusion Pro is free for personal/educational use (so is Workstation).
+
+---
+
+It's also possible to emulate the VM on ARM-based Macs per #11. Our TA Eric Johnson has provided some details on how he configures the emulation. 
+
+Understand that these instructions come without any warranty - we cannot grant extensions due to emulation issues.
+
+OVA Info:
+
+Name: CS6035-Spring-2025-RC-03.ova 
+
+Size on Windows disk: 11.7 GB (12,611,850,240 bytes)
+
+SHA256: 69f7313e643601262229a13e4a0e0aabd57f5b92413b308e1d7f1154d41d0cfc
+
+If you have questions about installation, ask them here.
+If you have questions about running or using the VM, please use the #10  VM Troubleshooting thread to keep things in one place, thanks.
+Comment
+
+Sort by Newest 
+Gantabya Kadel
+3w
+Hi team,
+
+how can we "fit the screen" (not sure if it's the right term) of the VM to match my laptop's window size and font settings ? Aside from me manually adusting them after launch can we configure virtualbox to do it auto ? 
+
+Thank you.
+
+
+Reply
+
+Dustin Sellers
+3w
+Easiest way is once you get to the login screen, right click on the bottom right of the VM buton toolbar (the one that looks like a monitor with a square in it - 6th one from the left below)
+
+
+Then highlight over the Virtual Screen 1 menu popup and choose what you want to Resize it to
+
+
+You have to do this each time, but easier than logging in and doing in
+
+
+Reply
+
+James J Lohse
+3w
+If you hit your right control key and F doesn't it go full size? and what Dustin said
+
+
+Reply
+
+Daniela Fragoso Diaz
+1mth
+Hello! I am getting this issue when trying to power on the vm. I looked around the thread but I didn't see the same error. 
+
+
+
+Reply
+
+Dustin Sellers
+1mth
+https://learnomate.org/6-ways-to-fix-virtualbox-result-code-e_fail-0x80004005-error-in-windows/
+
+
+1
+Reply
+
+Daniela Fragoso Diaz
+1mth
+Thank you for the quick reply! This actually fixed it: https://edstem.org/us/courses/69023/discussion/5978210?comment=13978238
+This was the underlaying issue but it wasn't showing 
+
+
+1
+Reply
+
+Dustin Sellers
+1mth
+ Replying to Daniela Fragoso Diaz
+Glad you're up and running 
+
+
+Reply
+
+Bifomo A Abdallah
+1mth
+I have a quick question; I have not seen mentioned anywhere which version of Linux is the VM in the installation process.
+
+
+Reply
+
+Dustin Sellers
+1mth
+
+
+Reply
+
+Claudia Araceli Garcia
+1mth
+If anyone that is facing the  ntcreatefile(\device\vboxdrvstub) failed: 0xc0000034 error after importing the VM, this youtube video helped me resolve :) 
+https://www.youtube.com/watch?v=9FYREN6UPsM
+
+
+3
+Reply
+
+Kavish Desai
+1mth
+Had the same issue, thanks for posting the resolve :)
+
+
+2
+Reply
+
+Daniela Fragoso Diaz
+1mth
+Thank you so much! Saved me time googling :)
+
+
+Reply
+
+Alvine Edajei Ataubo
+1mth
+I donwloaded the most recent Virtualbx release but when i import the ova fiel and try to start the machine, it gives me this an error and message details shows this Failed to open a session for the virtual machine CS6035-Spring-2025-RC-03.
+
+Callee RC:VBOX_E_PLATFORM_ARCH_NOT_SUPPORTED (0x80bb0012)
+
+Not sure whats not supported since the virtual box i installed is recent.
+
+I have a Mac M1 PC
+
+
+Reply
+
+Dustin Sellers
+1mth
+It is because you have an ARM (M chipset) Mac, which isn't supported. Intel chipset and Virtualbox is what is supported. You can attempt to use your M1 Mac (again, not supported) by following the steps provided in the following post https://edstem.org/us/courses/69023/discussion/5777922
+
+
+Reply
+
+Shane T Marotta
+1mth
+The OVA file is taking a decent amount of time to download. Is this expected? How long should it take to?
+
+
+Reply
+
+James J Lohse
+1mth
+It seems a little slow to me, normally I can download it in less than a few minutes. 
+
+But 25 minutes is still reasonable.
+
+
+By the way make sure you realize, you don't need the VM for the ML project.
+
+
+1
+Reply
+
+Dustin Sellers
+1mth
+Also, not sure where you are located, but International students semesters past have stated using a VPN (like Nord for instance) connected to a US Server, greatly increased the download speed
+
+
+Reply
+
+Thomas Evans
+1mth
+Looks like the VM is configured to forward port 22 (SSH). Running on Linux and and have an sshd already running.
+
+Is this forward a requirement or can I just move the port forward to a different external port?
+
+
+Reply
+
+Dustin Sellers
+1mth
+You can move it or if your machine is equipped (resources) to run the VM (GUI), you don't need it. It is there by default to allow students who have issues running via the VM GUI
+
+
+Reply
+
+James J Lohse
+1mth
+also FWIW the port forwarding is a VirtualBox setting, not inherent to the VM. The vm just knows that OpenSSL is running on port 22, VirtualBox port forwarding is where you choose what local port will forward to port 22 on the vm. 
+
+Somehow the OVA has this virtualbox port fowarding info as metadata, as this default port forwarding is NOT setup in VMWare or any other virtualization solution.
+
+and like Dustin says if you use the GUI for the vm you don't need the ssh port.
+
+
+Reply
+
+Joseph Alexander Saulsbury
+1mth
+So once we get to the login screen of the Ubuntu, then we just wait until next project drops?
+
+
+Reply
+
+Dustin Sellers
+1mth
+Correct
+
+
+1
+Reply
+
+Abdelrahman Ibrahem
+1mth
+Oh so we weren't supposed to hack into the Ubuntu VM 😃 
+
+
+Reply
+
+Dustin Sellers
+1mth
+ Replying to Abdelrahman Ibrahem
+Getting in doesn't do you any good as the project with description, instructions, tasks won't be released - so you can't start on the project
+
+
+Reply
+
+Abdelrahman Ibrahem
+1mth
+ Replying to Dustin Sellers
+Found that out 😃, but you can't give us a password protected VM in a CTF class and expect us not to have any fun with it.
+
+
+Reply
+
+Dustin Sellers
+1mth
+ Replying to Abdelrahman Ibrahem
+Understood, but be cautious: the environment is specifically configured, and "having fun" can cause issues. Before using it for projects, you may want to re-import the pristine OVA file.
+
+
+Reply
+
+Wilson Lee Heres
+2mth
+I'm not sure if this falls under install, but the troubleshooting page says:
+
+Username: Provided on project release
+Password: Provided on project release
+Is that true for the machine learning project as well?
+I am at the login screen so just wondering if that's all I can do up to that point.
+
+
+Reply
+
+James J Lohse
+2mth
+Yes sorry we won't be releasing the project docs, and therefore the username and password, until the project opening date. The username and password will be on Canvas.
+
+Each project has a different user account, and different password/username that will release with each project.
+
+This early VM release is just to make sure you can get the VM up and running and troubleshoot any display or other issues, get bidirectional clipboard turned on, etc.
+
+
+2
+Reply
+
+Cooper Michael Simpson
+2mth
+So this same VM file is used for ALL projects? we don't have to download a separate one for each project?
+
+
+Reply
+
+Dustin Sellers
+2mth
+ Replying to Cooper Michael Simpson
+That is correct
+
+
+1
+Reply
+
+----
+
+
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+52
+28
+Categories
+374 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+VM Early Release Today #194
+James J Lohse
+2 months ago in Logistics
+
+Pinned
+
+Star
+
+Watch
+
+659
+66
+55
+99
+Views
+
+6
+This didn't email properly the first time sorry if you get two emails.
+
+If you have questions about installation, ask them here.
+If you have questions about running or using the VM, please use the #10  VM Troubleshooting thread to keep things in one place, thanks.
+---
+
+#10 -- Before you ask a question, have you looked at our VM Troubleshooting page on the course website?
+
+https://github.gatech.edu/pages/cs6035-tools/cs6035-tools.github.io/RequiredReading/VMTrouble.html
+
+---
+
+We are releasing the course VM ahead of the Machine Learning project to ensure that everyone has a chance to download it and test that they can boot the VM prior to the release of the first VM based project.
+
+To be SURE, you don't need the VM for the Machine Learning (ML) project, it's optional. 
+The ML project has you install a conda environment on your host machine, if that's OK with you then we recommend you do the project on your host. If you don't want to install the conda python environment on your host, you can use the VM. Please look for the VM-specific setup instructions if you plan to use the VM.
+
+You will need the VM for Binary Exploitation and all the rest of our projects except Cryptography, which can be done on your host machine.
+
+---
+
+VM Download link: https://cs6035.s3.us-east-1.amazonaws.com/CS6035-Spring-2025-RC-03.ova
+
+The VM requires VirtualBox 7.1.4 or higher and we always recommend that you use the latest version. VirtualBox downloads are here.
+
+Please note, on Windows during installation of VirtualBox, you'll get a message about installing a Python library, you can skip that.
+
+You are welcome to attempt to use VMWare products, Parallels, or any other hypervisor of your choice but we cannot provide help in troubleshooting for anything other than VirtualBox.
+
+---
+
+(James' note: If you have issues with VirtualBox on an Intel-based Mac, don't waste time troubleshooting, just use VMWare. We can't provide support for VMWare but IN MY OPINION it runs better on Intel-based Macs. Fusion Pro is free for personal/educational use (so is Workstation).
+
+---
+
+It's also possible to emulate the VM on ARM-based Macs per #11. Our TA Eric Johnson has provided some details on how he configures the emulation. 
+
+Understand that these instructions come without any warranty - we cannot grant extensions due to emulation issues.
+
+OVA Info:
+
+Name: CS6035-Spring-2025-RC-03.ova 
+
+Size on Windows disk: 11.7 GB (12,611,850,240 bytes)
+
+SHA256: 69f7313e643601262229a13e4a0e0aabd57f5b92413b308e1d7f1154d41d0cfc
+
+If you have questions about installation, ask them here.
+If you have questions about running or using the VM, please use the #10  VM Troubleshooting thread to keep things in one place, thanks.
+Comment
+
+Sort by Newest 
+Gantabya Kadel
+3w
+Hi team,
+
+how can we "fit the screen" (not sure if it's the right term) of the VM to match my laptop's window size and font settings ? Aside from me manually adusting them after launch can we configure virtualbox to do it auto ? 
+
+Thank you.
+
+
+Reply
+
+Dustin Sellers
+3w
+Easiest way is once you get to the login screen, right click on the bottom right of the VM buton toolbar (the one that looks like a monitor with a square in it - 6th one from the left below)
+
+
+Then highlight over the Virtual Screen 1 menu popup and choose what you want to Resize it to
+
+
+You have to do this each time, but easier than logging in and doing in
+
+
+Reply
+
+James J Lohse
+3w
+If you hit your right control key and F doesn't it go full size? and what Dustin said
+
+
+Reply
+
+Daniela Fragoso Diaz
+1mth
+Hello! I am getting this issue when trying to power on the vm. I looked around the thread but I didn't see the same error. 
+
+
+
+Reply
+
+Dustin Sellers
+1mth
+https://learnomate.org/6-ways-to-fix-virtualbox-result-code-e_fail-0x80004005-error-in-windows/
+
+
+1
+Reply
+
+Daniela Fragoso Diaz
+1mth
+Thank you for the quick reply! This actually fixed it: https://edstem.org/us/courses/69023/discussion/5978210?comment=13978238
+This was the underlaying issue but it wasn't showing 
+
+
+1
+Reply
+
+Dustin Sellers
+1mth
+ Replying to Daniela Fragoso Diaz
+Glad you're up and running 
+
+
+Reply
+
+Bifomo A Abdallah
+1mth
+I have a quick question; I have not seen mentioned anywhere which version of Linux is the VM in the installation process.
+
+
+Reply
+
+Dustin Sellers
+1mth
+
+
+Reply
+
+Claudia Araceli Garcia
+1mth
+If anyone that is facing the  ntcreatefile(\device\vboxdrvstub) failed: 0xc0000034 error after importing the VM, this youtube video helped me resolve :) 
+https://www.youtube.com/watch?v=9FYREN6UPsM
+
+
+3
+Reply
+
+Kavish Desai
+1mth
+Had the same issue, thanks for posting the resolve :)
+
+
+2
+Reply
+
+Daniela Fragoso Diaz
+1mth
+Thank you so much! Saved me time googling :)
+
+
+Reply
+
+Alvine Edajei Ataubo
+1mth
+I donwloaded the most recent Virtualbx release but when i import the ova fiel and try to start the machine, it gives me this an error and message details shows this Failed to open a session for the virtual machine CS6035-Spring-2025-RC-03.
+
+Callee RC:VBOX_E_PLATFORM_ARCH_NOT_SUPPORTED (0x80bb0012)
+
+Not sure whats not supported since the virtual box i installed is recent.
+
+I have a Mac M1 PC
+
+
+Reply
+
+Dustin Sellers
+1mth
+It is because you have an ARM (M chipset) Mac, which isn't supported. Intel chipset and Virtualbox is what is supported. You can attempt to use your M1 Mac (again, not supported) by following the steps provided in the following post https://edstem.org/us/courses/69023/discussion/5777922
+
+
+Reply
+
+Shane T Marotta
+1mth
+The OVA file is taking a decent amount of time to download. Is this expected? How long should it take to?
+
+
+Reply
+
+James J Lohse
+1mth
+It seems a little slow to me, normally I can download it in less than a few minutes. 
+
+But 25 minutes is still reasonable.
+
+
+By the way make sure you realize, you don't need the VM for the ML project.
+
+
+1
+Reply
+
+Dustin Sellers
+1mth
+Also, not sure where you are located, but International students semesters past have stated using a VPN (like Nord for instance) connected to a US Server, greatly increased the download speed
+
+
+Reply
+
+Thomas Evans
+1mth
+Looks like the VM is configured to forward port 22 (SSH). Running on Linux and and have an sshd already running.
+
+Is this forward a requirement or can I just move the port forward to a different external port?
+
+
+Reply
+
+Dustin Sellers
+1mth
+You can move it or if your machine is equipped (resources) to run the VM (GUI), you don't need it. It is there by default to allow students who have issues running via the VM GUI
+
+
+Reply
+
+James J Lohse
+1mth
+also FWIW the port forwarding is a VirtualBox setting, not inherent to the VM. The vm just knows that OpenSSL is running on port 22, VirtualBox port forwarding is where you choose what local port will forward to port 22 on the vm. 
+
+Somehow the OVA has this virtualbox port fowarding info as metadata, as this default port forwarding is NOT setup in VMWare or any other virtualization solution.
+
+and like Dustin says if you use the GUI for the vm you don't need the ssh port.
+
+
+Reply
+
+Joseph Alexander Saulsbury
+1mth
+So once we get to the login screen of the Ubuntu, then we just wait until next project drops?
+
+
+Reply
+
+Dustin Sellers
+1mth
+Correct
+
+
+1
+Reply
+
+Abdelrahman Ibrahem
+1mth
+Oh so we weren't supposed to hack into the Ubuntu VM 😃 
+
+
+Reply
+
+Dustin Sellers
+1mth
+ Replying to Abdelrahman Ibrahem
+Getting in doesn't do you any good as the project with description, instructions, tasks won't be released - so you can't start on the project
+
+
+Reply
+
+Abdelrahman Ibrahem
+1mth
+ Replying to Dustin Sellers
+Found that out 😃, but you can't give us a password protected VM in a CTF class and expect us not to have any fun with it.
+
+
+Reply
+
+Dustin Sellers
+1mth
+ Replying to Abdelrahman Ibrahem
+Understood, but be cautious: the environment is specifically configured, and "having fun" can cause issues. Before using it for projects, you may want to re-import the pristine OVA file.
+
+
+Reply
+
+Wilson Lee Heres
+2mth
+I'm not sure if this falls under install, but the troubleshooting page says:
+
+Username: Provided on project release
+Password: Provided on project release
+Is that true for the machine learning project as well?
+I am at the login screen so just wondering if that's all I can do up to that point.
+
+
+Reply
+
+James J Lohse
+2mth
+Yes sorry we won't be releasing the project docs, and therefore the username and password, until the project opening date. The username and password will be on Canvas.
+
+Each project has a different user account, and different password/username that will release with each project.
+
+This early VM release is just to make sure you can get the VM up and running and troubleshoot any display or other issues, get bidirectional clipboard turned on, etc.
+
+
+2
+Reply
+
+Cooper Michael Simpson
+2mth
+So this same VM file is used for ALL projects? we don't have to download a separate one for each project?
+
+
+Reply
+
+Dustin Sellers
+2mth
+ Replying to Cooper Michael Simpson
+That is correct
+
+
+1
+Reply
+
+---
+
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+52
+28
+Categories
+374 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Running VM in VMWARE Workstation #43
+Siew Ping Lau
+2 months ago in Projects – Machine Learning
+
+Star
+
+Watch
+
+524
+55
+22
+44
+Views
+
+Hi,
+
+    Can i know if I could run the VM *.ova in VMWARE workstation instead of virtualbox?
+
+Comment
+
+2 Answers
+Dustin Sellers
+2 months ago
+
+
+You can use VMWare, may students do. However, only virtualbox is supported (fully tested)
+
+Comment
+
+Clay Anderson
+2mth
+Just to clarify, there is a class VM that we will have to install later on for assignments.  A lot of talk on here about installing a VM now.  Are we going to need a Linux VM installed other than the class VM?  I also have VMWare fusion on a macbook pro intel. I am happy to install a Linux VM if we are supposed to do have one already installed. 
+
+Thanks you, 
+
+Clay
+
+
+Reply
+
+Dustin Sellers
+2mth
+An OVA file will be provided that has the projects loaded and configured. You do not need to create your own Linux VM
+
+
+1
+Reply
+
+Clay Anderson
+2mth
+Ok thats what I was thinking, I appreciate the quick response. 
+
+
+1
+Reply
+
+Siew Ping Lau
+2mth
+Hi Dustin,
+
+Thank you for your prompt response. I will try running it in VMware, as I use it frequently for my daily tasks. If I encounter any issues, I will switch to VirtualBox.
+
+
+1
+Reply
+
+James J Lohse
+2mth
+VMWare is better than VirtualBox, pretty much hands down.
+
+The only reason we recommend VirtualBox is that it's free, with Broadcom,VMWare, we're never sure where they're going with their pricing.
+
+For now, Fusion and Workstation by VMWare are free for personal/edu use.
+
+And I'll say esp. for people with Macs, VMWare is a better product.
+
+It's just that we don't officially support it, but I personally recommend it.
+
+
+1
+Reply
+
+Siew Ping Lau
+2mth
+The vmware workstation pro is hosted in my win11 pro machine. I hope it has no issue to the VM :)
+
+
+Reply
+
+Ahmed Abdulmohsen Alaboodi Sr.
+2 months ago
+
+1
+I have MacBook and run parallels on it, can I use it for my VM project ?
+
+Comment
+
+James J Lohse
+2mth
+To be clear, you're not saying if it's a M/ARM based Mac, in which case you should read #11.
+
+If it's an Intel based Mac and it's new enough, per our specs on the course website, it will work fine with just VirtualBox (or VMWare), I don't see the need for Parallels but if you can make it work, great.
+
+
+Reply
+
+Dustin Sellers
+2mth
+The VM can be run however you want, with the caveat that VirtualBox is the only supported platform, and extensions will not be granted for issues.
+
+
+1
+Reply
+
+Your Answer
+
+
+Paragraph
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+52
+28
+Categories
+375 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Using QEMU/UTM on ARM-based Macs + Course VM Download Thread #11
+James J Lohse
+3 months ago in Logistics
+
+Pinned
+
+Unstar
+
+Watch
+
+786
+77
+88
+66
+Views
+
+6
+Only Use This Thread for ARM/QEMU/UTM and ssh-related questions. ALL OTHER VM Troubleshooting Questions go on the VM Troubleshooting Thread 
+
+The VM Troubleshooting Thread is #10 
+
+---
+
+We will be releasing the course VM a bit early before the first project where you can use a VM.
+
+This post will be updated and emailed to you when we update it, so be sure to be checking your email often, you already should check your email daily when at GA Tech.
+
+This early release is to ensure that everyone has a chance to download it and test that they can boot the VM prior to the release of the first VM based project.
+
+Note that for Spring 25, the first project, Man in the Middle, does not require a VM. The second project also does not require a VM, but can be done on the class VM. So you can roughly expect we'll release the VM ahead of the Machine Learning project.
+
+VM Download link: Will be posted on Canvas on the Machine Learning project when we release it.
+
+The VM requires VirtualBox 7.1.14 or higher and we always recommend that you use the latest version. 
+
+You are welcome to attempt to use VMWare products, Parallels, or any other hypervisor of your choice but we cannot provide help in troubleshooting for anything other than VirtualBox.
+
+EMULATION ON ARM-BASED MACS DOESN'T ALWAYS WORK WELL, IT'S SLOW
+
+It's also possible to emulate the VM on ARM based Macs.  Our TA Eric Johnson decided to provide some details below on how he configures the emulation, but again these instructions come without any warranty - we cannot grant extensions due to emulation issues.
+
+OVA Info:
+
+Name: 
+
+Size: 
+
+SHA256: 
+
+Note: None of the material below is necessary for running in VirtualBox on an Intel-based machine, but you can run the VM headless using the same SSH instructions as below:
+
+
+Emulating x86/x64 on Apple MX Chipset
+
+While it is possible to use emulation to run the CS6035 VMs it is important to note that it is not officially supported.
+
+You will need to be familiar with SSH and using the terminal as the Linux GUI is not very responsive and you it will be impossible to finish the project using the VM GUI.
+
+Disclaimers
+
+The TAs will NOT assist you with any difficulties that arise from using an unsupported chipset.
+
+You will NOT receive extensions due to technical difficulties with the VM.
+
+Using emulation to complete the homework for the class is done at your own risk.
+
+Requirements
+
+1. A copy of the class VM in .ova format
+
+2. A Linux system (you can use an ARM VM) or install QEMU on your 
+
+Mac using [Homebrew](https://www.qemu.org/download/#macos)
+
+3. [UTM](https://mac.getutm.app) or other any other emulation tool
+
+4. At least 50GiB of drive space available
+
+Obtaining the Virtual Disk Image from the OVA
+
+For the purposes of this tutorial we will use the CS6035-Fall-2024-RC2.ova as the VM filename, be sure to adjust the instructions for your VM image.
+
+Note that these instructions were created using a Linux VM and the exact commands may vary slightly on MacOS.
+
+1. Open a terminal
+
+2. Download the class VM
+
+TBA
+
+
+3. Extract the VM disk image from the OVA archive (look for the .vmdk file)
+
+tar -xvf CS6035-Fall-2024-RC2.ova
+
+
+4. Convert the disk image to qcow2 format
+
+qemu-img convert -O qcow2 CS6035-Fall-2024-RC2-disk001.vmdk CS6035-Fall-2024-RC2.qcow2
+
+
+Creating the Emulated Virtual Machine
+
+Note these instructions assume that you are using UTM. The instructions will differ if you are not using UTM.
+
+1. Open the UTM application
+
+2. Click on the 'Create a new Virtual Machine' button
+
+3. Click on the 'Emulate' button
+
+4. Click on the 'Other' button
+
+5. For 'Boot Device' select 'None'
+
+6. Click on the 'Continue' button
+
+6. For 'Architecture' ensure that 'x86_64' is selected
+
+7. For 'System' you can use the default value of 'Standard PC (Q35 + ICH9, 2009) (alias of pc-q35-7.2)(q35)
+
+8. Set the 'Memory' to ~50% of your total Mac RAM (We recommend 8192MB or more)
+
+9. For Storage you can use the default of '64 GB' - we will be deleting this drive
+
+10. You do not need to set a shared directory - click 'Continue'
+
+11. Set the VM name (CS6035-Fall-2024-rc2 for example)
+
+12. Click the 'Open VM Settings' checkbox
+
+13. Click the 'Save' button
+
+Configuring the Emulated Virtual Machine
+
+The VM settings window should have opened once you saved the VM. Now you'll need to configure the VM to use your .qcow2 
+
+image to boot the course VM.
+
+1. Select the 'QEMU' menu item on the left
+
+2. Disable (unselect) the 'UEFI Boot' option
+
+3. Select the 'Display' menu item on the left
+
+4. Set the 'Emulated Display Card' to 'virtio-gpu-gl-pci (GPU Supported)'
+
+5. Select the 'IDE Drive' from the left hand menu
+
+6. Click the 'Delete' button
+
+7. A prompt will appear asking you to confirm the action - click the 'Delete' button
+
+8. Select 'New...' under the 'Drives' section in the lefthand menu
+
+9. A prompt will open - click the 'Import...' button
+
+10. Find your drive image, 'CS6035-Fall-2024-RC2.qcow2' for this example
+
+11. Click the 'Save' button in the bottom right of the Settings view
+
+Completing Course Projects via SSH
+
+Given the fact that emulating the Linux UI typically results in a poor user experience, the expectation is that you would use SSH to complete all project activities. If you are unable to use SSH to perform a specific task then you're unlikely to be able to complete the project using an emulated VM
+
+Obtaining the VM's IP address
+
+1. Power on the VM
+
+2. Login to the VM as any user
+
+3. Wait patiently while the UI loads. You may see a black screen
+
+for a long period of time.
+
+4. Open the 'terminal' application
+
+5. Query all network interfaces: `ip a`
+
+6. Find the entry for the VM's network interface card:
+
+ Note that it is likely the second interface, denoted by `2:`
+
+The default subnet for UTM is typically `192.168.64.0/24`
+
+ 2: enp0s1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+
+ link/ether ee:50:4e:d3:b0:d1 brd ff:ff:ff:ff:ff:ff
+
+ inet 192.168.64.12/24 brd 192.168.64.255 scope global dynamic noprefixroute enp0s1
+
+
+In this example: We will assume that the IP address for the course VM is 192.168.64.12 for the purposes of this example. Your IP address may vary. Please use the address identified above to complete each SSH command.
+
+Completing the APISec project
+
+Ensure that you have Chrome installed on your Mac.
+
+Connect to the VM via ssh:
+
+ssh -L 127.0.0.1:8080:127.0.0.1:8080 apisec@192.168.64.12
+
+
+Use Chrome to connect to the project website:
+
+http://localhost:8080/swagger/index.html
+
+
+Complete the project as described in the project documentation.
+
+Completing the BinExp project
+
+Connect to the VM via ssh:
+
+ssh binexp@192.168.64.12
+
+
+Complete the project as described in the project documentation.
+
+NOTE: You will need to use tmux to properly use the debugger with your PwnTools scripts (e.py files) when connected via ssh.
+
+Completing the DBSec project
+
+Ensure that you have Chrome installed on your Mac.
+
+Connect to the VM via ssh:
+
+sudo ssh -L 127.0.0.1:80:127.0.0.1:80 -L 127.0.0.1:1433:127.0.0.1:1433 dbsec@192.168.64.12
+
+Note: We must use sudo to connect to the VM as the DBSec uses port :80 for HTTP and MacOS will not allow a normal user account to forward to that port.
+
+Navigate to the DBSec project website:
+
+http://localhost/intro.html
+
+
+Note: The DBSec project uses hostnames to present the various sites. That means you will need to add those hosts file on your Mac in order for the project pages to work.
+
+Complete the project as described in the project documentation.
+
+Completing the log4j project
+
+Connect to the VM via SSH:
+
+ssh log4j@192.168.64.12
+
+
+Complete the project as described in the project documentation. 
+
+Note: You will need to open multiple terminals and connect all of them to the VM via SSH in order to complete some or all of the project tasks.
+
+Completing the Machine Learning project
+
+Connect to the VM via SSH:
+
+ssh machine@192.168.64.12
+
+
+Complete the project as described in the project documentation.
+
+Completing the Malware Analysis project
+
+Connect to the VM via SSH:
+
+ssh malware@192.168.64.12
+
+
+Complete the project as described in the project documentation.
+
+Completing the WebSec project
+
+Ensure that you have Chrome installed on your Mac.
+
+Connect to the VM via ssh:
+
+ssh -L 127.0.0.1:7149:127.0.0.1:7149 websec@192.168.64.12
+
+
+Open the project webpage in Chrome:
+
+http://localhost:7149/
+
+
+Complete the project as described in the project documentation.
+
+Test your submissions via SSH as described in the project documentation
+
+Only Use This Thread for ARM/QEMU/UTM and ssh-related questions. ALL OTHER VM Troubleshooting Questions go on the VM Troubleshooting Thread 
+
+#10 
+
+Thanks for your cooperation.
+
+Comment
+
+Sort by Newest 
+Ruichen Zhu
+3w
+Hi team,
+
+I am a Macbook Pro M3 user. Though I follow the steps in this page, I feel that my vm is still very slow. Is there any good alternative for Mac ARM students? Thank you!
+
+Ruichen
+
+
+Reply
+
+Dustin Sellers
+3w
+Unfortunately the performance on a Mac using the process above can be less than ideal for some of the projects. There isn't a lot of performance tweaking you can do. If you find it unusable you would need to look into other options such as running the VM in the cloud, which is not supported nor steps provided (can be timely to setup and costly to run), or use an intel/amd machine to run the VM in Virtualbox or VMWare
+
+
+Reply
+
+Munaimah Khan
+3w
+I am trying to use host to access the swagger instance, but when I run ssh -p 22 -L 5001:127.0.0.1:5001 apisec@localhost, I get ssh: connect to host localhost port 22: Connection refused. The ssh port should be fine since running with the apisec@VMIP works. Any suggested method to resolve would be m much appreciate, otherwise I am running a very laggy VM UI over UTM
+
+
+File
+Screenshot 2025-02-09 at 12.04.36 PM.png
+
+Reply
+
+Shane Ryan Rosse
+3w
+The project this semester is at port 8080 - I was able to connect there by updating my ssh command
+
+
+1
+Reply
+
+Anonymous Aardvark
+1mth
+Hello, when I try to ssh into my vm for binexp, i get a time out. I've looked up my vm ip and I am using the correct ip for my virtual machine. When checking the ssh service within vm, it says it's disabled, but I don't have sudo privileges to enable it.
+
+
+Could you please advise on how to resolve this situation?
+
+
+Reply
+
+Anonymous Aardvark
+1mth
+I was able to find a solution. changing the connection in virtual box vm to bridged adapter allows ssh into vm without this error.
+
+
+Reply
+
+James J Lohse
+4w
+I didn't even know you could run systemctl as a normal user LOL I guess I wouldn't trust the results. The ssh server should be running.
+Glad you got it going.
+
+
+Reply
+
+Linh-Dan Le
+1mth
+I hit a timeout while trying to ssh into the VM: 
+
+$ ssh binexp@192.168.64.12
+ssh: connect to host 192.168.64.12 port 22: Operation timed out
+Does anyone know how this issue can be resolved. 
+
+
+Reply
+
+Dustin Sellers
+1mth
+Did you get the VM Ip by following the steps above under Obtaining the VM's IP address?
+If not 192.168.64.12 isn't necessarily your VMs IP Address, just one used as an example: In this example: We will assume that the IP address for the course VM is 192.168.64.12 for the purposes of this example. Your IP address may vary. Please use the address identified above to complete each SSH command.
+
+
+Reply
+
+Xiao Li
+1mth
+I followed all the steps up to 'Obtaining the VM's IP address,' but the screen remains white/grey even after waiting for a long time. I'm using an M1 MacBook. Is there anything I might have missed?
+
+
+
+Reply
+
+Dustin Sellers
+1mth
+Unfortunately, this method is not a supported means of running the VM, and is provided for you to try, but not guaranteed it would work. There isn't much other than cleaning up everything and starting the process again. However, it is possible due to various configurations of your individual PC it will not be a viable solution
+
+
+Reply
+
+Yan He
+1mth
+Hit following issue...
+
+<snip please don't post multi-page outputs>
+
+CondaEnvException: Pip failed
+
+
+Reply
+
+Dustin Sellers
+1mth
+This is inside the VM? If so, the ML project can be run outside the VM and that would be my recommendation. If this is outside the VM, this should be posted in the appropriate ED thread: https://edstem.org/us/courses/69023/discussion/5989595 (after you search that thread to see if there isn't a similar post/entry)
+
+
+Reply
+
+Yan He
+1mth
+Hi Dustin,
+
+No. It's on native MAC OS with M1 chips.
+
+MacOS Big Sur 11.6.
+
+Thanks and I will repost there.
+
+
+1
+Reply
+
+Ronnie Ghose
+1mth
+ Replying to Yan He
+sorry are you saying the issue is pip is failing inside of the VM which is running via QEMU emulation?
+
+
+Reply
+
+Dustin Sellers
+1mth
+ Replying to Ronnie Ghose
+No he was saying he was not using the VM, so was asked to move to the correct thread
+
+
+Reply
+
+Giriraj Jain
+1mth
+Thank you for the great writeup with precise instructions. I was able to run the VM on ARM based Mac and this a a great relief. I dont have to carry two machines anymore. However, having issues with DNS resolution and not able to modify /etc/hosts either to have some hardcoding done either.
+
+machine@CS6035-24:~$ wget https://cs6035.s3.amazonaws.com/ML/setup_conda_and_project.sh --2025-01-20 17:24:17-- https://cs6035.s3.amazonaws.com/ML/setup_conda_and_project.sh Resolving cs6035.s3.amazonaws.com (cs6035.s3.amazonaws.com)... failed: Temporary failure in name resolution. wget: unable to resolve host address ‘cs6035.s3.amazonaws.com’ machine@CS6035-24:~$ nslookup cs6035.s3.amazonaws.com ;; Got SERVFAIL reply from 127.0.0.53 Server: 127.0.0.53 Address: 127.0.0.53#53
+
+** server can't find cs6035.s3.amazonaws.com: SERVFAIL
+
+
+Reply
+
+Ronnie Ghose
+1mth
+hmm ... perhaps you could try adding some common nameservers like the cloudflare one? I'm surprised as I'd expect the VM to mostly use the host networking stack
+
+
+Reply
+
+Giriraj Jain
+1mth
+Thanks Ronnie, I will try few options. Resolve.conf is owned by root and sudo did not work either for me. Probably I will play around with symlink that seems to have 777 access. Will let you know how it goes. 
+
+
+Reply
+
+John Michael McPhillips
+1mth
+Awesome write up, thank you 👍
+
+
+1
+Reply
+
+James J Lohse
+1mth
+Thanks Eric Johnson, glad it helped. @Eric 
+
+
+Reply
+
+Arianna Rachel Lanz
+2mth
+Tried testing this out on my machine, but got stuck on step 2 of Obtaining the VM's IP address.  Firstly, the long wait for the UI to load happened before the log in screen (though it still may take a while after). Secondly for step 2 "Log in as any User": are there specifications for this user? I tried logging in with my GA Tech creds just to be sure, but no case was I able to log in. I keep getting "Sorry, password authentication didn't work. Please try again". Are there creds that are released when the VM is? Thanks!
+
+
+Reply
+
+Arianna Rachel Lanz
+2mth
+Never mind: found the answer here--https://github.gatech.edu/pages/cs6035-tools/cs6035-tools.github.io/RequiredReading/VMTrouble.html 
+
+The usernames and passwords are released on project release, though I am still wondering if there's one we can test with. In any case, I can wait until the current VM is released and everyone else is getting set up as well. 
+
+
+Reply
+
+James J Lohse
+2mth
+Where did you get a copy of our VM? 
+
+Assuming you didn't, I don't know which VM you are talking about here.
+
+Did you download some ISO or other OVA file? Ubuntu? something else?
+
+We wouldn't know the credentials for someone else's vm, and we're not giving out the credentials for ours until the ML project opens, and then only for the ML account.
+
+We will release the usernames/passwords with each project.
+
+
+Reply
+
+Arianna Rachel Lanz
+2mth
+ Replying to James J Lohse
+I got the VM image from the instruction wget https://cs6035.s3.amazonaws.com/CS6035-Fall-2024-RC2.ova  in the tutorial explained above. I was just trying it out to see if I could get it to work.
+
+
+Reply
+
+James J Lohse
+2mth
+ Replying to Arianna Rachel Lanz
+oh, they weren't supposed to post that link.
+
+I'm surprised it even worked.
+
+Sorry, we won't release credentials for that VM, I apologize that it was listed here.
+
+And I'm really surprised it was still there for download.
+
+Thanks and again, sorry for leaving that up.
+
+
+1
+Reply
+
+Christopher Pyles
+2mth
+Note that for Spring 25, the first project, Man in the Middle, does not require a VM. The second project also does not require a VM, but can be done on the class VM. So you can roughly expect we'll release the VM ahead of the Machine Learning project.
+Since the VM won't be required until project 3, can the first two projects be completed on a mac M series processor without issue? My understanding was that the only expected difficult with using Apple silicon processors was the course VM, but I just wanted to confirm that. (I'm going to be out of the country for projects 1 and 2 and need to know whether I need to bring an x86 machine with me.)
+
+
+Reply
+
+James J Lohse
+2mth
+Neither of the first two projects requires a VM.
+
+The ML project has some initial setup that some people have trouble with, installing conda.
+
+So some people will use the pre-setup environment on the VM for Machine Learning.
+
+But you are encouraged to do it on your own host machine, not in the vm, for performance reasons.
+
+
+Reply
+
+---
+
+Skip to main content
+Logo
+CS 6035 O01, OCY
+–
+Ed Discussion
+
+
+New Thread
+Courses
+51
+28
+Categories
+375 others online
+Use left and right arrow keys to adjust the split region size
+
+New Thread
+Filter
+Use left and right arrow keys to adjust the split region size
+Welcome to Week 7 of CS 6035 #668
+James J Lohse
+2 weeks ago in Logistics
+
+Star
+
+Watch
+
+316
+33
+11
+66
+Views
+
+3
+Welcome to Week 7 of CS 6035 Introduction to Information Security!
+
+Table of Contents 
+
+Introductory Comments 
+
+We'll make this weekly post throughout the semester, usually by Monday mid-day each week, summarizing what's coming up this week and putting a spotlight on a news item for further discussion.
+
+We are usually quite responsive in this class forum! At the same time, by policy, students should expect to receive responses within 24 hours. If you have a private question, please make a private post here on Ed, per #9.
+
+INTRO COMMENTS
+
+Web Sec is open, the browser's Inspector tool is an invaluable resource. Make sure you understand what you're looking at there. Here's the docs for Mozilla/Firefox's tools and the docs for Chrome. 
+
+Aside from that, I don't have a lot more to say about it so I'll repeat what I said last week:
+
+When you're doing Web Sec and you see W3Schools' Javascript section come up in the search, that should be high on your list of things to click on. Also quite relevant, and often overlooked, is the actual Javascript/HMTL/CSS docs on the Mozilla Developer network (MDN). MDN is also great for understanding the Document Object Model (DOM) characteristics and Javascript Events.
+You only get a week for Web Security -- I strongly recommend you start on Day 1, if you're not familiar with the concepts in the previous paragraph.
+Today is Day 2, so get going!
+
+RESEARCH IN EDUCATION
+
+This week we're going to make a departure from grad-level research into K-12. 
+
+I forget if I have introduced Dr. Nick Lytle, the Director of Research for OMS-CS. He's a great guy, there are bi-weekly "open coffee hours" that he holds if you ever have questions for him.
+
+I was looking at his papers and this one was interesting to me:
+
+PRADA: A Practical Model for Integrating Computational Thinking in K-12 Education
+
+I got to the actual paper without any authentication. PRADA turns out to be an acronym for "Pattern Recognition, Abstraction, Decomposition, and Algorithms." No wonder they used an acronym! To those uninitiated in math and computer science, that's just a tangle of words.
+
+Having said that, in fact, "Pattern Recognition, Abstraction, Decomposition, and Algorithms" is what we do all day long in computer science and cybersecurity, at least on the technical side of cybersecurity. We see some phenomenon, we come up with an abstraction (model) to help us understand it better. For many things, a complete understanding of the thing is not needed to use the thing, so abstraction helps us keep focused on the part of the thing that matters at the moment.
+
+An example of this is the automobile. For most people, they have a detailed understanding of their cabin controls (music, windows, seats, navigation, etc) but they lack any fundamental understanding of how their cars actually work. 
+
+As a person with extensive automobile mechanical experience (granted it was in my youth), I can more safely push a car to its limits because I have an understanding of the mechanical aspects of the car. I actually know in my head what my steering linkage looks like, for example. But this deep knowledge only helps at the margins. (the margins can be critical, like knowing instinctively what to do if the car goes into a slide). 
+
+For everyday driving, things can be simplified. The same is true for computer science. Instead of needing to know the details of computer architecture, programming and systems administration, educators can be taught some basics about computer science and then pass those lessons along to their students. This paper continues the argument in favor of infusing "Computational Thinking" into the teaching practices of educators across the spectrum.
+
+The paper presents a system where non-computer science oriented K-12 educators are introduced to "Computational Thinking" (CT) so they in turn can integrate CT into their courses:
+
+We piloted PRADA as part of a summer PD (professional development) on infusing CT into middle and high school content area courses. Dur- ing the PD, we taught and encouraged teachers to both recognize the PRADA elements that already exist in their courses, and also helped them to create digital artifacts in a block-based program- ming language to facilitate teaching PRADA.
+Just like in the car driving analogy, where everyone can operate a car without a detailed understanding of its mechanical aspects, in CT teachers can be trains to impart CT to their students without needing a full computer science background.
+
+It turns out that PRADA comes from Google's "Computational Thinking for Educators" course. The modified definition of the terms is as follows:
+
+Pattern Recognition -- observing and identifying patterns, trends,
+and regularities in data, processes, or problems
+Abstraction -- identifying the general principles and properties that
+are important and relevant to the problem
+Decomposition -- breaking down data, processes, or problems into
+meaningful smaller, manageable parts
+Algorithms -- developing step by step instructions for solving [a
+problem] and similar problems
+
+To me, the most relevant aspect of this here in CS 6035 is decomposition. You need to be able to take big problems and break them down into smaller problems, then solve the small problems and put the results together.
+
+It's an interesting paper for a quick scan, to me the most interesting part is the Case Studies where they detail what the teacher teams came up with to present to their students:
+
+One team made a puzzle-based history game. Once abstraction here is the timeline. Introducing the concept of a timeline early in students' education has parallels with time series analysis.
+
+Another team "created a historical role-playing game to provide context for
+students’ reading of narrative and expository texts."
+
+A science-oriented team did a "Rock and Mineral Quiz" where the teachers used Snap! to build a quiz system and a lab monitoring system.
+
+The math-oriented team did a football-themed game where students have to answer questions and each question is associated with a number of yards in a theoretical football game.
+
+It actually doesn't sound like they developed any earthshaking apps, but the educators walked away with an understanding of computer science. But they were exposed to programming concepts through the use of the Snap! language. Snap! is like Scratch, which I have some exposure to. Basic programming elements are broken down into blocks, and the student drags and drops block into a "program" to make a series of statements that will execute. Here's a sample:
+
+
+If you've never heard of Snap! or Scratch, they are a great way to introduce kids of any age to computer programming. One interesting application is to use Scratch to control a Tello drone. I don't know who hosts this site, but it talks about using Scratch with the Tello drone. A Tello is an educational drone, if you're interested, look up a Tello EDU or a Tello Robomaster TT. Note this is a Alibaba link, apparently these drones are no longer on Amazon.
+
+SECURITY IN THE NEWS
+
+Sorry for no news last week. I'll do something this week, and will post here when it's ready. Thanks for your patience, I'm just really busy with a project from my day job.
+
+Comment
+
+Sort by Newest 
+Joseph A Cannaday
+2w
+Funnily enough, I had a class in high school that used "Snap!" to learn programming concepts. While it's not the greatest tool for real development, it still allows for development of subroutines/functions, abstraction, recursion, loops, etc. For making 2D visual apps, it's certainly a lot easier than learning QT/pygame/openGL haha
+
+
+Reply
+
+

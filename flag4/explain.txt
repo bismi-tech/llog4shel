@@ -1,0 +1,21 @@
+Alright! Let me explain Flag 4: Command and Concat in a super simple way, like you're a kid.
+
+Imagine you have a magic notebook that listens to what you say and writes things down. But this notebook has a tiny problem—if you whisper the right secret words, you can make it write something that you control! That means you can trick it into writing whatever you want.
+
+For this challenge, your job is to trick the computer (like the magic notebook) into creating a file called "Ronnie.txt" and writing "AintNothinButAPeanut!" inside it. But the computer won’t just listen to you—you need to speak its secret language.
+
+Here's how you do it:
+
+Find the secret way to tell the computer to write things down (this is the "attack vector").
+Use a special trick (log4shell) to give it a command, like:
+"Hey, magic notebook! Create a file and write ‘AintNothinButAPeanut!’ in it!"
+
+Make sure your message follows the rules exactly, or the computer won't do it.
+🔎 Hints:
+
+The name of the challenge, "Command and Concat," is a big hint!
+"Command" means you need to tell the computer what to do.
+"Concat" (short for concatenation) means joining things together (maybe you need to combine words or pieces of text in a smart way!).
+You need to create a Java program (Exploit.java) that the computer will "read" and then follow your instructions.
+If something goes wrong, restarting the system might help!
+So, in short: You are using a hidden trick to convince the computer to create a file and put your secret phrase in it. Once you do that, you win the challenge! 🎉

@@ -4,14 +4,14 @@ CS 6035 O01, OCY
 –
 Ed Discussion
 
-1
+2
 
 New Thread
 Courses
 56
-28
+35
 Categories
-281 others online
+580 others online
 Use left and right arrow keys to adjust the split region size
 
 New Thread
@@ -19,7 +19,7 @@ Filter
 Use left and right arrow keys to adjust the split region size
 Project Log4Shell - Flag 5 PubSub Override #696
 Kevin Darlington
-Last week in Projects – Log4Shell
+2 weeks ago in Projects – Log4Shell
 
 Pinned
 
@@ -27,10 +27,10 @@ Star
 
 Watch
 
-381
-33
-88
-11
+529
+55
+22
+99
 Views
 
 1
@@ -43,32 +43,285 @@ Note: Do not share code, outside tools you used or any hints beyond the writeup 
 Comment
 
 Sort by Newest 
-David Robert Nygren
-2h
-Unresolved
-Are we using the same curl command as Flag 4? I used it to test, and it still connected to my LDAP successfully. I already know the other topics name and such based off hints given below.
+Munaimah Khan
+5h
+
+Resolved
+I seem to have tapped into the accountNumber but I see this in the logs
+
+Unable to get flag. Please ensure you entered your GatechId as the accountNumber in the messageVO body as instructed in the writeup
+
+However, when debugging i see my gatechid was part of a received message, what else could this error mean?
 
 
 Reply
 
-Robert Perry
+Munaimah Khan
+5h
+Nvm i got, my tip: ctrl+F keywords from this error and observe behaviors in log
+
+
+Reply
+
+David Jaffie
 8h
 
 Resolved
-Got the flag. I strongly recommend taking a look at the logs upon restart of app or at the setup page if you feel you are missing something.
+Is the Ronnie.txt FileNotFoundException expected? Or is that something we need to fix?
 
 
 Reply
 
-Kevin Darlington
-5h
+David Jaffie
+8h
+Update: I was still receiving that exception even when I found the flag. I think it can be disregarded.
+
+
+Reply
+
+Dylan Jake Hawryluk
+1d
+
+Resolved
+By far the easiest flag so far. Thank you to everybody hinting to reset the container!!
+
+
+3
+Reply
+
+Fahim Sunka
+24h
+Nice work! Good to hear that you found it the easiest, it does get easier once you get past the initial learning curve and understand the exploit process.
+
+
+1
+Reply
+
+Dylan Jake Hawryluk
+7h
+Definitely! Once it clicked for me what I should be looking for and how exactly I am delivering it, it was much better to grasp. Thank you and the rest of the team for the helpful and insightful hints!
+
+
+Reply
+
+Rachael Cofini
+1d
+
+Resolved
+I got my topic to change to the correct topic and my accountNum is set to my georgia tech ID but the flag is still not printing and says the unable to get flag please ensure your GatechId as the account number error message but accountnumber is showing my GATECH Id so I am not sure where to go from here? Any tips? It looks like I have everything right but no flag :/
+
+
+1
+Reply
+
+Rachael Cofini
+1d
+nvmd got the flag now I had it all right for the past hour HINT for everyone if you think you have it right but still not getting the flag restart your tail logs and the container after I did that I got the flag.
+
+
+Reply
+
+Ashutosh Agarwal
+1d
 Nice work!
 
 
 Reply
 
-Van Tran
-12h
+Amrut Bhalchandra Kulkarni
+1d
+
+Resolved
+Something that has me a bit concerned
+
+I got a flag, but I didn't see any print statements indicating that the program was entering my exploit
+
+I haven't seen any print statements I tried to use. I have double checked that my GTID is correct on everything though
+
+
+Reply
+
+Ashutosh Agarwal
+1d
+You'd need to tail the console.log file to see the System.out.println messages.
+
+
+1
+Reply
+
+Amrut Bhalchandra Kulkarni
+1d
+I was only checking cs6035.log
+
+The printlns show up in console.log
+
+
+Reply
+
+Amrut Bhalchandra Kulkarni
+1d
+
+Resolved
+Just got the flag
+
+Hint: Cronenberg hybrid of a couple previous flags
+
+On an unrelated note, Cronenberg's The Fly starring Jeff Goldblum is a fantastic movie
+
+
+Reply
+
+Gantabya Kadel
+3d
+
+Resolved
+This flag was surprisingly  easy to solve. It really is just like flag 3 imo.
+Advice for anyone who may be stuck later: follow the discussion in this thread it helps a lot. 
+And, if you mess up like me, the logs just tell you where to put what (assuming you did something like one of the previous flags first) 😄 
+
+
+2
+Reply
+
+Kevin Darlington
+3d
+Nice work!
+
+
+Reply
+
+Gantabya Kadel
+4d
+
+Resolved
+Can the previous flag attack vector be utilized ? 
+
+
+Reply
+
+Joel M Tucker
+4d
+you can try things out, we won't tell you what attack vector to use
+
+
+Reply
+
+Gantabya Kadel
+4d
+That’s fair thanks. I’ll try things post work.
+
+
+Reply
+
+David Robert Nygren
+4d
+
+Resolved
+Interesting hint. If you use the methods used in Flag 2 to attain a reverse shell, looking at the input of the config.properties file helped me get the flag. I knew what the "other" topic name was already and had the correct Exploit.java written already, but wasn't overwriting the config.properties file correctly because I didn't have the variable name correct. I realized what it was actually called by inspecting the config.properties file.
+
+
+3
+Reply
+
+Rakshaa Ravishankar
+5d
+
+Resolved
+I'm not sure what everyone means by "pattern", but I found the other topic in the logs and where it originates from. I tried setting it in my java code but it doesn't seem to do anything or reappear later in the logs when I check the logs after running my curl command. I know I am able to inject bc I see feedback from LDAP and the python server after I run my curl command. Am I on the right track, is there more to the "pattern" than the statement I see where the topic originates in the logs?
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+You also need to set your GATECH_ID as the account number in order to generate a valid flag. Review the logs to see if you can identify a method or "pattern" to manipulate the account number field.
+
+
+Reply
+
+Rakshaa Ravishankar
+4d
+I am doing this in my java code - is there more to the pattern than where in the logs that the topic and original account number is set?
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+ Replying to Rakshaa Ravishankar
+The java code only needs to overwrite the config.properties file with the new topic name. You'd need to review the logs and find out how the account number field is getting populated. 
+
+
+2
+Reply
+
+Rakshaa Ravishankar
+4d
+ Replying to Ashutosh Agarwal
+thank you! this clarified things and helped me get the flag.
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+ Replying to Rakshaa Ravishankar
+Nice work!
+
+
+Reply
+
+Rakshaa Ravishankar
+5d
+
+Resolved
+Am I correct in assuming that in this flag we are Not simply updating the config file, we are overwriting it? The instructions for this one say we need to overwrite yet the instructions for flag 3 specified we had to make sure we just update. I have solved flag 3 already, not sure if I'm complicating this but wanted to get this clarification.
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+yes, your assumption is correct. 
+
+
+Reply
+
+David Robert Nygren
+5d
+
+Resolved
+Are we using the same curl command as Flag 4? I used it to test, and it still connected to my LDAP successfully. I already know the other topics name and such based off hints given below.
+
+
+Reply
+
+Ashutosh Agarwal
+4d
+We are exploiting the same endpoint from flag 4 but the curl command might not be exactly the same (since there are a bunch of different things that you need to do in order to get the flag).
+
+
+Reply
+
+Robert Perry
+5d
+
+Resolved
+Got the flag. I strongly recommend taking a look at the logs upon restart of app or at the setup page if you feel you are missing something.
+
+
+1
+Reply
+
+Kevin Darlington
+5d
+Nice work!
+
+
+Reply
+
+Van Hien Tran
+5d
 
 Resolved
 I would say pls refer to this comment, it's right here
@@ -76,11 +329,11 @@ I would say pls refer to this comment, it's right here
 https://edstem.org/us/courses/69023/discussion/6222719?comment=14448075
 
 
-1
+2
 Reply
 
 Cosdyn Akers
-12h
+5d
 
 Resolved
 I am not seeing the pattern everyone keeps referencing, or where the acc number originates.  I have restarted the container and skimmed through the start up logs, I see the initial messages for the topics, but I guess I am not sure what to do with them.  I have tried using the other topics parameters to send a curl and all i get is errors, and looking through the error logs I don't really see anything helpful.  
@@ -92,21 +345,22 @@ Any direction anyone can provide?  I am kind of lost as to how to proceed here
 Reply
 
 Ashutosh Agarwal
-12h
+5d
 I would experiment with the parameters of the request using some unique strings. Then, review the logs to see if you can identify a method to manipulate the account number field.
 
 
 Reply
 
 Denis Kasapovic
-6h
+5d
 Some may disagree, but I wasn't a big fan of the word pattern. Kind of confused me. I ending up took it as looking for similarities since I was not seeing a pattern
 
 
+1
 Reply
 
 Anh Tuan Hoang
-20h
+6d
 
 Resolved
 
@@ -117,28 +371,28 @@ I have managed to update the topic but for some reason my accountNum is also cha
 Reply
 
 Joel M Tucker
-11h
+5d
 Make sure it's the right topic with the right value
 
 
 Reply
 
 Aaron Brooker
-8h
+5d
 Having this problem  too. A bit unsure how the accountNum is being changed to my jndi exploit. I am passing in my ID to accountNum.
 
 
 Reply
 
 Anh Tuan Hoang
-3h
+5d
 Hey i got it, try messing up the curl command, i injected at the wrong place that's why the accounNum is changed too
 
 
 Reply
 
 Kevin Darlington
-2h
+5d
  Replying to Anh Tuan Hoang
 Nice work!
 
@@ -146,7 +400,7 @@ Nice work!
 Reply
 
 Keymer Botero
-24h
+6d
 
 Resolved
 I'm so close to actually getting this flag and scoring 3 flags in a a single day. Just struggling with getting the value of the account number to be my GATECH_ID. Any suggestions with this everyone? I'm seeing in this thread that there's a pattern but I'm not sure what that is referring too.. 
@@ -154,11 +408,11 @@ I'm so close to actually getting this flag and scoring 3 flags in a a single day
 EDIT: NEVERMIND!! I SAW THE PATTERN THAT EVERYONE WAS REFERRING TO! I'M ON FIRE AFTER SO LONG!
 
 
-3
+4
 Reply
 
 Manan Himanshu Trivedi
-1d
+6d
 
 Resolved
 Is the new topic already in the properties file or do we create a new one? Just a bit confused on that part. I keep getting NullPointerException when publishing, any suggestions/hints?
@@ -167,7 +421,7 @@ Is the new topic already in the properties file or do we create a new one? Just 
 Reply
 
 Ashutosh Agarwal
-1d
+6d
 You do not need to create a new topic. I'd suggest scanning the logs from the beginning after you restart the app. 
 
 
@@ -175,7 +429,7 @@ You do not need to create a new topic. I'd suggest scanning the logs from the be
 Reply
 
 Cosdyn Akers
-2d
+6d
 
 Resolved
 Found the new topic, have my attack vector, and figured out how to change the publishing user ID.  What I can't figure out is how to change the publishing topic.  I am using similar code from flag 4, but for some reason the topic is staying as user.info.  Is there a method to figure out what the topic parameter is named in the config.properties file?  I feel like I am missing something extremely simple, like I am not calling the topic name parameter properly in my java script to edit which topic is published.
@@ -187,21 +441,21 @@ Is my thought process in the right place, or should I try heading in a different
 Reply
 
 Cosdyn Akers
-2d
+6d
 confirmed the name of the topic being called, still having trouble getting it to change.
 
 
 Reply
 
 Pesi Taototo
-1d
+6d
 I think you are heading in the right direction. Sometimes, I forget to use javac . When you make a change to a file, see for yourself by reading the file if the change persisted.
 
 
 Reply
 
 Steven Anthony Vasquez
-2d
+1w
 
 Resolved
 Hi I get the feeling this was answered somewhere that I can't find but how do we restart the container without restarting the entire VM?
@@ -211,21 +465,21 @@ Hi I get the feeling this was answered somewhere that I can't find but how do we
 Reply
 
 Joel M Tucker
-2d
+1w
 home directory has StopContainer and StartContainer scripts
 
 
 Reply
 
 Steven Anthony Vasquez
-2d
+1w
 Ah, completely missed that, thanks!
 
 
 Reply
 
 Joel M Tucker
-2d
+1w
  Replying to Steven Anthony Vasquez
 no worries! a lot of info thrown at you every project. It happens
 
@@ -234,7 +488,7 @@ no worries! a lot of info thrown at you every project. It happens
 Reply
 
 Sunjie Lu
-2d
+1w
 
 Resolved
 I put some prints in each of my Java to spot check if my scripts got run and when I run CURL for flag5, I surprised to find that my script for Flag4 was actually running according to my print. I have double checked my directory but still the same. What I am missing for set up?
@@ -243,7 +497,7 @@ I put some prints in each of my Java to spot check if my scripts got run and whe
 Reply
 
 Sunjie Lu
-2d
+1w
 Figured out here! Be sure to update the directory for your Malicious Server.
 
 2. Run the Malicious Server:
@@ -253,7 +507,7 @@ Open a new terminal and make sure the active directory is the directory that con
 Reply
 
 Robert Maness
-3d
+1w
 
 Resolved
 Just got it. Just to recap some of what the below comments will point you toward:
@@ -268,7 +522,7 @@ You'll probably be well served to re-use some of your logic from Flag 4's Exploi
 Reply
 
 Lucy Lee
-3d
+1w
 omg, I struggled with this for 3 days and it finally clicked for me. Thank you!
 
 
@@ -276,14 +530,14 @@ omg, I struggled with this for 3 days and it finally clicked for me. Thank you!
 Reply
 
 Kevin Darlington
-3d
+1w
 Nice work!
 
 
 Reply
 
 Michelle Mao
-3d
+1w
 
 Resolved
 I tired to inject my jndi into variable to fire my Exploit. It result in Status 500 Internal Server Error.  But in the log I did see the Topic read from properties file changed to my GT_ID. and also publishing to topic: is also my GT_ID. I'm not getting the flag is because of the error. 
@@ -291,41 +545,45 @@ I tired to inject my jndi into variable to fire my Exploit. It result in Status 
 I'm not sure how to update that accountNum.  I tried different CURL commands, try to find  the pattern or a way to trigger that other topic, but it just keep giving me 500 errors. :(
 
 
+2
 Reply
 
 Kevin Darlington
-3d
+1w
 You need to set the topic name to the other topic. Your gatech id needs to be in the account number field. 
 
 
+1
 Reply
 
 Michelle Mao
-3d
+1w
 Thank you so much! I got it now. 
 
 
 Reply
 
 Kevin Darlington
-3d
+1w
  Replying to Michelle Mao
 No problem and glad you got it! Nice work!
 
 
+1
 Reply
 
 Michelle Mao
-3d
+1w
 Hints for others who are having same issues:
 
 The error testing is important for you to understand the pattern of the new topic! 
 
 
+1
 Reply
 
 J. Kendall Miller
-4d
+1w
 
 Resolved
 When it says trick the application to publish to a different topic, are you saying a vector variable needs to be found or a file?
@@ -334,21 +592,21 @@ When it says trick the application to publish to a different topic, are you sayi
 Reply
 
 Zhao Rong Tan
-4d
+1w
 One of the comments below by the staff mentioned to take a look at fresh logs
 
 
 Reply
 
 J. Kendall Miller
-4d
+1w
 Yah, I got the information from the fresh logs, I just can't seem to figure out how to trick it to publish to the other topic.
 
 
 Reply
 
 J. Kendall Miller
-4d
+1w
  Replying to J. Kendall Miller
 Exploring a different curl protocol, but can't seem to get it to work. Am I overthinking it?
 
@@ -356,7 +614,7 @@ Exploring a different curl protocol, but can't seem to get it to work. Am I over
 Reply
 
 Zhao Rong Tan
-4d
+1w
  Replying to J. Kendall Miller
 My suggestion is to try publishing to the topic just to see what logs will be generated and analyze it carefully. You will be able to find what you need to figure out the trick to publish. Compare it against the hint the staff provided to look at the fresh logs carefully
 
@@ -364,7 +622,7 @@ My suggestion is to try publishing to the topic just to see what logs will be ge
 Reply
 
 J. Kendall Miller
-4d
+1w
  Replying to Zhao Rong Tan
 Do we need to change the curl protocol to publish? That seems to be what I am finding.
 
@@ -372,7 +630,7 @@ Do we need to change the curl protocol to publish? That seems to be what I am fi
 Reply
 
 Zhao Rong Tan
-4d
+1w
  Replying to J. Kendall Miller
 Based on the writeup, you are to identify another topic to publish the message to, I suggest you to first try publishing to that identified topic with the provided curl convention just to see what logs will be generated and analyze it carefully. You will be able to find what you need to figure out the trick to publish. Compare it against the hint the staff provided to look at the fresh logs carefully. There will be a pattern where you will start to see once you compare the logs. Read the logs carefully and analyze them, it will be worth it.
 
@@ -383,7 +641,7 @@ You can do this! Will take note of this post as well if you require more clarifi
 Reply
 
 J. Kendall Miller
-4d
+1w
  Replying to Zhao Rong Tan
 Can't seem to get past the 500 errors. I thought I saw a subtle difference but it gets thrown away in the PUT. Logs just seem to be pulling out what is required for the first topic and erroring out because it isn't finding everything for it.
 
@@ -391,7 +649,7 @@ Can't seem to get past the 500 errors. I thought I saw a subtle difference but i
 Reply
 
 J. Kendall Miller
-3d
+1w
  Replying to J. Kendall Miller
 That was somewhat difficult, but once I saw the pattern it took a while but I got the flag. Thanks.
 
@@ -400,7 +658,7 @@ That was somewhat difficult, but once I saw the pattern it took a while but I go
 Reply
 
 Kevin Darlington
-3d
+1w
  Replying to J. Kendall Miller
 Nice work!
 
@@ -408,7 +666,7 @@ Nice work!
 Reply
 
 Zhao Rong Tan
-3d
+1w
  Replying to J. Kendall Miller
 Good work! Happy that you managed to detect the pattern and got the flag!
 
@@ -417,7 +675,7 @@ Good work! Happy that you managed to detect the pattern and got the flag!
 Reply
 
 Michelle Mao
-3d
+1w
  Replying to J. Kendall Miller
 I'm at this place right now. I tried to play around with the required variables and changing values for them, but I can't see anything changing with the pattern. 
 
@@ -425,7 +683,7 @@ I'm at this place right now. I tried to play around with the required variables 
 Reply
 
 Zhao Rong Tan
-3d
+1w
  Replying to Michelle Mao
 I would advice you to compare the logs side by side if required. Once you see a pattern, you will be able to get the flag.
 
@@ -436,7 +694,7 @@ You are almost there!
 Reply
 
 Michelle Mao
-2d
+1w
  Replying to Zhao Rong Tan
 Thanks I got it :)!
 
@@ -445,7 +703,7 @@ Thanks I got it :)!
 Reply
 
 Kevin Darlington
-2d
+1w
  Replying to Michelle Mao
 Nice work!
 
@@ -453,7 +711,7 @@ Nice work!
 Reply
 
 Emily Ngoc-Chau Nguyen Astillero
-4d
+1w
 
 Resolved
 I was able to change the topic, but I still can't update the message being sent. 
@@ -464,7 +722,7 @@ I researched where the account number originates from and the pattern involved, 
 Reply
 
 Kevin Darlington
-4d
+1w
 I think that you are overcomplicating this. I would recommend playing with the requests parameters and seeing how those flow through the application. 
 
 
@@ -472,7 +730,7 @@ I think that you are overcomplicating this. I would recommend playing with the r
 Reply
 
 Emily Ngoc-Chau Nguyen Astillero
-4d
+1w
 That was scarily easy. Thank you so much!
 
 
@@ -480,7 +738,7 @@ That was scarily easy. Thank you so much!
 Reply
 
 Kevin Darlington
-4d
+1w
  Replying to Emily Ngoc-Chau Nguyen Astillero
 Nice work! :)
 
@@ -489,7 +747,7 @@ Nice work! :)
 Reply
 
 Xiaohua Cai
-6d
+2w
 
 Resolved
 I have found the right different topic. But I am not sure where to update the accountNum value to be my GT_ID.  I know we will need to update the “config.properties” file in Exploit.java. Should I update  accountNum on the Exploit.java file or using the Curl command?
@@ -498,14 +756,14 @@ I have found the right different topic. But I am not sure where to update the ac
 Reply
 
 John Michael McPhillips
-6d
+2w
 Find a pattern of where the account number originates from, and you will find how to modify it.
 
 
 Reply
 
 Xiaohua Cai
-6d
+2w
 I have figured it out and get the flag. Thanks
 
 
@@ -513,7 +771,7 @@ I have figured it out and get the flag. Thanks
 Reply
 
 Anh Tuan Hoang
-20h
+6d
  Replying to Xiaohua Cai
 i got the same problem as you, any clue as to where to update the accountNum?
 
@@ -521,7 +779,7 @@ i got the same problem as you, any clue as to where to update the accountNum?
 Reply
 
 Xiaohua Cai
-3h
+5d
  Replying to Anh Tuan Hoang
 check the log message and find a pattern o where the account number originates from. 
 
@@ -530,7 +788,7 @@ check the log message and find a pattern o where the account number originates f
 Reply
 
 Ruangsak Patomwong
-6d
+2w
 
 Resolved
 This is so hard, I cannot find the right different topic.
@@ -539,7 +797,7 @@ This is so hard, I cannot find the right different topic.
 Reply
 
 Kevin Darlington
-6d
+2w
 I suggest restarting the app to get fresh logs and going from there. Having a lot of noise in this project can make it harder to look. 
 
 
@@ -547,23 +805,23 @@ I suggest restarting the app to get fresh logs and going from there. Having a lo
 Reply
 
 Ruangsak Patomwong
-6d
+2w
 I already restart and extract the logs from original instruction but no idea where could valid topics be. I search through cs6035.log and console.log but nothing interesting comes up. Could you provide me more hint please?
 
 
 Reply
 
 Ashutosh Agarwal
-6d
+2w
  Replying to Ruangsak Patomwong
 Scan the logs from the beginning after you restart the app. 
 
 
-3
+4
 Reply
 
 Ruangsak Patomwong
-6d
+2w
  Replying to Ashutosh Agarwal
 thank you, I got someting that I think it should helps.
 
@@ -572,7 +830,7 @@ thank you, I got someting that I think it should helps.
 Reply
 
 Ruangsak Patomwong
-6d
+2w
  Replying to Ashutosh Agarwal
 Finally get the flag. thank you very much.
 
@@ -581,7 +839,7 @@ Finally get the flag. thank you very much.
 Reply
 
 Ashutosh Agarwal
-6d
+2w
  Replying to Ruangsak Patomwong
 Great job!
 
@@ -590,7 +848,7 @@ Great job!
 Reply
 
 Kevin Darlington
-6d
+2w
  Replying to Ruangsak Patomwong
 Nice work!
 
@@ -598,7 +856,7 @@ Nice work!
 Reply
 
 Lewis Won
-5d
+1w
 Thanks for this tip!
 
 
@@ -606,17 +864,24 @@ Thanks for this tip!
 Reply
 
 John Michael McPhillips
-7d
+2w
 
 Resolved
 This builds off of flag 4. Pay attention to where the account number comes from.
 
 
-4
+7
+Reply
+
+Amrut Bhalchandra Kulkarni
+1d
+Others here are saying it builds off of 3... so it's a bit confusing
+
+
 Reply
 
 Anonymous Porcupine
-1w
+2w
 
 Resolved
 I'm getting stuck with the (cleaned up) message:
@@ -628,24 +893,25 @@ INFO   Received message {[SELF REDACTED],"accountNum":"<my GTID>"} for topic: <t
 What am I missing?
 
 
+1
 Reply
 
 Anonymous Porcupine
-1w
+2w
 \*facepalm\* I was passing the copy/pasted "" value for my GTID header. Updated it to my GTID and got the flag.
 
 
 Reply
 
 Kevin Darlington
-1w
+2w
 Nice work!
 
 
 Reply
 
-Matthew Claar
-3d
+Matthew Joseph Claar
+1w
  Replying to Kevin Darlington
 Also dealing with the same error--have verified my GTID header is correct and matches in my exploit file. Would appreciate insight as my exploit appears to be appropriate directing to the new topic but clearly not publishing the value correctly
 
@@ -653,15 +919,15 @@ Also dealing with the same error--have verified my GTID header is correct and ma
 Reply
 
 Kevin Darlington
-3d
- Replying to Matthew Claar
+1w
+ Replying to Matthew Joseph Claar
 Okay, so you have the exploit working, your gatech id is set in the header, you are overriding the topic, but your gatech is not being published in the account number field? Do I have this correct?
 
 
 Reply
 
-Matthew Claar
-2d
+Matthew Joseph Claar
+1w
  Replying to Kevin Darlington
 That is correct as far as I can tell
 
@@ -669,15 +935,15 @@ That is correct as far as I can tell
 Reply
 
 Kevin Darlington
-2d
- Replying to Matthew Claar
+1w
+ Replying to Matthew Joseph Claar
 Okay got it. I would take a step back from exploiting and play with the parameters of the request with unique strings. Then map them through the logs and see if you can find a way to manipulate the account number field. 
 
 
 Reply
 
-Matthew Claar
-2d
+Matthew Joseph Claar
+1w
  Replying to Kevin Darlington
 Corrected my method of passing and setting my GTID accountNum, gtg now
 
@@ -686,15 +952,15 @@ Corrected my method of passing and setting my GTID accountNum, gtg now
 Reply
 
 Kevin Darlington
-2d
- Replying to Matthew Claar
+1w
+ Replying to Matthew Joseph Claar
 Nice work!
 
 
 Reply
 
 Anonymous Dove
-1w
+2w
 
 Resolved
 So I've been trying to look for the other topic that is supposed to be on the cs6035.log file but I am not sure if this is the way to go. Should I look for an already created topic or should I create a topic?
@@ -702,19 +968,19 @@ So I've been trying to look for the other topic that is supposed to be on the cs
 thanks
 
 
-1
+3
 Reply
 
 Kevin Darlington
-1w
+2w
 Correct, the other topic's name is in the logs. I recommend restarting the app and looking closely at the fresh logs.
 
 
-6
+9
 Reply
 
 Anonymous Wallaby
-1w
+2w
 If only I had read this comment two hours ago, it would have saved me a few hours.
 
 
@@ -722,7 +988,7 @@ If only I had read this comment two hours ago, it would have saved me a few hour
 Reply
 
 Kevin Darlington
-1w
+2w
  Replying to Anonymous Wallaby
 No worries you have plenty of time, you are really doing great if you are this far in the first day of project release! haha
 
@@ -730,7 +996,7 @@ No worries you have plenty of time, you are really doing great if you are this f
 Reply
 
 Anonymous Hippopotamus
-1w
+2w
  Replying to Anonymous Wallaby
 lol I thought the same thing
 
@@ -739,7 +1005,7 @@ lol I thought the same thing
 Reply
 
 Anonymous Wallaby
-1w
+2w
  Replying to Anonymous Hippopotamus
 Classic that the comment gets released one minute after I solved it. LMAO
 
@@ -748,7 +1014,7 @@ Classic that the comment gets released one minute after I solved it. LMAO
 Reply
 
 Anonymous Dove
-1w
+2w
 Got it! thanks.
 
 
@@ -756,7 +1022,7 @@ Got it! thanks.
 Reply
 
 Omar Arin Solaiman
-7d
+2w
 ... 
 
 The hours I've spent not looking at fresh logs...
@@ -766,7 +1032,7 @@ The hours I've spent not looking at fresh logs...
 Reply
 
 Daniel Alexander Moreno
-6d
+2w
 Thank you, this was my issue too. While I restarted some things, restarting that didn't occur to me.
 
 
@@ -774,23 +1040,23 @@ Thank you, this was my issue too. While I restarted some things, restarting that
 Reply
 
 Emily Ngoc-Chau Nguyen Astillero
-5d
+1w
 This is a dumb question. But by restarting the app, do you mean sending the endpoint to the server again and checking it's resulting logs? Or are we restarting the container? 
 
 
 Reply
 
 Kevin Darlington
-5d
+1w
  Replying to Emily Ngoc-Chau Nguyen Astillero
 Not a dumb question! You by restarting the app it means ./Stop and ./Start container. When applications start they sometimes log checkpoints  and configurations ;)
 
 
-4
+8
 Reply
 
 Emily Ngoc-Chau Nguyen Astillero
-4d
+1w
  Replying to Kevin Darlington
 Thank you! I got it.
 
@@ -798,7 +1064,7 @@ Thank you! I got it.
 Reply
 
 Kevin Darlington
-4d
+1w
  Replying to Emily Ngoc-Chau Nguyen Astillero
 Nice work!
 
@@ -806,7 +1072,7 @@ Nice work!
 Reply
 
 Geri Louise Shaeffer
-4d
+1w
 This hint right here, plus the follow up response above, is very eye opening. 
 
 
@@ -814,8 +1080,37 @@ This hint right here, plus the follow up response above, is very eye opening.
 Reply
 
 Arianna Rachel Lanz
-1w
+2w
 I'd also say that if you don't see it right away, just try something and see what errors you get. I found the error logs to be pretty helpful!
+
+
+1
+Reply
+
+Amrut Bhalchandra Kulkarni
+1d
+I think I found the correct topic
+
+Key clue in the write up is that the app subscribes to it
+
+Still figuring out how I can set its value though
+
+Other posts say it's really similar to Flag3, and it involves the same config file
+
+
+Reply
+
+This comment was deleted
+Matthew David Macioce
+2d
+I think I see a pattern/what everyone was mentioning - at least where accountNum is being pulled from once the topic is changed, but when I try to switch where my jndi is running/logging with my ID I just encounter 400 errors -- EDIT looks like I just needed a reset  of everything and that worked 
+
+
+Reply
+
+Kevin Darlington
+2d
+Nice work!
 
 
 1

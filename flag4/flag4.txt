@@ -8,10 +8,10 @@ Ed Discussion
 
 New Thread
 Courses
-56
-28
+53
+30
 Categories
-281 others online
+436 others online
 Use left and right arrow keys to adjust the split region size
 
 New Thread
@@ -19,7 +19,7 @@ Filter
 Use left and right arrow keys to adjust the split region size
 Project Log4Shell - Flag 4 Command and Concat #695
 Kevin Darlington
-Last week in Projects – Log4Shell
+2 weeks ago in Projects – Log4Shell
 
 Pinned
 
@@ -27,9 +27,9 @@ Star
 
 Watch
 
-364
+434
+44
 33
-66
 44
 Views
 
@@ -42,17 +42,216 @@ Note: Do not share code, outside tools you used or any hints beyond the writeup 
 Comment
 
 Sort by Newest 
-John Wyatt Gamble
-1h
-Unresolved
+Aniketh Swain
+2h
 
-Who is the muscle head that put this one together? 😂
+Resolved
+So as suggested below I was able to get the java version printed out so I know I have the attack vector. But when I try to put the actual exploit i have, I see a code 400 message bad on my python server with a string of hex chars. Is the file not supposed to be in the root? I do see a path being shown and I tried with that as well. Same issue.
+
+Edit: I also still don't see my print statements in the console.log file either
 
 
 Reply
 
+Kevin Darlington
+2h
+If your python server is throwing 400 errors, then your exploit is not being triggered because the python server failed. I would check that you are running it in the directory your .class file is in and check that you compiled your java code. 
+
+
+Reply
+
+Aniketh Swain
+2h
+I double checked and I am running the py server in the Flag4 directory. I also have recompiled the java file with no issues.
+
+
+Reply
+
+Aniketh Swain
+1h
+ Replying to Aniketh Swain
+Ah nvm I realized I had the wrong port haha
+
+
+Reply
+
+Seth Hunter Hemphill
+1d
+
+Resolved
+For this one, I found it really helpful to start by just seeing if I could find the java version. If you can get the java version, you're in the right direction. Note that you don't need to get the java version, it's just a very easy way to see if you found the attack vector.
+
+
+4
+Reply
+
+Gantabya Kadel
+2d
+
+Resolved
+I only see one reference to the following error :
+
+[UserService.java:87] ERROR Ronnie.txt was created but contents != "AintNothinButAPeanut!". Contents were: null
+
+down below on the threads and that seems to have been resolved by the poster somehow. Would I be getting this error because the the server seems to wanna write this 3 or so many times ? I just need to ensure that the code only writes if value not present as suggested in flag 3 ? or  would this be a matter of failure to write all together ? 
+
+
+Reply
+
+Kevin Darlington
+2d
+Hmm, I don't think you need to ensure if the code only writes once or not, you just need to make sure that it only creates a file with the contents of "AintNothingButAPeanut!" in it. Make sure your code is actually writing to the file. Have you ran this locally?
+
+
+1
+Reply
+
+Gantabya Kadel
+2d
+Kevin, I did manage to get the flag. Issue was that I was not closing the file. Much like C java won't write/flush the buffer unless closed looks like. 
+This is making me appreciate with statements in python so much more. 
+Thanks for the help! 😄 
+
+
+Reply
+
+Kevin Darlington
+2d
+ Replying to Gantabya Kadel
+Ah, yup that will do it. haha Nice work and no problem!
+
+
+Reply
+
+Gantabya Kadel
+2d
+
+Resolved
+Hello, is the attack vector quite obvious in the logs ? 
+I thought it was the Msg but looks like that's just the exception msg var.
+I did confirm that if we try to do ldap without masking it'll trigger a teapot via the exploitation method in flag 2. I have a good idea of what I need to do to get the actual flag ... i'm just stuck on finding the vector that should be used past the connection reset portion. Any hints on this ? 
+Thank you.
+
+
+Reply
+
+Gantabya Kadel
+2d
+I'm now getting this error: Reference Class Name: foo
+
+is this a good sign ? 
+
+
+Reply
+
+Gantabya Kadel
+2d
+Update this was indeed a good sign. Fun fact, don't try to add "Reference Class Name" as a key value pair. I did that thinking "Concatenation" and VM crashed 😆 
+Turns out my java Exploit wasn't compiled.
+
+
+1
+Reply
+
+Kevin Darlington
+2d
+Nice work! The reference class foo is a response from the ldap in an event a request fails
+
+
+1
+Reply
+
+Meer Ushter
+2d
+
+Resolved
+I am a little bit uncertain on my current approach,  the attack vector I am using is something really straightforward ( really its given to us on the writeup). I am able to execute the reverse shell and see the LDAP connecting the python server connecting which i thought I'm on the right track but with the hints being "command and concat" im no longer sure I'm on the right track . 
+
+should i keep working on how i am working towards rn or am i heading in the wrong direction.
+
+thanks in advance.
+
+
+Reply
+
+Gantabya Kadel
+2d
+is the supposed attack vector that you got on the curl command that was provided ?
+Not sure if you can answer this without giving it away lol sadly
+
+
+Reply
+
+Meer Ushter
+2d
+I don't think I can answer that , but i ended up getting the flag , Apparently I was on the right track think about what are you given and the current curl command how does that show up in the server logs , try placing in your values for the reverse hell and see what triggers it . Keep in mind the timing of your attack vector what shows up where to avoid resetting .
+
+
+Reply
+
+Gantabya Kadel
+2d
+ Replying to Meer Ushter
+Thanks. yeah I figured. 
+What I'm doing right now is seeing where the teapot gets triggered etc so we'll see. ty.
+
+
+Reply
+
+Robert Cody Ackert
+2d
+
+Resolved
+I am stuck on this one like the others. I have the exploit to the point where I can redirect to my JavaScript. The file is created but after the file is checked if it exists. I understand "use the name, command and concat" but I don't understand where to apply this. 
+
+
+Reply
+
+Kevin Darlington
+2d
+Have you found the attack vector?
+
+
+Reply
+
+Manan Himanshu Trivedi
+2d
+
+Resolved
+Might be a dumb question but if the name of the flag is a hint, do we need a java file to get this flag? A bit confused
+
+
+Reply
+
+Joel M Tucker
+2d
+Yes the java Exploit object is needed for this flag
+
+
+Reply
+
+John Wyatt Gamble
+3d
+
+Resolved
+Endorsed
+
+Who is the muscle head that put this one together? 😂
+
+
+4
+Reply
+
+Kevin Darlington
+3d
+TIME TO BLEED!
+
+
+2
+Reply
+
 Jorge Emilio Dominguez Najera Sr.
-9h
+3d
 
 Resolved
 What's the proper way to send logs from the Java file for debugging purposes?
@@ -63,14 +262,31 @@ I've been using  System.out.println but I never see logs with that, is it any lo
 Reply
 
 Ashutosh Agarwal
-5h
+3d
 To see the System.out.println messages you need to tail the console.log file not the cs6035.log file. If you still don't see it, then it's likely that your exploit is not getting executed. 
+
+
+1
+Reply
+
+Jorge Emilio Dominguez Najera Sr.
+2d
+In that case we would have to keep a separated terminal for tracking console.log instead right? I was trying to see if I can send them to appear in the same cs6035.log file when the exploit was executed. 
 
 
 Reply
 
+Ashutosh Agarwal
+2d
+ Replying to Jorge Emilio Dominguez Najera Sr.
+Yes, that's correct. 
+
+
+1
+Reply
+
 Rakshaa Ravishankar
-23h
+4d
 
 Resolved
 which folder should the txt file be created to?
@@ -79,14 +295,31 @@ which folder should the txt file be created to?
 Reply
 
 Kevin Darlington
-22h
+3d
 It should just be in the root directory of the project. 
 
 
 Reply
 
-Keymer Botero
+This comment was deleted
+Max Friedman
+2d
+ Replying to (Deleted)
+also stuck here. anyone have any tips?
+
+
+Reply
+
+Seth Hunter Hemphill
 1d
+ Replying to Max Friedman
+If you're still stuck, try putting in the curl that is given in the instructions and look at the exception that is logged.
+
+
+Reply
+
+Keymer Botero
+4d
 
 Resolved
 You guys were NOT kidding as far as sandwiching your stuff. Honestly, I'm glad I took a good look at this thread for ideas.
@@ -98,23 +331,24 @@ EDIT: GOD, THE IMPLICATIONS THIS FLAG HAS IS CRAZY. I won't say what it is becau
 Reply
 
 Denis Kasapovic
-2d
+5d
 
 Resolved
 Do not overthink this one, look at the log and see what comes back once you submit the test/example call. Like the hint says "Pay close attention to the logged messages and their format."  What was occurring with the data sent, was the biggest clue for me. If you completed previous flags to get to this point then you know what the original format of the lookup should be.
 
 
+1
 Reply
 
 Joel M Tucker
-2d
+4d
 good tip
 
 
 Reply
 
 David Robert Nygren
-2d
+5d
 
 Resolved
 Would you say, like the other flags, the best approach is to figure out the attack vector, successfully ping the LDAP, and THEN work on the Exploit.java script? The reason I ask is because I'm 95% sure I know the attack vector and given the hint regarding "Command and Concat" I cant figure out how to "sandwich" the jndi lookup in the output to call my ldap correctly.
@@ -124,14 +358,14 @@ Would you say, like the other flags, the best approach is to figure out the atta
 Reply
 
 Joel M Tucker
-2d
+5d
 yeah that's a good approach. One step at a time
 
 
 Reply
 
 Matthew Claar
-3d
+6d
 
 Resolved
 For anyone bashing their head against the wall with log errors, restarting the VM got me my flag
@@ -140,7 +374,7 @@ For anyone bashing their head against the wall with log errors, restarting the V
 Reply
 
 Matthew David Macioce
-3d
+6d
 
 Resolved
 Would seeing the i'm a teapot message mean I need to change my vector or encode/obfuscate it somehow? running into this on flag 3 too - can't escape it lol
@@ -149,14 +383,14 @@ Would seeing the i'm a teapot message mean I need to change my vector or encode/
 Reply
 
 Kevin Darlington
-3d
+6d
 No, the teapot error means that there is a homegrown filter in place that you need to bypass using encoding/obfuscation. 
 
 
 Reply
 
 Kevin Darlington
-3d
+6d
 You can get this flag however WITHOUT obfuscation and the name of this flag is a hint as to how. 
 
 
@@ -164,7 +398,7 @@ You can get this flag however WITHOUT obfuscation and the name of this flag is a
 Reply
 
 Alejandro Millan
-4d
+6d
 
 Resolved
 Are we supposed to find a way to bypass:  [Log4jUtilities.java:32] INFO Reset files? If I understand correctly this is being performed right before it looks for the .txt file, so I'm assuming any files being created will be deleted on that action?
@@ -173,66 +407,66 @@ Are we supposed to find a way to bypass:  [Log4jUtilities.java:32] INFO Reset fi
 Reply
 
 Ashutosh Agarwal
-4d
+6d
 Yes, you'd need to exploit at the right point to get the flag. I'd recommend going through the logs carefully to figure out the correct attack vector. 
 
 
 Reply
 
 Robert Maness
-4d
+7d
 
 Resolved
 YEAH BUDDY! Aint nothin to it but to do it!
 
 
-5
-Reply
-
-Kevin Darlington
-4d
-Everybody wanna be a hacker! But ain't nobody wanna exploit no silly dev mistakes! (Sounded better in my head, a lot corny-er in writing but anyways
-
-
 6
 Reply
 
+Kevin Darlington
+7d
+Everybody wanna be a hacker! But ain't nobody wanna exploit no silly dev mistakes! (Sounded better in my head, a lot corny-er in writing but anyways
+
+
+7
+Reply
+
 Sean Chen
-5d
+1w
 
 Resolved
 lightweight baby!
 
 
-4
+5
 Reply
 
 Fahim Sunka
-5d
+1w
 Nice work!
 
 
 Reply
 
 Brandon Shreve
-5d
+1w
 
 Resolved
 Lightweight! :) 
 
 
-4
+5
 Reply
 
 Kevin Darlington
-5d
+1w
 Yeah buddy!
 
 
 Reply
 
 Michael Joseph Hearn
-5d
+1w
 
 Resolved
 It's possible to execute code the way you did for 3 but it won't result in the flag in my experience.   If you look at the picture of the flag in the flag4 github you can see it was not gotten the same way as 3 or 2. Use the hint to figure out a new way keep an eye on any hints of what variables can be overwritten.  
@@ -242,14 +476,14 @@ It's possible to execute code the way you did for 3 but it won't result in the f
 Reply
 
 Kevin Darlington
-5d
+1w
 Nice work!
 
 
 Reply
 
 Brandan Tan
-7d
+1w
 
 Resolved
 I managed to get the message that shows `Congratulations! Your flag4 is: ...`. But when i copy and submit that value to Gradescope, it shows up as incorrect. Could a TA please help me check if i indeed have the correct value?
@@ -258,21 +492,21 @@ I managed to get the message that shows `Congratulations! Your flag4 is: ...`. B
 Reply
 
 Kevin Darlington
-7d
+1w
 Sure thing, please make a private post. 
 
 
 Reply
 
 Brandan Tan
-7d
+1w
 Okay, i just created one private post
 
 
 Reply
 
 Ruangsak Patomwong
-7d
+1w
 
 Resolved
 Don't forget to compile Exploit.java after you edit your code. I just waste hours for this.
@@ -282,7 +516,7 @@ Don't forget to compile Exploit.java after you edit your code. I just waste hour
 Reply
 
 Nicholas Charles Ryan
-5d
+1w
 Also dont forget to move your python server to the correct flag folder. I also wasted hours!
 
 
@@ -290,7 +524,7 @@ Also dont forget to move your python server to the correct flag folder. I also w
 Reply
 
 Omar Arin Solaiman
-7d
+1w
 
 Resolved
 Been able to create a file and proved it happened by creating it in the logs... can't seem to add to it though...
@@ -303,7 +537,7 @@ Is the vector different?
 Reply
 
 Omar Arin Solaiman
-7d
+1w
 Figured it out
 
 and it's a little funny being able to use it in that way. Will say that I thought I'd break the rest of it though... 
@@ -313,7 +547,7 @@ and it's a little funny being able to use it in that way. Will say that I though
 Reply
 
 Kevin Darlington
-7d
+1w
 Nice work!
 
 
@@ -337,14 +571,14 @@ Please ignore... i was in the wrong directory.
 Reply
 
 Gen Sheng Zhang
-7d
+1w
 Without giving away too many hints, I don't actually quite get what this has to do with the flag's name. Is there a way to leverage the mechanism explicitly or is this the same as any other log4j injection into a variable...? Just curious, because it seems to work by just updating one vulnerable variable.
 
 
 Reply
 
 Gen Sheng Zhang
-7d
+1w
  Replying to Gen Sheng Zhang
 i just exploited the vulnerability in the "intended" way probably, by leveraging the name of the flag. But, it still seems to work without it... wondering if I am tripping
 
@@ -376,14 +610,14 @@ Nice work!
 Reply
 
 Corey Cunningham
-2d
+5d
 same
 
 
 Reply
 
 Kevin Darlington
-2d
+5d
 There could be something wrong with your java code. Can you confirm your code is executing? If so, are you printing out the catch block to check if an exception has been thrown?
 
 

